@@ -1,10 +1,1 @@
-./node_modules/react-draggable/build/cjs/Draggable.js 260:22
-Module parse failed: Unexpected token (260:22)
-File was processed with these loaders:
-* ./node_modules/babel-loader/lib/index.js
-You may need an additional loader to handle the result of these loaders.
-|   // the underlying DOM node ourselves. See the README for more information.
-|   findDOMNode() /*: ?HTMLElement*/{
->     return this.props?.nodeRef?.current ?? _reactDom.default.findDOMNode(this);
-|   }
-|   render() /*: ReactElement<any>*/{
+I have joined the organization on November 3rd as a Chapter Lead. My core expertise includes Angular, Java, Spring Boot, and Microservices. Prior to this, I worked with EY as an Associate Technical Manager, primarily in the e-commerce domain, where I led teams delivering complex payment-related projects. I look forward to collaborating with cross-functional teams and contributing to our technology and delivery excellence.
