@@ -1,0 +1,121 @@
+{
+  "name": "cmp-ui-backoffice",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@date-io/date-fns": "2.11.0",
+    "@emotion/react": "11.6.0",
+    "@emotion/styled": "11.6.0",
+    "@mui/icons-material": "5.1.1",
+    "@mui/lab": "5.0.0-alpha.55",
+    "@mui/material": "5.1.1",
+    "@mui/styles": "5.1.1",
+    "@mui/x-data-grid": "5.0.1",
+    "@mui/x-date-pickers": "5.0.0-beta.0",
+    "@testing-library/jest-dom": "5.15.0",
+    "@testing-library/react": "11.2.7",
+    "@testing-library/user-event": "12.8.3",
+    "@types/crypto-js": "4.1.1",
+    "@types/jest": "26.0.24",
+    "@types/node": "12.20.36",
+    "@types/react": "17.0.33",
+    "@types/react-dom": "17.0.10",
+    "@types/uuid": "9.0.1",
+    "axios": "0.24.0",
+    "cross-env": "7.0.3",
+    "crypto-js": "4.1.1",
+    "date-fns": "2.26.0",
+    "node-rsa": "1.1.1",
+    "react": "17.0.2",
+    "react-cookie-consent": "8.0.1",
+    "react-dom": "17.0.2",
+    "react-draggable": "4.4.3",
+    "react-final-form": "6.5.7",
+    "react-idle-timer": "4.6.4",
+    "react-promise-tracker": "2.1.0",
+    "react-router-dom": "5.3.0",
+    "react-scripts": "4.0.3",
+    "react-transition-group": "4.4.1",
+    "secure-ls": "1.2.6",
+    "typescript": "4.4.4",
+    "uuid": "9.0.0",
+    "web-vitals": "1.1.2"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "cross-env INLINE_RUNTIME_CHUNK=false CI=false react-scripts build",
+    "test": "react-scripts test --coverage --runInBand --watchAll=false --testURL http://localhost/portal --testResultsProcessor=jest-sonar-reporter",
+    "test:update": "react-scripts test --coverage --runInBand --watchAll=false --testURL http://localhost/portal -u",
+    "test:local": "react-scripts test --testURL http://localhost/portal",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "homepage": ".",
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@types/node-rsa": "1.1.1",
+    "@types/react-router-dom": "5.3.2",
+    "@types/react-transition-group": "4.4.4",
+    "jest-serializer-html": "7.1.0",
+    "prettier": "2.4.1",
+    "jest-sonar-reporter": "2.0.0"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/service/*.{js,jsx,ts,tsx}",
+      "src/components/controls/*",
+      "src/pages/**/*",
+      "src/util/*",
+      "src/App.tsx",
+      "src/setupTests.ts",
+      "!src/pages/syBaseModule/*",
+      "!src/**/*.d.ts",
+      "!src/**/*.d.tsx",
+      "!src/index.tsx",
+      "!src/serviceWorker.ts",
+      "!src/reportWebVitals.ts"
+    ],
+    "coveragePathIgnorePatterns": [
+      "./src/*/*.types.{ts,tsx}",
+      "./src/index.tsx",
+      "./src/serviceWorker.ts",
+      "./src/dto/*",
+      "./src/images/*",
+      "./src/constant/*",
+      "./src/config/*",
+      "./src/layout/*",
+      "./src/components/LayoutRoute.tsx",
+      "./src/pages/syBaseModule/*"
+    ],
+    "coverageReporters": [
+      "json",
+      "lcov",
+      "text-summary",
+      "cobertura"
+    ],
+    "snapshotSerializers": [
+      "jest-serializer-html"
+    ]
+  },
+  "jestSonar": {
+    "reportPath": "./coverage",
+    "reportFile": "junit-test-execution-report.xml",
+    "indent": 4
+  }
+}
