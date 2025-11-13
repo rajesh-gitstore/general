@@ -1,1 +1,30 @@
-I have joined the organization on November 3rd as a Chapter Lead. My core expertise includes Angular, Java, Spring Boot, and Microservices. Prior to this, I worked with EY as an Associate Technical Manager, primarily in the e-commerce domain, where I led teams delivering complex payment-related projects. I look forward to collaborating with cross-functional teams and contributing to our technology and delivery excellence.
+ While resolving: cmp-ui-backoffice@0.1.0
+npm error Found: react@18.2.0
+npm error node_modules/react
+npm error   react@"18.2.0" from the root project
+npm error   peer react@">=16.8.0" from @emotion/react@11.9.0
+npm error   node_modules/@emotion/react
+npm error     @emotion/react@"11.9.0" from the root project
+npm error     peerOptional @emotion/react@"^11.5.0" from @mui/material@5.1.1
+npm error     node_modules/@mui/material
+npm error       @mui/material@"5.1.1" from the root project
+npm error       1 more (@mui/icons-material)
+npm error     1 more (@emotion/styled)
+npm error   1 more (@emotion/styled)
+npm error
+npm error Could not resolve dependency:
+npm error peer react@"^17.0.2" from @mui/material@5.1.1
+npm error node_modules/@mui/material
+npm error   @mui/material@"5.1.1" from the root project
+npm error   peer @mui/material@"^5.0.0" from @mui/icons-material@5.1.1
+npm error   node_modules/@mui/icons-material
+npm error     @mui/icons-material@"5.1.1" from the root project
+npm error
+npm error Fix the upstream dependency conflict, or retry
+npm error this command with --force or --legacy-peer-deps
+npm error to accept an incorrect (and potentially broken) dependency resolution.      
+npm error
+npm error
+npm error For a full report see:
+npm error C:\Users\2033969\AppData\Local\npm-cache\_logs\2025-11-13T09_12_56_435Z-eresolve-report.txt
+npm error A complete log of this run can be found in: C:\Users\2033969\AppData\Local\npm-cache\_logs\2025-11-13T09_12_56_435Z-debug-0.log
