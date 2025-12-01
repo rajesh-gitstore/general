@@ -1,0 +1,32 @@
+
+    @@ -773,11 +773,11 @@
+                              role="cell"
+                              style="min-width: 185px; max-width: 185px; min-height: 54px; max-height: 54px;"
+                              tabindex="-1"
+                            >
+                              <div>
+    -                           20-01-1970 05:43:21 PM
+    +                           20-01-1970 12:13:21 PM
+                              </div>
+                            </div>
+                            <div
+                              aria-colindex="2"
+                              aria-colspan="1"
+
+      757 |     }
+      758 |
+    > 759 |     expect(document.body).toMatchSnapshot('useEffect-sortModel-pageNo-triggered');
+          |                           ^
+      760 |   });
+      761 |
+      762 |   const DownloadErrorMock: any = () => {
+
+      at Object.<anonymous> (src/__tests__/pages/contentDeliveryModule/ContentDeliveryScreen.test.tsx:759:27)
+
+
+Snapshot Summary
+ › 1 snapshot failed from 1 test suite. Inspect your code changes or run `npm test -- -u` to update them.
+
+Test Suites: 1 failed, 136 passed, 137 total
+Tests:       2 failed, 1408 passed, 1410 total
+Snapshots:   1 failed, 500 passed, 501 total
