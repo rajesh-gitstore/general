@@ -1,0 +1,52 @@
+<DatePicker
+  label="To Date"
+  value={reportRequest?.endDate ? new Date(reportRequest.endDate) : null}
+  onChange={(newValue) => handleInputChange('toDate', newValue)}
+  slots={{ textField: TextField }}
+  slotProps={{
+    textField: {
+      error: errorState?.toDate !== '',
+      helperText: errorState?.toDate,
+      size: 'small',
+      onFocus: closeAlert,
+      fullWidth: true
+    }
+  }}
+/>
+
+
+
+{(menuRights?.includes(MenuRights.VIEW) || menuRights?.includes(MenuRights.EDIT))
+  ? (<Link to={{ pathname: `${RoutePathConstant.BATCH}`, state: { jobName: params.value ?? '' } }}>{params.value}</Link>)
+  : (<div>{params.value}</div>)
+}
+
+const value = params.value ?? '';
+
+<Link
+  to={value ? { pathname: `${RoutePathConstant.BATCH}`, state: { jobName: value } } : '#'}
+>
+  {value}
+</Link>
+
+
+<DataGrid
+  rowHeight={25}
+  disableColumnMenu
+  getRowId={r => r.categoryId}
+  hideFooterPagination
+  initialState={{
+    pagination: {
+      paginationModel: { pageSize: 20, page: 0 },
+    },
+  }}
+  pageSizeOptions={[20]}
+  rows={alertConfigList}
+  columns={alertConfigTableColumns}
+  sortingMode='server'
+  sortModel={sortModel}
+  sortingOrder={['asc','desc']}
+  onSortModelChange={(newModel) => setSortModel(newModel)}
+  loading={false}
+  hideFooterSelectedRowCount
+/>
