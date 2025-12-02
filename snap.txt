@@ -1,19 +1,46 @@
+1.PAGE_SIZE
+<Box sx={{ height: '400px', width:'100%', mt:2}}>
+                { (totalPages !== 0) && <Stack spacing={2}>
+                  <Pagination count={totalPages} showFirstButton showLastButton onChange={(event: React.ChangeEvent<unknown>, value: number) => {setFilterCriteria({...filterCriteria, pageNo:value})}}/>
+                </Stack> }
+                <Root><DataGrid
+                rowHeight={25}
+                disableColumnMenu
+                getRowId={r => r.categoryId}  
+                hideFooterPagination  
+                pageSize={20}
+                rows={alertConfigList}
+                columns={alertConfigTableColumns}
+                sortingMode='server'
+                sortModel={sortModel}
+                sortingOrder={['asc','desc']}
+                onSortModelChange={(newModel: GridSortModel) => setSortModel(newModel)}
+                loading={false} 
+                hideFooterSelectedRowCount
+            />
+            </Root>
+          </Box>
 
-C:\Users\2033969\SRK_Workspace\51599-cmp-ui-backoffice>npm run build
 
 
-> cmp-ui-backoffice@0.1.0 build
-> cross-env INLINE_RUNTIME_CHUNK=false CI=false react-scripts --openssl-legacy-provider build
+2.PARAMS VALUE
+<div>
+          {(menuRights?.includes(MenuRights.VIEW) || menuRights?.includes(MenuRights.EDIT))
+            ? (<Link to={{ pathname: `${RoutePathConstant.BATCH}`, state: { jobName: params.value } }}>{params.value}</Link>)
+            : (<div>{params.value}</div>)}
+        </div>
 
-Creating an optimized production build...
-Failed to compile.
-
-Module not found: Error: Can't resolve 'crypto' in 'C:\Users\2033969\SRK_Workspace\51599-cmp-ui-backoffice\node_modules\node-rsa\src'
-BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
-This is no longer the case. Verify if you need this module and configure a polyfill for it.
-
-If you want to include a polyfill, you need to:
-        - add a fallback 'resolve.fallback: { "crypto": require.resolve("crypto-browserify") }'        
-        - install 'crypto-browserify'
-If you don't want to include a polyfill, you can use an empty module like this:
-        resolve.fallback: { "crypto": false }
+3.RENDERS_INPUT
+<LocalizationProvider dateAdapter={AdapterDateFns}>
+                  <DatePicker
+                    label='To Date'
+                    value={reportRequest?.endDate ? new Date(reportRequest.endDate): null} 
+                    onChange={(newValue:Date) => handleInputChange('toDate',newValue)}
+                    renderInput={(params) => <TextField {...params} 
+                    error={errorState?.toDate !== ''}
+                    helperText={errorState?.toDate}
+                    size='small'
+                    onFocus={closeAlert}
+                    fullWidth />}
+                  />
+                </LocalizationProvider>
