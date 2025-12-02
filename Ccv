@@ -1,0 +1,19 @@
+{
+  field: 'jobName',
+  headerName: 'Job Name',
+  flex: 0.5,
+  renderCell: (params: GridRenderCellParams<any>) => (
+    <div>
+      {menuRights?.includes(MenuRights.VIEW) || menuRights?.includes(MenuRights.EDIT) ? (
+        <Link 
+          to={RoutePathConstant.BATCH}
+          state={{ jobName: params.value ?? '' }}
+        >
+          {params.value}
+        </Link>
+      ) : (
+        <div>{params.value}</div>
+      )}
+    </div>
+  )
+}
