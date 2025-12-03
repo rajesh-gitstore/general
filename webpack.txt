@@ -1,0 +1,460 @@
+If you want to include a polyfill, you need to:
+        - add a fallback 'resolve.fallback: { "assert": require.resolve("assert/") }'
+        - install 'assert'
+If you don't want to include a polyfill, you can use an empty module like this:
+        resolve.fallback: { "assert": false }
+ERROR in ./node_modules/asn1/lib/ber/reader.js 3:13-30
+Module not found: Error: Can't resolve 'assert' in 'C:\Users\8223669\React_Upgrade_task\51599-cmp-ui-backoffice\node_modules\asn1\lib\ber'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+        - add a fallback 'resolve.fallback: { "assert": require.resolve("assert/") }'
+        - install 'assert'
+If you don't want to include a polyfill, you can use an empty module like this:
+        resolve.fallback: { "assert": false }
+
+ERROR in ./node_modules/asn1/lib/ber/writer.js 3:13-30
+Module not found: Error: Can't resolve 'assert' in 'C:\Users\8223669\React_Upgrade_task\51599-cmp-ui-backoffice\node_modules\asn1\lib\ber'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+        - add a fallback 'resolve.fallback: { "assert": require.resolve("assert/") }'
+        - install 'assert'
+If you don't want to include a polyfill, you can use an empty module like this:
+        resolve.fallback: { "assert": false }
+
+ERROR in ./node_modules/node-rsa/src/NodeRSA.js 8:16-36
+Module not found: Error: Can't resolve 'constants' in 'C:\Users\8223669\React_Upgrade_task\51599-cmp-ui-backoffice\node_modules\node-rsa\src'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+        - add a fallback 'resolve.fallback: { "constants": require.resolve("constants-browserify") }'
+        - install 'constants-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+        resolve.fallback: { "constants": false }
+
+ERROR in ./node_modules/node-rsa/src/NodeRSA.js 10:12-29
+Module not found: Error: Can't resolve 'crypto' in 'C:\Users\8223669\React_Upgrade_task\51599-cmp-ui-backoffice\node_modules\node-rsa\src'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+        - add a fallback 'resolve.fallback: { "crypto": require.resolve("crypto-browserify") }'
+        - install 'crypto-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+        resolve.fallback: { "crypto": false }
+
+ERROR in ./node_modules/node-rsa/src/encryptEngines/encryptEngines.js 1:12-29
+Module not found: Error: Can't resolve 'crypto' in 'C:\Users\8223669\React_Upgrade_task\51599-cmp-ui-backoffice\node_modules\node-rsa\src\encryptEngines'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+        - add a fallback 'resolve.fallback: { "crypto": require.resolve("crypto-browserify") }'
+        - install 'crypto-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+        resolve.fallback: { "crypto": false }
+
+ERROR in ./node_modules/node-rsa/src/encryptEngines/io.js 1:13-30
+Module not found: Error: Can't resolve 'crypto' in 'C:\Users\8223669\React_Upgrade_task\51599-cmp-ui-backoffice\node_modules\node-rsa\src\encryptEngines'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+        - add a fallback 'resolve.fallback: { "crypto": require.resolve("crypto-browserify") }'
+        - install 'crypto-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+        resolve.fallback: { "crypto": false }
+
+ERROR in ./node_modules/node-rsa/src/encryptEngines/io.js 2:16-36
+Module not found: Error: Can't resolve 'constants' in 'C:\Users\8223669\React_Upgrade_task\51599-cmp-ui-backoffice\node_modules\node-rsa\src\encryptEngines'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+        - add a fallback 'resolve.fallback: { "constants": require.resolve("constants-browserify") }'
+        - install 'constants-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+        resolve.fallback: { "constants": false }
+
+ERROR in ./node_modules/node-rsa/src/encryptEngines/node12.js 1:13-30
+Module not found: Error: Can't resolve 'crypto' in 'C:\Users\8223669\React_Upgrade_task\51599-cmp-ui-backoffice\node_modules\node-rsa\src\encryptEngines'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+        - add a fallback 'resolve.fallback: { "crypto": require.resolve("crypto-browserify") }'
+        - install 'crypto-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+        resolve.fallback: { "crypto": false }
+
+ERROR in ./node_modules/node-rsa/src/encryptEngines/node12.js 2:16-36
+Module not found: Error: Can't resolve 'constants' in 'C:\Users\8223669\React_Upgrade_task\51599-cmp-ui-backoffice\node_modules\node-rsa\src\encryptEngines'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+        - add a fallback 'resolve.fallback: { "constants": require.resolve("constants-browserify") }'
+        - install 'constants-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+        resolve.fallback: { "constants": false }
+
+ERROR in ./node_modules/node-rsa/src/libs/jsbn.js 39:12-29       
+Module not found: Error: Can't resolve 'crypto' in 'C:\Users\8223669\React_Upgrade_task\51599-cmp-ui-backoffice\node_modules\node-rsa\src\libs'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+        - add a fallback 'resolve.fallback: { "crypto": require.resolve("crypto-browserify") }'
+        - install 'crypto-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+        resolve.fallback: { "crypto": false }
+
+ERROR in ./node_modules/node-rsa/src/libs/rsa.js 43:12-29        
+Module not found: Error: Can't resolve 'crypto' in 'C:\Users\8223669\React_Upgrade_task\51599-cmp-ui-backoffice\node_modules\node-rsa\src\libs'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+        - add a fallback 'resolve.fallback: { "crypto": require.resolve("crypto-browserify") }'
+        - install 'crypto-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+        resolve.fallback: { "crypto": false }
+
+ERROR in ./node_modules/node-rsa/src/schemes/oaep.js 6:12-29     
+Module not found: Error: Can't resolve 'crypto' in 'C:\Users\8223669\React_Upgrade_task\51599-cmp-ui-backoffice\node_modules\node-rsa\src\schemes'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+        - add a fallback 'resolve.fallback: { "crypto": require.resolve("crypto-browserify") }'
+        - install 'crypto-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+        resolve.fallback: { "crypto": false }
+
+ERROR in ./node_modules/node-rsa/src/schemes/pkcs1.js 6:12-29    
+Module not found: Error: Can't resolve 'crypto' in 'C:\Users\8223669\React_Upgrade_task\51599-cmp-ui-backoffice\node_modules\node-rsa\src\schemes'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+        - add a fallback 'resolve.fallback: { "crypto": require.resolve("crypto-browserify") }'
+        - install 'crypto-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+        resolve.fallback: { "crypto": false }
+
+ERROR in ./node_modules/node-rsa/src/schemes/pkcs1.js 7:16-36    
+Module not found: Error: Can't resolve 'constants' in 'C:\Users\8223669\React_Upgrade_task\51599-cmp-ui-backoffice\node_modules\node-rsa\src\schemes'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+        - add a fallback 'resolve.fallback: { "constants": require.resolve("constants-browserify") }'
+        - install 'constants-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+        resolve.fallback: { "constants": false }
+
+ERROR in ./node_modules/node-rsa/src/schemes/pss.js 6:12-29      
+Module not found: Error: Can't resolve 'crypto' in 'C:\Users\8223669\React_Upgrade_task\51599-cmp-ui-backoffice\node_modules\node-rsa\src\schemes'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+        - add a fallback 'resolve.fallback: { "crypto": require.resolve("crypto-browserify") }'
+        - install 'crypto-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+        resolve.fallback: { "crypto": false }
+
+ERROR in ./node_modules/node-rsa/src/utils.js 6:12-29
+Module not found: Error: Can't resolve 'crypto' in 'C:\Users\8223669\React_Upgrade_task\51599-cmp-ui-backoffice\node_modules\node-rsa\src'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+        - add a fallback 'resolve.fallback: { "crypto": require.resolve("crypto-browserify") }'
+        - install 'crypto-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+        resolve.fallback: { "crypto": false }
+
+ERROR in ./node_modules/safer-buffer/safer.js 5:13-30
+Module not found: Error: Can't resolve 'buffer' in 'C:\Users\8223669\React_Upgrade_task\51599-cmp-ui-backoffice\node_modules\safer-buffer'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+        - add a fallback 'resolve.fallback: { "buffer": require.resolve("buffer/") }'
+        - install 'buffer'
+If you don't want to include a polyfill, you can use an empty module like this:
+        resolve.fallback: { "buffer": false }
+
+webpack compiled with 17 errors
+Files successfully emitted, waiting for typecheck results...
+Issues checking in progress...
+No issues found.
+Compiling...
+Failed to compile.
+
+Module not found: Error: Can't resolve 'assert' in 'C:\Users\8223669\React_Upgrade_task\51599-cmp-ui-backoffice\node_modules\asn1\lib\ber'
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+        - add a fallback 'resolve.fallback: { "assert": require.resolve("assert/") }'
+        - install 'assert'
+If you don't want to include a polyfill, you can use an empty module like this:
+        resolve.fallback: { "assert": false }
+ERROR in ./node_modules/asn1/lib/ber/reader.js 3:13-30
+Module not found: Error: Can't resolve 'assert' in 'C:\Users\8223669\React_Upgrade_task\51599-cmp-ui-backoffice\node_modules\asn1\lib\ber'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+        - add a fallback 'resolve.fallback: { "assert": require.resolve("assert/") }'
+        - install 'assert'
+If you don't want to include a polyfill, you can use an empty module like this:
+        resolve.fallback: { "assert": false }
+
+ERROR in ./node_modules/asn1/lib/ber/writer.js 3:13-30
+Module not found: Error: Can't resolve 'assert' in 'C:\Users\8223669\React_Upgrade_task\51599-cmp-ui-backoffice\node_modules\asn1\lib\ber'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+        - add a fallback 'resolve.fallback: { "assert": require.resolve("assert/") }'
+        - install 'assert'
+If you don't want to include a polyfill, you can use an empty module like this:
+        resolve.fallback: { "assert": false }
+
+ERROR in ./node_modules/node-rsa/src/NodeRSA.js 8:16-36
+Module not found: Error: Can't resolve 'constants' in 'C:\Users\8223669\React_Upgrade_task\51599-cmp-ui-backoffice\node_modules\node-rsa\src'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+        - add a fallback 'resolve.fallback: { "constants": require.resolve("constants-browserify") }'
+        - install 'constants-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+        resolve.fallback: { "constants": false }
+
+ERROR in ./node_modules/node-rsa/src/NodeRSA.js 10:12-29
+Module not found: Error: Can't resolve 'crypto' in 'C:\Users\8223669\React_Upgrade_task\51599-cmp-ui-backoffice\node_modules\node-rsa\src'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+        - add a fallback 'resolve.fallback: { "crypto": require.resolve("crypto-browserify") }'
+        - install 'crypto-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+        resolve.fallback: { "crypto": false }
+
+ERROR in ./node_modules/node-rsa/src/encryptEngines/encryptEngines.js 1:12-29
+Module not found: Error: Can't resolve 'crypto' in 'C:\Users\8223669\React_Upgrade_task\51599-cmp-ui-backoffice\node_modules\node-rsa\src\encryptEngines'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+        - add a fallback 'resolve.fallback: { "crypto": require.resolve("crypto-browserify") }'
+        - install 'crypto-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+        resolve.fallback: { "crypto": false }
+
+ERROR in ./node_modules/node-rsa/src/encryptEngines/io.js 1:13-30
+Module not found: Error: Can't resolve 'crypto' in 'C:\Users\8223669\React_Upgrade_task\51599-cmp-ui-backoffice\node_modules\node-rsa\src\encryptEngines'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+        - add a fallback 'resolve.fallback: { "crypto": require.resolve("crypto-browserify") }'
+        - install 'crypto-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+        resolve.fallback: { "crypto": false }
+
+ERROR in ./node_modules/node-rsa/src/encryptEngines/io.js 2:16-36
+Module not found: Error: Can't resolve 'constants' in 'C:\Users\8223669\React_Upgrade_task\51599-cmp-ui-backoffice\node_modules\node-rsa\src\encryptEngines'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+        - add a fallback 'resolve.fallback: { "constants": require.resolve("constants-browserify") }'
+        - install 'constants-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+        resolve.fallback: { "constants": false }
+
+ERROR in ./node_modules/node-rsa/src/encryptEngines/node12.js 1:13-30
+Module not found: Error: Can't resolve 'crypto' in 'C:\Users\8223669\React_Upgrade_task\51599-cmp-ui-backoffice\node_modules\node-rsa\src\encryptEngines'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+        - add a fallback 'resolve.fallback: { "crypto": require.resolve("crypto-browserify") }'
+        - install 'crypto-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+        resolve.fallback: { "crypto": false }
+
+ERROR in ./node_modules/node-rsa/src/encryptEngines/node12.js 2:16-36
+Module not found: Error: Can't resolve 'constants' in 'C:\Users\8223669\React_Upgrade_task\51599-cmp-ui-backoffice\node_modules\node-rsa\src\encryptEngines'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+        - add a fallback 'resolve.fallback: { "constants": require.resolve("constants-browserify") }'
+        - install 'constants-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+        resolve.fallback: { "constants": false }
+
+ERROR in ./node_modules/node-rsa/src/libs/jsbn.js 39:12-29       
+Module not found: Error: Can't resolve 'crypto' in 'C:\Users\8223669\React_Upgrade_task\51599-cmp-ui-backoffice\node_modules\node-rsa\src\libs'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+        - add a fallback 'resolve.fallback: { "crypto": require.resolve("crypto-browserify") }'
+        - install 'crypto-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+        resolve.fallback: { "crypto": false }
+
+ERROR in ./node_modules/node-rsa/src/libs/rsa.js 43:12-29        
+Module not found: Error: Can't resolve 'crypto' in 'C:\Users\8223669\React_Upgrade_task\51599-cmp-ui-backoffice\node_modules\node-rsa\src\libs'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+        - add a fallback 'resolve.fallback: { "crypto": require.resolve("crypto-browserify") }'
+        - install 'crypto-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+        resolve.fallback: { "crypto": false }
+
+ERROR in ./node_modules/node-rsa/src/schemes/oaep.js 6:12-29     
+Module not found: Error: Can't resolve 'crypto' in 'C:\Users\8223669\React_Upgrade_task\51599-cmp-ui-backoffice\node_modules\node-rsa\src\schemes'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+        - add a fallback 'resolve.fallback: { "crypto": require.resolve("crypto-browserify") }'
+        - install 'crypto-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+        resolve.fallback: { "crypto": false }
+
+ERROR in ./node_modules/node-rsa/src/schemes/pkcs1.js 6:12-29    
+Module not found: Error: Can't resolve 'crypto' in 'C:\Users\8223669\React_Upgrade_task\51599-cmp-ui-backoffice\node_modules\node-rsa\src\schemes'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+        - add a fallback 'resolve.fallback: { "crypto": require.resolve("crypto-browserify") }'
+        - install 'crypto-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+        resolve.fallback: { "crypto": false }
+
+ERROR in ./node_modules/node-rsa/src/schemes/pkcs1.js 7:16-36    
+Module not found: Error: Can't resolve 'constants' in 'C:\Users\8223669\React_Upgrade_task\51599-cmp-ui-backoffice\node_modules\node-rsa\src\schemes'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+        - add a fallback 'resolve.fallback: { "constants": require.resolve("constants-browserify") }'
+        - install 'constants-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+        resolve.fallback: { "constants": false }
+
+ERROR in ./node_modules/node-rsa/src/schemes/pss.js 6:12-29      
+Module not found: Error: Can't resolve 'crypto' in 'C:\Users\8223669\React_Upgrade_task\51599-cmp-ui-backoffice\node_modules\node-rsa\src\schemes'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+        - add a fallback 'resolve.fallback: { "crypto": require.resolve("crypto-browserify") }'
+        - install 'crypto-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+        resolve.fallback: { "crypto": false }
+
+ERROR in ./node_modules/node-rsa/src/utils.js 6:12-29
+Module not found: Error: Can't resolve 'crypto' in 'C:\Users\8223669\React_Upgrade_task\51599-cmp-ui-backoffice\node_modules\node-rsa\src'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+        - add a fallback 'resolve.fallback: { "crypto": require.resolve("crypto-browserify") }'
+        - install 'crypto-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+        resolve.fallback: { "crypto": false }
+
+ERROR in ./node_modules/safer-buffer/safer.js 5:13-30
+Module not found: Error: Can't resolve 'buffer' in 'C:\Users\8223669\React_Upgrade_task\51599-cmp-ui-backoffice\node_modules\safer-buffer'
+nfigure a polyfill for it.
+
+nfigure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+        - add a fallback 'resolve.fallback: { "buffer": require.resolve("buffer/") }'
+        - install 'buffer'
+If you don't want to include a polyfill, you can use an empty module like this:
+        resolve.fallback: { "buffer": false }
+
+nfigure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+        - add a fallback 'resolve.fallback: { "buffer": require.resolve("buffer/") }'
+        - install 'buffer'
+If you don't want to include a polyfill, you can use an empty module like this:
+        resolve.fallback: { "buffer": false }
+nfigure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+        - add a fallback 'resolve.fallback: { "buffer": require.resolve("buffer/") }'
+        - install 'buffer'
+If you don't want to include a polyfill, you can use an empty module like thnfigure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+        - add a fallback 'resolve.fallback: { "buffer": require.resolve("bufnfigure a polyfill for it.
+
+nfigure a polyfill for it.
+nfigure a polyfill for it.
+nfigure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+
+If you want to include a polyfill, you need to:
+        - add a fallback 'resolve.fallback: { "buffer": require.resolve("buffer/") }'
+        - install 'buffer'
+If you don't want to include a polyfill, you can use an empty module like this:
+        resolve.fallback: { "buffer": false }
+
+webpack compiled with 17 errors
+No issues found.
