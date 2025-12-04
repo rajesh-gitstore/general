@@ -1,0 +1,201 @@
+package com.sc.rdc.cmp.batch.job.config.downloadalert;
+
+
+
+import com.sc.rdc.cmp.batch.constant.BatchAppConstant;
+import com.sc.rdc.cmp.batch.constant.BatchAppErrorCodes;
+import com.sc.rdc.cmp.batch.constant.BatchJobs;
+import com.sc.rdc.cmp.batch.job.common.listener.FileReaderStepListener;
+import com.sc.rdc.cmp.batch.job.common.listener.JobListener;
+import com.sc.rdc.cmp.batch.job.common.listener.ReaderListener;
+import com.sc.rdc.cmp.batch.job.common.listener.WriterListener;
+import com.sc.rdc.cmp.batch.job.common.tasklet.JobEndTasklet;
+import com.sc.rdc.cmp.batch.job.common.tasklet.JobStartTasklet;
+
+import com.sc.rdc.cmp.batch.job.datamapper.MarcisAlertMapper;
+
+import com.sc.rdc.cmp.batch.job.dto.MarcisBatchAlert;
+import com.sc.rdc.cmp.batch.job.lineMapper.MarcisHeaderFooterSkipLineMapper;
+
+import com.sc.rdc.cmp.batch.job.processor.MarcisAlertProcessor;
+
+import com.sc.rdc.cmp.batch.job.writer.MarcisAlertWriter;
+import com.sc.rdc.cmp.batch.persistence.entity.BatchJobConfig;
+import com.sc.rdc.cmp.batch.util.BatchUtil;
+import com.sc.rdc.cmp.core.exception.BusinessException;
+import com.sc.rdc.cmp.core.exception.TechnicalException;
+import com.sc.rdc.cmp.core.message.AppMessageLoader;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.batch.core.Job;
+import org.springframework.batch.core.JobExecution;
+import org.springframework.batch.core.Step;
+import org.springframework.batch.core.configuration.annotation.JobScope;
+import org.springframework.batch.core.job.builder.JobBuilder;
+import org.springframework.batch.core.launch.support.RunIdIncrementer;
+import org.springframework.batch.core.repository.JobRepository;
+import org.springframework.batch.core.step.builder.StepBuilder;
+import org.springframework.batch.item.ItemReader;
+import org.springframework.batch.item.file.FlatFileItemReader;
+import org.springframework.batch.item.file.FlatFileParseException;
+import org.springframework.batch.item.file.MultiResourceItemReader;
+import org.springframework.batch.item.file.transform.DelimitedLineTokenizer;
+import org.springframework.batch.item.file.transform.FixedLengthTokenizer;
+import org.springframework.batch.item.file.transform.RegexLineTokenizer;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+import org.springframework.jdbc.UncategorizedSQLException;
+import org.springframework.transaction.PlatformTransactionManager;
+
+import java.util.Optional;
+
+import static com.sc.rdc.cmp.batch.constant.BatchAppConstant.JOB_EXECUTION_KEY;
+/**
+ * Configuration class for the Marcis Batch Alert Job.
+ *
+ * This class defines the Spring Batch job configuration for processing Marcis batch alerts.
+ * It includes job steps, readers, processors, and writers for handling the batch job.
+ */
+@Configuration
+public class MarcisJobConfig {
+
+    private static final String MARCIS_BATCH_JOB_START_STEP = StringUtils.join(BatchJobs.MARCIS_BATCH_ALERT_JOB, BatchAppConstant.JOB_START_STEP);
+    private static final String MARCIS_BATCH_JOB_END_STEP = StringUtils.join(BatchJobs.MARCIS_BATCH_ALERT_JOB, BatchAppConstant.JOB_END_STEP);
+    private static final String MARCIS_BATCH_JOB_FILE_READER_STEP = StringUtils.join(BatchJobs.MARCIS_BATCH_ALERT_JOB, BatchAppConstant.FILE_READER_STEP);
+
+    @Autowired
+    private PlatformTransactionManager transactionManager;
+    @Autowired
+    private JobRepository jobRepository;
+    @Autowired
+    private JobListener jobListener;
+    @Autowired
+    private FileReaderStepListener fileReaderStepListener;
+    @Autowired
+    private ReaderListener<MarcisBatchAlert> marcisAlertReaderListener;
+    @Autowired
+    private WriterListener<MarcisBatchAlert> marcisAlertWriterListener;
+    @Autowired
+    private MarcisAlertMapper marcisAlertMapper;
+    @Autowired
+    private MarcisAlertProcessor marcisAlertProcessor;
+    @Autowired
+    private MarcisAlertWriter marcisAlertWriter;
+    @Autowired
+    private JobStartTasklet jobStartTasklet;
+    @Autowired
+    private JobEndTasklet jobEndTasklet;
+    @Autowired
+    private AppMessageLoader appMessageLoader;
+    /**
+     * Creates and configures the Marcis Batch Alert Job.
+     *
+     * The job consists of three steps:
+     * 1. Job start step.
+     * 2. File reader and writer step.
+     * 3. Job end step.
+     *
+     * @return the configured Job instance
+     */
+    @Bean(name = BatchJobs.MARCIS_BATCH_ALERT_JOB)
+    public Job marcisBatchJob() {
+        JobExecution jbExecution = new JobExecution(1L);
+        return new JobBuilder(BatchJobs.MARCIS_BATCH_ALERT_JOB, jobRepository).incrementer(new RunIdIncrementer())
+                .listener(jobListener)
+                .flow(BatchUtil.buildStepByTasklet(jobRepository, transactionManager, MARCIS_BATCH_JOB_START_STEP, jobStartTasklet))
+                .next(marcisFileReaderWriter(jbExecution))
+                .next(BatchUtil.buildStepByTasklet(jobRepository, transactionManager, MARCIS_BATCH_JOB_END_STEP, jobEndTasklet))
+                .end().build();
+    }
+    /**
+     * Configures the file reader and writer step for the Marcis Batch Alert Job.
+     *
+     * This step reads data from files, processes it, and writes the results.
+     * It supports fault tolerance with skip limits for specific exceptions.
+     *
+     * @param jobExecution the current JobExecution instance
+     * @return the configured Step instance
+     */
+    @Bean
+    @JobScope
+    public Step marcisFileReaderWriter(@Value(JOB_EXECUTION_KEY) JobExecution jobExecution) {
+
+        BatchJobConfig batchJobConfig = BatchUtil.getJobConfig(jobExecution);
+        if (batchJobConfig != null) {
+            return new StepBuilder(MARCIS_BATCH_JOB_FILE_READER_STEP, jobRepository).listener(fileReaderStepListener)
+                    .<MarcisBatchAlert, MarcisBatchAlert>chunk(batchJobConfig.getJobProperties().getJobChunkSize(), transactionManager)
+                    .reader(marcisFileItemReader(jobExecution)).processor(marcisAlertProcessor).writer(marcisAlertWriter)
+                    .listener(marcisAlertReaderListener).listener(marcisAlertWriterListener).faultTolerant()
+                    .skipLimit(batchJobConfig.getJobProperties().getJobSkipLimit()).skip(FlatFileParseException.class)
+                    .skip(UncategorizedSQLException.class).skip(FlatFileParseException.class).build();
+        } else {
+            throw new BusinessException(appMessageLoader.getAppMessageByMessageCode(BatchAppErrorCodes.JOB_CONFIG_NOT_FOUND.getValue()));
+        }
+    }
+    /**
+     * Configures the item reader for reading Marcis batch alerts from multiple files.
+     *
+     * This reader supports reading from multiple resources and delegates the actual reading
+     * to a file reader.
+     *
+     * @param jobExecution the current JobExecution instance
+     * @return the configured ItemReader instance
+     */
+    @Bean
+    @JobScope
+    public ItemReader<MarcisBatchAlert> marcisFileItemReader(@Value(JOB_EXECUTION_KEY) JobExecution jobExecution) {
+        try {
+            BatchJobConfig batchJobConfig = BatchUtil.getJobConfig(jobExecution);
+            MultiResourceItemReader<MarcisBatchAlert> multiResourceItemReader = new MultiResourceItemReader<MarcisBatchAlert>();
+            multiResourceItemReader.setResources(new PathMatchingResourcePatternResolver()
+                    .getResources("file:" + batchJobConfig.getJobProperties().getFile()));
+            multiResourceItemReader.setDelegate(marcisFileItemReaderDelegate(jobExecution));
+            multiResourceItemReader.setStrict(batchJobConfig.getJobProperties().isFileReaderStrict());
+            return multiResourceItemReader;
+        } catch (Exception e) {
+            throw new TechnicalException(e);
+        }
+    }
+    /**
+     * Configures the delegate file reader for reading Marcis batch alerts.
+     *
+     * This reader supports both fixed-length and regex-based tokenization of file lines.
+     * It uses a custom line mapper to map the file data to MarcisBatchAlert objects.
+     *
+     * @param jobExecution the current JobExecution instance
+     * @return the configured FlatFileItemReader instance
+     */
+    @Bean
+    @JobScope
+    public FlatFileItemReader<MarcisBatchAlert> marcisFileItemReaderDelegate(@Value(JOB_EXECUTION_KEY) JobExecution jobExecution) {
+        BatchJobConfig batchJobConfig = BatchUtil.getJobConfig(jobExecution);
+        FlatFileItemReader<MarcisBatchAlert> delegateFileReader = new FlatFileItemReader();
+        MarcisHeaderFooterSkipLineMapper<MarcisBatchAlert> lineMapper = new MarcisHeaderFooterSkipLineMapper();
+
+        if (batchJobConfig.getJobProperties() != null && StringUtils.isNotEmpty(batchJobConfig.getJobProperties().getFileFieldLengths())) {
+            FixedLengthTokenizer fixedLengthTokenizer = new FixedLengthTokenizer();
+            fixedLengthTokenizer.setStrict(batchJobConfig.getJobProperties().isItemReaderStrict());
+            fixedLengthTokenizer.setNames(batchJobConfig.getJobProperties().getFileFieldNames());
+            fixedLengthTokenizer.setColumns(BatchUtil.convertStringRanges(batchJobConfig.getJobProperties().getFileFieldLengths()));
+            lineMapper.setLineTokenizer(fixedLengthTokenizer);
+            lineMapper.setFieldSetMapper(marcisAlertMapper);
+
+        } else {
+            RegexLineTokenizer regexLineTokenizer = new RegexLineTokenizer();
+            regexLineTokenizer.setStrict(batchJobConfig.getJobProperties().isItemReaderStrict());
+            regexLineTokenizer.setRegex(batchJobConfig.getJobProperties().getFileFiledRegex()); // e.g. "\\|"
+            regexLineTokenizer.setNames(batchJobConfig.getJobProperties().getFileFieldNames());
+            lineMapper.setLineTokenizer(regexLineTokenizer);
+
+            lineMapper.setFieldSetMapper(marcisAlertMapper);
+
+        }
+        delegateFileReader.setLineMapper(lineMapper);
+        delegateFileReader.setComments(batchJobConfig.getJobProperties().getFileFieldComments());
+        return delegateFileReader;
+    }
+
+}
+
