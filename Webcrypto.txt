@@ -1,0 +1,160 @@
+// rsaUtil.ts  (No jsencrypt, no dependencies)
+
+//
+// ---- PEM HELPERS ----
+//
+
+function pemToArrayBuffer(pem: string): ArrayBuffer {
+  const b64 = pem
+    .replace(/-----[^-]+-----/g, "")
+    .replace(/\s+/g, "");
+  const binary = atob(b64);
+  const len = binary.length;
+  const buffer = new ArrayBuffer(len);
+  const bytes = new Uint8Array(buffer);
+  for (let i = 0; i < len; i++) {
+    bytes[i] = binary.charCodeAt(i);
+  }
+  return buffer;
+}
+
+//
+// ---- KEY IMPORTS ----
+//
+
+export async function importPublicKey(publicKeyPem: string): Promise<CryptoKey> {
+  return crypto.subtle.importKey(
+    "spki", // Java public key = X.509 → SPKI
+    pemToArrayBuffer(publicKeyPem),
+    {
+      name: "RSA-OAEP",
+      hash: "SHA-1", // MUST MATCH Java OAEP SHA-1
+    },
+    true,
+    ["encrypt"]
+  );
+}
+
+export async function importPrivateKey(privateKeyPem: string): Promise<CryptoKey> {
+  return crypto.subtle.importKey(
+    "pkcs8",
+    pemToArrayBuffer(privateKeyPem),
+    {
+      name: "RSA-OAEP",
+      hash: "SHA-1",
+    },
+    true,
+    ["decrypt"]
+  );
+}
+
+export async function importPrivateKeyForSign(privateKeyPem: string): Promise<CryptoKey> {
+  return crypto.subtle.importKey(
+    "pkcs8",
+    pemToArrayBuffer(privateKeyPem),
+    {
+      name: "RSA-PSS", // MUST MATCH Java SHA256withRSA
+      hash: "SHA-256",
+    },
+    true,
+    ["sign"]
+  );
+}
+
+export async function importPublicKeyForVerify(publicKeyPem: string): Promise<CryptoKey> {
+  return crypto.subtle.importKey(
+    "spki",
+    pemToArrayBuffer(publicKeyPem),
+    {
+      name: "RSA-PSS",
+      hash: "SHA-256",
+    },
+    true,
+    ["verify"]
+  );
+}
+
+//
+// ---- ENCRYPT ----
+//
+
+export async function encrypt(publicKeyPem: string, text: string): Promise<string> {
+  const key = await importPublicKey(publicKeyPem);
+
+  const encrypted = await crypto.subtle.encrypt(
+    {
+      name: "RSA-OAEP",
+    },
+    key,
+    new TextEncoder().encode(text)
+  );
+
+  return "(xor)" + btoa(String.fromCharCode(...new Uint8Array(encrypted)));
+}
+
+//
+// ---- DECRYPT ----
+//
+
+export async function decrypt(privateKeyPem: string, encryptedText: string): Promise<string> {
+  if (encryptedText.startsWith("(xor)")) {
+    encryptedText = encryptedText.replace("(xor)", "");
+  }
+
+  const key = await importPrivateKey(privateKeyPem);
+
+  const buffer = Uint8Array.from(atob(encryptedText), c => c.charCodeAt(0));
+
+  const decrypted = await crypto.subtle.decrypt(
+    {
+      name: "RSA-OAEP",
+    },
+    key,
+    buffer
+  );
+
+  return new TextDecoder().decode(decrypted);
+}
+
+//
+// ---- SIGN (SHA256withRSA) ----
+//
+
+export async function sign(privateKeyPem: string, text: string): Promise<string> {
+  const key = await importPrivateKeyForSign(privateKeyPem);
+
+  const signature = await crypto.subtle.sign(
+    {
+      name: "RSA-PSS",
+      saltLength: 32, // matches Java SHA256withRSA
+    },
+    key,
+    new TextEncoder().encode(text)
+  );
+
+  return btoa(String.fromCharCode(...new Uint8Array(signature)));
+}
+
+//
+// ---- VERIFY ----
+//
+
+export async function verify(
+  publicKeyPem: string,
+  text: string,
+  signatureB64: string
+): Promise<boolean> {
+  const key = await importPublicKeyForVerify(publicKeyPem);
+
+  const signature = Uint8Array.from(atob(signatureB64), c => c.charCodeAt(0));
+
+  return crypto.subtle.verify(
+    {
+      name: "RSA-PSS",
+      saltLength: 32,
+    },
+    key,
+    signature,
+    new TextEncoder().encode(text)
+  );
+}
