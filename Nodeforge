@@ -1,0 +1,63 @@
+import forge from "node-forge";
+
+// --- Load Keys ---
+function loadPublicKey(pem: string) {
+  return forge.pki.publicKeyFromPem(pem);
+}
+
+function loadPrivateKey(pem: string) {
+  return forge.pki.privateKeyFromPem(pem);
+}
+
+// --- Encrypt (OAEP / SHA-1 / MGF1-SHA1) ---
+export function encrypt(publicKeyPem: string, data: string, includeAppender = true): string {
+  const publicKey = loadPublicKey(publicKeyPem);
+
+  const encrypted = publicKey.encrypt(data, "RSA-OAEP", {
+    md: forge.md.sha1.create(),          // Java OAEP SHA-1
+    mgf1: { md: forge.md.sha1.create() } // Java MGF1-SHA1
+  });
+
+  const base64 = forge.util.encode64(encrypted);
+
+  return includeAppender ? `(xor)${base64}` : base64;
+}
+
+// --- Decrypt ---
+export function decrypt(privateKeyPem: string, encryptedData: string): string {
+  const privateKey = loadPrivateKey(privateKeyPem);
+
+  if (encryptedData.startsWith("(xor)")) {
+    encryptedData = encryptedData.replace("(xor)", "");
+  }
+
+  const binary = forge.util.decode64(encryptedData);
+
+  return privateKey.decrypt(binary, "RSA-OAEP", {
+    md: forge.md.sha1.create(),
+    mgf1: { md: forge.md.sha1.create() }
+  });
+}
+
+// --- Sign (SHA256withRSA like Java) ---
+export function sign(privateKeyPem: string, data: string): string {
+  const privateKey = loadPrivateKey(privateKeyPem);
+
+  const md = forge.md.sha256.create();
+  md.update(data, "utf8");
+
+  const signature = privateKey.sign(md);
+  return forge.util.encode64(signature);
+}
+
+// --- Verify ---
+export function verify(publicKeyPem: string, data: string, signatureBase64: string): boolean {
+  const publicKey = loadPublicKey(publicKeyPem);
+
+  const md = forge.md.sha256.create();
+  md.update(data, "utf8");
+
+  const signature = forge.util.decode64(signatureBase64);
+
+  return publicKey.verify(md.digest().bytes(), signature);
+}
