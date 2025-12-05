@@ -1,0 +1,178 @@
+package com.sc.rdc.cmp.core.util;
+
+import com.sc.rdc.cmp.core.exception.UtilException;
+import com.sc.rdc.cmp.core.log.LogType;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.StringUtils;
+
+import javax.crypto.Cipher;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
+import java.security.KeyFactory;
+import java.security.PrivateKey;
+import java.security.PublicKey;
+import java.security.Signature;
+import java.security.spec.KeySpec;
+import java.security.spec.PKCS8EncodedKeySpec;
+import java.security.spec.X509EncodedKeySpec;
+import java.util.Base64;
+
+/**
+ * Author 1616146
+ * Date Aug-2023
+ */
+
+@Slf4j
+public class RsaUtil {
+
+    public static final String CIPHER_INSTANCE_TYPE = "RSA/ECB/OAEPWithSHA-1AndMGF1Padding";
+    public static final String ENCRYPTION_APPENDER = "(xor)";
+
+    private RsaUtil() {
+    }
+
+    public static PrivateKey loadPrivateKey(InputStream privateKeyFile) {
+        try {
+            KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+            byte[] bytes = IOUtils.toByteArray(privateKeyFile);
+            KeySpec keySpec = new PKCS8EncodedKeySpec(bytes);
+            return keyFactory.generatePrivate(keySpec);
+        } catch (Exception e) {
+            throw new UtilException(e);
+        }
+    }
+
+    public static PublicKey loadPublicKey(InputStream publicKeyFile) {
+        try {
+            KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+            byte[] bytes = IOUtils.toByteArray(publicKeyFile);
+            KeySpec keySpec = new X509EncodedKeySpec(bytes);
+            return keyFactory.generatePublic(keySpec);
+        } catch (Exception e) {
+            throw new UtilException(e);
+        }
+    }
+
+    public static PublicKey parsePublicKey(String publicKeyString) {
+        try {
+            publicKeyString = publicKeyString.replaceAll("\\n", "")
+                    .replace("-----BEGIN PUBLIC KEY-----", "")
+                    .replace("-----END PUBLIC KEY-----", "");
+            byte[] publicBytes = EncodeDecodeUtil.base64Decode(publicKeyString);
+            X509EncodedKeySpec keySpec = new X509EncodedKeySpec(publicBytes);
+            KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+            return keyFactory.generatePublic(keySpec);
+        } catch (Exception e) {
+            throw new UtilException(e);
+        }
+    }
+
+    public static PrivateKey parsePrivateKey(String privateKeyString) {
+        try {
+            privateKeyString = privateKeyString.replaceAll("\\n", "")
+                    .replace("-----BEGIN PRIVATE KEY-----", "")
+                    .replace("-----END PRIVATE KEY-----", "");
+            byte[] privateBytes = EncodeDecodeUtil.base64Decode(privateKeyString);
+            PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(privateBytes);
+            KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+            return keyFactory.generatePrivate(keySpec);
+        } catch (Exception e) {
+            throw new UtilException(e);
+        }
+    }
+
+    public static String encrypt(PublicKey publicKey, String input, boolean includeEncryptAppender, boolean showEncryptedData) {
+        try {
+            Cipher cipher = Cipher.getInstance(CIPHER_INSTANCE_TYPE);
+            cipher.init(Cipher.ENCRYPT_MODE, publicKey);
+            byte[] bytes = cipher.doFinal(input.getBytes(StandardCharsets.UTF_8));
+            String encrypted = new String(Base64.getEncoder().encode(bytes));
+            if (includeEncryptAppender) {
+                encrypted = StringUtils.join(ENCRYPTION_APPENDER, encrypted);
+            }
+            if (showEncryptedData) {
+                log.info("RSA Encrypted String : {}", encrypted, LogType.APPLICATION);
+            }
+            return encrypted;
+        } catch (Exception e) {
+            throw new UtilException(e);
+        }
+    }
+
+    public static String decrypt(PrivateKey privateKey, String input, boolean showDecryptString) {
+        try {
+            if (StringUtils.startsWith(input, ENCRYPTION_APPENDER)) {
+                input = StringUtils.removeStart(input, ENCRYPTION_APPENDER);
+            }
+            Cipher cipher = Cipher.getInstance(CIPHER_INSTANCE_TYPE);
+            cipher.init(Cipher.DECRYPT_MODE, privateKey);
+            byte[] bytes = cipher.doFinal(Base64.getDecoder().decode(input));
+            String decryptedString = new String(bytes);
+            if (showDecryptString) {
+                log.info("RSA Decrypted String:{}", decryptedString, LogType.APPLICATION);
+            }
+            return decryptedString;
+        } catch (Exception e) {
+            throw new UtilException(e);
+        }
+    }
+
+    public static String sign(PrivateKey privateKey, String input, boolean showSignature) {
+        try {
+            Signature signature = Signature.getInstance("SHA256withRSA");
+            signature.initSign(privateKey);
+            byte[] messageBytes = input.getBytes(StandardCharsets.UTF_8);
+            signature.update(messageBytes);
+            byte[] digitalSignature = signature.sign();
+            String signatureString = EncodeDecodeUtil.base64Encode(digitalSignature, StandardCharsets.UTF_8, false);
+            if (showSignature) {
+                log.info("RSA Signature String:{}", signatureString, LogType.APPLICATION);
+            }
+            return signatureString;
+        } catch (Exception e) {
+            throw new UtilException(e);
+        }
+    }
+
+    public static boolean verify(PublicKey publicKey, String signatureString, String input, boolean showResult) {
+        try {
+            Signature signature = Signature.getInstance("SHA256withRSA");
+            signature.initVerify(publicKey);
+            byte[] messageBytes = input.getBytes(StandardCharsets.UTF_8);
+            signature.update(messageBytes);
+            boolean result = signature.verify(EncodeDecodeUtil.base64Decode(signatureString));
+            if (showResult) {
+                log.info("RSA Signature Verify:{}", result, LogType.APPLICATION);
+            }
+            return result;
+        } catch (Exception e) {
+            throw new UtilException(e);
+        }
+    }
+
+    public static String sign(PrivateKey privateKey, String input) {
+        return sign(privateKey, input, true);
+    }
+
+    public static boolean verify(PublicKey publicKey, String signatureString, String input) {
+        return verify(publicKey, signatureString, input, true);
+    }
+
+    public static String convertPublicKeyToString(PublicKey publicKey) {
+        try {
+            return EncodeDecodeUtil.base64Encode(publicKey.getEncoded(), StandardCharsets.UTF_8, false);
+        } catch (Exception e) {
+            throw new UtilException(e);
+        }
+    }
+
+    public static String convertPrivateKeyToString(PrivateKey privateKey) {
+        try {
+            return EncodeDecodeUtil.base64Encode(privateKey.getEncoded(), StandardCharsets.UTF_8, false);
+        } catch (Exception e) {
+            throw new UtilException(e);
+        }
+    }
+
+}
