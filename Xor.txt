@@ -1,0 +1,61 @@
+// rsaUtil.ts
+import JSEncrypt from 'jsencrypt';
+import CryptoJS from 'crypto-js';
+
+/**
+ * Encrypt a string using a public key
+ */
+export function encrypt(publicKey: string, data: string, includeAppender = true): string {
+  const rsa = new JSEncrypt();
+  rsa.setPublicKey(publicKey);
+  let encrypted = rsa.encrypt(data) || '';
+  if (includeAppender) {
+    encrypted = `(xor)${encrypted}`;
+  }
+  return encrypted;
+}
+
+/**
+ * Decrypt a string using a private key
+ */
+export function decrypt(privateKey: string, encryptedData: string): string {
+  const rsa = new JSEncrypt();
+  rsa.setPrivateKey(privateKey);
+
+  // Remove encrypt appender if present
+  if (encryptedData.startsWith('(xor)')) {
+    encryptedData = encryptedData.replace('(xor)', '');
+  }
+
+  return rsa.decrypt(encryptedData) || '';
+}
+
+/**
+ * Sign a string using a private key (SHA256withRSA)
+ */
+export function sign(privateKey: string, data: string): string {
+  const rsa = new JSEncrypt();
+  rsa.setPrivateKey(privateKey);
+
+  return (
+    rsa.sign(
+      data,
+      (value: string) => CryptoJS.SHA256(value).toString(), // hash as string
+      'sha256'
+    ) || ''
+  );
+}
+
+/**
+ * Verify a signature using a public key (SHA256withRSA)
+ */
+export function verify(publicKey: string, data: string, signature: string): boolean {
+  const rsa = new JSEncrypt();
+  rsa.setPublicKey(publicKey);
+
+  return rsa.verify(
+    data,
+    signature,
+    (value: string) => CryptoJS.SHA256(value).toString()
+  );
+}
