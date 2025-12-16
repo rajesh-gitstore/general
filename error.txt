@@ -1,886 +1,598 @@
-FAIL src/__tests__/pages/emailBannerModule/BannerSearch.test.tsx
-2025-12-16T08:03:04.9097432Z   ● Console
-2025-12-16T08:03:04.9097542Z 
-2025-12-16T08:03:04.9097809Z     console.error
-2025-12-16T08:03:04.9098538Z       Warning: A component is changing an uncontrolled input to be controlled. This is likely caused by the value changing from undefined to a defined value, which should not happen. Decide between using a controlled or uncontrolled input element for the lifetime of the component. More info: https://reactjs.org/link/controlled-components
-2025-12-16T08:03:04.9099076Z           at input
-2025-12-16T08:03:04.9099661Z           at /ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@emotion/react/dist/emotion-element-48d2c2e4.cjs.dev.js:62:23
-2025-12-16T08:03:04.9100229Z           at div
-2025-12-16T08:03:04.9100907Z           at /ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@emotion/react/dist/emotion-element-48d2c2e4.cjs.dev.js:62:23
-2025-12-16T08:03:04.9101682Z           at InputBase (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@mui/material/node/InputBase/InputBase.js:225:44)
-2025-12-16T08:03:04.9102494Z           at OutlinedInput (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@mui/material/node/OutlinedInput/OutlinedInput.js:130:44)
-2025-12-16T08:03:04.9103022Z           at div
-2025-12-16T08:03:04.9103658Z           at /ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@emotion/react/dist/emotion-element-48d2c2e4.cjs.dev.js:62:23
-2025-12-16T08:03:04.9104417Z           at FormControl (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@mui/material/node/FormControl/FormControl.js:92:44)
-2025-12-16T08:03:04.9105190Z           at /ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@emotion/react/dist/emotion-element-48d2c2e4.cjs.dev.js:62:23
-2025-12-16T08:03:04.9105941Z           at TextField (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@mui/material/node/TextField/TextField.js:83:44)
-2025-12-16T08:03:04.9106400Z           at div
-2025-12-16T08:03:04.9107031Z           at /ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@emotion/react/dist/emotion-element-48d2c2e4.cjs.dev.js:62:23
-2025-12-16T08:03:04.9107770Z           at Grid (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@mui/material/node/Grid/Grid.js:380:49)
-2025-12-16T08:03:04.9108752Z           at div
-2025-12-16T08:03:04.9109421Z           at /ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@emotion/react/dist/emotion-element-48d2c2e4.cjs.dev.js:62:23
-2025-12-16T08:03:04.9110175Z           at Grid (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@mui/material/node/Grid/Grid.js:380:49)
-2025-12-16T08:03:04.9110632Z           at div
-2025-12-16T08:03:04.9111253Z           at /ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@emotion/react/dist/emotion-element-48d2c2e4.cjs.dev.js:62:23
-2025-12-16T08:03:04.9111981Z           at Box (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@mui/system/createBox.js:31:41)
-2025-12-16T08:03:04.9112709Z           at BannerSearch (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/src/pages/emailBannerModule/BannerSearch.tsx:30:28)
-2025-12-16T08:03:04.9113735Z           at Router (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/react-router-dom/node_modules/react-router/lib/components.tsx:413:13)
-2025-12-16T08:03:04.9114618Z           at MemoryRouter (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/react-router-dom/node_modules/react-router/lib/components.tsx:219:3)
-2025-12-16T08:03:04.9115433Z > react-scripts test --maxWorkers=2 --coverage --watchAll=false --testURL http://localhost/portal --testResultsProcessor=jest-sonar-reporter
-2025-12-16T08:03:04.9115703Z 
-2025-12-16T08:03:04.9115835Z 
-2025-12-16T08:03:04.9116299Z =============================== Coverage summary ===============================
-2025-12-16T08:03:04.9116822Z Statements   : 65.96% ( 7216/10939 )
-2025-12-16T08:03:04.9117177Z Branches     : 46.4% ( 2900/6249 )
-2025-12-16T08:03:04.9117463Z Functions    : 63.98% ( 2327/3637 )
-2025-12-16T08:03:04.9118062Z Lines        : 66.21% ( 7023/10607 )
-2025-12-16T08:03:04.9118383Z ================================================================================
-2025-12-16T08:03:04.9119050Z 
-2025-12-16T08:03:04.9119474Z       at printWarning (node_modules/react-dom/cjs/react-dom.development.js:86:30)
-2025-12-16T08:03:04.9119893Z       at error (node_modules/react-dom/cjs/react-dom.development.js:60:7)
-2025-12-16T08:03:04.9120315Z       at updateWrapper (node_modules/react-dom/cjs/react-dom.development.js:1813:7)
-2025-12-16T08:03:04.9120743Z       at updateProperties (node_modules/react-dom/cjs/react-dom.development.js:10151:7)
-2025-12-16T08:03:04.9121167Z       at commitUpdate (node_modules/react-dom/cjs/react-dom.development.js:11047:3)
-2025-12-16T08:03:04.9121614Z       at commitMutationEffectsOnFiber (node_modules/react-dom/cjs/react-dom.development.js:24389:19)
-2025-12-16T08:03:04.9122068Z       at recursivelyTraverseMutationEffects (node_modules/react-dom/cjs/react-dom.development.js:24273:7)
-2025-12-16T08:03:04.9122530Z       at commitMutationEffectsOnFiber (node_modules/react-dom/cjs/react-dom.development.js:24293:9)
-2025-12-16T08:03:04.9122998Z       at recursivelyTraverseMutationEffects (node_modules/react-dom/cjs/react-dom.development.js:24273:7)
-2025-12-16T08:03:04.9123454Z       at commitMutationEffectsOnFiber (node_modules/react-dom/cjs/react-dom.development.js:24576:9)
-2025-12-16T08:03:04.9123905Z       at recursivelyTraverseMutationEffects (node_modules/react-dom/cjs/react-dom.development.js:24273:7)
-2025-12-16T08:03:04.9124358Z       at commitMutationEffectsOnFiber (node_modules/react-dom/cjs/react-dom.development.js:24346:9)
-2025-12-16T08:03:04.9124811Z       at recursivelyTraverseMutationEffects (node_modules/react-dom/cjs/react-dom.development.js:24273:7)
-2025-12-16T08:03:04.9125270Z       at commitMutationEffectsOnFiber (node_modules/react-dom/cjs/react-dom.development.js:24293:9)
-2025-12-16T08:03:04.9125728Z       at recursivelyTraverseMutationEffects (node_modules/react-dom/cjs/react-dom.development.js:24273:7)
-2025-12-16T08:03:04.9126176Z       at commitMutationEffectsOnFiber (node_modules/react-dom/cjs/react-dom.development.js:24293:9)
-2025-12-16T08:03:04.9126642Z       at recursivelyTraverseMutationEffects (node_modules/react-dom/cjs/react-dom.development.js:24273:7)
-2025-12-16T08:03:04.9127463Z       at commitMutationEffectsOnFiber (node_modules/react-dom/cjs/react-dom.development.js:24293:9)
-2025-12-16T08:03:04.9127932Z       at recursivelyTraverseMutationEffects (node_modules/react-dom/cjs/react-dom.development.js:24273:7)
-2025-12-16T08:03:04.9128385Z       at commitMutationEffectsOnFiber (node_modules/react-dom/cjs/react-dom.development.js:24346:9)
-2025-12-16T08:03:04.9128833Z       at recursivelyTraverseMutationEffects (node_modules/react-dom/cjs/react-dom.development.js:24273:7)
-2025-12-16T08:03:04.9129292Z       at commitMutationEffectsOnFiber (node_modules/react-dom/cjs/react-dom.development.js:24293:9)
-2025-12-16T08:03:04.9129746Z       at recursivelyTraverseMutationEffects (node_modules/react-dom/cjs/react-dom.development.js:24273:7)
-2025-12-16T08:03:04.9130199Z       at commitMutationEffectsOnFiber (node_modules/react-dom/cjs/react-dom.development.js:24576:9)
-2025-12-16T08:03:04.9130654Z       at recursivelyTraverseMutationEffects (node_modules/react-dom/cjs/react-dom.development.js:24273:7)
-2025-12-16T08:03:04.9131107Z       at commitMutationEffectsOnFiber (node_modules/react-dom/cjs/react-dom.development.js:24293:9)
-2025-12-16T08:03:04.9131550Z       at recursivelyTraverseMutationEffects (node_modules/react-dom/cjs/react-dom.development.js:24273:7)
-2025-12-16T08:03:04.9131992Z       at commitMutationEffectsOnFiber (node_modules/react-dom/cjs/react-dom.development.js:24293:9)
-2025-12-16T08:03:04.9132437Z       at recursivelyTraverseMutationEffects (node_modules/react-dom/cjs/react-dom.development.js:24273:7)
-2025-12-16T08:03:04.9132879Z       at commitMutationEffectsOnFiber (node_modules/react-dom/cjs/react-dom.development.js:24293:9)
-2025-12-16T08:03:04.9133323Z       at recursivelyTraverseMutationEffects (node_modules/react-dom/cjs/react-dom.development.js:24273:7)
-2025-12-16T08:03:04.9134011Z       at commitMutationEffectsOnFiber (node_modules/react-dom/cjs/react-dom.development.js:24346:9)
-2025-12-16T08:03:04.9134616Z       at recursivelyTraverseMutationEffects (node_modules/react-dom/cjs/react-dom.development.js:24273:7)
-2025-12-16T08:03:04.9135068Z       at commitMutationEffectsOnFiber (node_modules/react-dom/cjs/react-dom.development.js:24293:9)
-2025-12-16T08:03:04.9135507Z       at recursivelyTraverseMutationEffects (node_modules/react-dom/cjs/react-dom.development.js:24273:7)
-2025-12-16T08:03:04.9135947Z       at commitMutationEffectsOnFiber (node_modules/react-dom/cjs/react-dom.development.js:24576:9)
-2025-12-16T08:03:04.9136390Z       at recursivelyTraverseMutationEffects (node_modules/react-dom/cjs/react-dom.development.js:24273:7)
-2025-12-16T08:03:04.9136831Z       at commitMutationEffectsOnFiber (node_modules/react-dom/cjs/react-dom.development.js:24293:9)
-2025-12-16T08:03:04.9137269Z       at recursivelyTraverseMutationEffects (node_modules/react-dom/cjs/react-dom.development.js:24273:7)
-2025-12-16T08:03:04.9137720Z       at commitMutationEffectsOnFiber (node_modules/react-dom/cjs/react-dom.development.js:24346:9)
-2025-12-16T08:03:04.9138167Z       at recursivelyTraverseMutationEffects (node_modules/react-dom/cjs/react-dom.development.js:24273:7)
-2025-12-16T08:03:04.9138609Z       at commitMutationEffectsOnFiber (node_modules/react-dom/cjs/react-dom.development.js:24293:9)
-2025-12-16T08:03:04.9139051Z       at recursivelyTraverseMutationEffects (node_modules/react-dom/cjs/react-dom.development.js:24273:7)
-2025-12-16T08:03:04.9139492Z       at commitMutationEffectsOnFiber (node_modules/react-dom/cjs/react-dom.development.js:24576:9)
-2025-12-16T08:03:04.9139924Z       at recursivelyTraverseMutationEffects (node_modules/react-dom/cjs/react-dom.development.js:24273:7)
-2025-12-16T08:03:04.9140371Z       at commitMutationEffectsOnFiber (node_modules/react-dom/cjs/react-dom.development.js:24293:9)
-2025-12-16T08:03:04.9140810Z       at recursivelyTraverseMutationEffects (node_modules/react-dom/cjs/react-dom.development.js:24273:7)
-2025-12-16T08:03:04.9141245Z       at commitMutationEffectsOnFiber (node_modules/react-dom/cjs/react-dom.development.js:24346:9)
-2025-12-16T08:03:04.9141631Z 
-2025-12-16T08:03:04.9141889Z     console.error
-2025-12-16T08:03:04.9142202Z       MUI: A component is changing the uncontrolled value of a picker to be controlled.
-2025-12-16T08:03:04.9142550Z       Elements should not switch from uncontrolled to controlled (or vice versa).
-2025-12-16T08:03:04.9142899Z       Decide between using a controlled or uncontrolled valuefor the lifetime of the component.
-2025-12-16T08:03:04.9143370Z       The nature of the state is determined during the first render. It's considered controlled if the value is not `undefined`.
-2025-12-16T08:03:04.9143785Z       More info: https://fb.me/react-controlled-components
-2025-12-16T08:03:04.9143912Z 
-2025-12-16T08:03:04.9144291Z       at node_modules/@mui/x-date-pickers/node/internals/hooks/usePicker/usePickerValue.js:149:17
-2025-12-16T08:03:04.9144745Z       at commitHookEffectListMount (node_modules/react-dom/cjs/react-dom.development.js:23150:26)
-2025-12-16T08:03:04.9145189Z       at commitPassiveMountOnFiber (node_modules/react-dom/cjs/react-dom.development.js:24931:11)
-2025-12-16T08:03:04.9145650Z       at commitPassiveMountEffects_complete (node_modules/react-dom/cjs/react-dom.development.js:24891:9)
-2025-12-16T08:03:04.9146105Z       at commitPassiveMountEffects_begin (node_modules/react-dom/cjs/react-dom.development.js:24878:7)
-2025-12-16T08:03:04.9146551Z       at commitPassiveMountEffects (node_modules/react-dom/cjs/react-dom.development.js:24866:3)
-2025-12-16T08:03:04.9146992Z       at flushPassiveEffectsImpl (node_modules/react-dom/cjs/react-dom.development.js:27039:3)
-2025-12-16T08:03:04.9147427Z       at flushPassiveEffects (node_modules/react-dom/cjs/react-dom.development.js:26984:14)
-2025-12-16T08:03:04.9147859Z       at performSyncWorkOnRoot (node_modules/react-dom/cjs/react-dom.development.js:26076:3)
-2025-12-16T08:03:04.9148550Z       at flushSyncCallbacks (node_modules/react-dom/cjs/react-dom.development.js:12042:22)
-2025-12-16T08:03:04.9149002Z       at commitRootImpl (node_modules/react-dom/cjs/react-dom.development.js:26959:3)
-2025-12-16T08:03:04.9149419Z       at commitRoot (node_modules/react-dom/cjs/react-dom.development.js:26682:5)
-2025-12-16T08:03:04.9149851Z       at finishConcurrentRender (node_modules/react-dom/cjs/react-dom.development.js:25981:9)
-2025-12-16T08:03:04.9150299Z       at performConcurrentWorkOnRoot (node_modules/react-dom/cjs/react-dom.development.js:25809:7)
-2025-12-16T08:03:04.9150665Z       at flushActQueue (node_modules/react/cjs/react.development.js:2667:24)
-2025-12-16T08:03:04.9151028Z       at recursivelyFlushAsyncActWork (node_modules/react/cjs/react.development.js:2633:9)
-2025-12-16T08:03:04.9151390Z       at Immediate._onImmediate (node_modules/react/cjs/react.development.js:2641:13)
-2025-12-16T08:03:04.9151545Z 
-2025-12-16T08:03:04.9151776Z     console.error
-2025-12-16T08:03:04.9152094Z       MUI: A component is changing the uncontrolled value of a picker to be controlled.
-2025-12-16T08:03:04.9152443Z       Elements should not switch from uncontrolled to controlled (or vice versa).
-2025-12-16T08:03:04.9152793Z       Decide between using a controlled or uncontrolled valuefor the lifetime of the component.
-2025-12-16T08:03:04.9153559Z       The nature of the state is determined during the first render. It's considered controlled if the value is not `undefined`.
-2025-12-16T08:03:04.9154019Z       More info: https://fb.me/react-controlled-components
-2025-12-16T08:03:04.9154150Z 
-2025-12-16T08:03:04.9154519Z       at node_modules/@mui/x-date-pickers/node/internals/hooks/usePicker/usePickerValue.js:149:17
-2025-12-16T08:03:04.9154960Z       at commitHookEffectListMount (node_modules/react-dom/cjs/react-dom.development.js:23150:26)
-2025-12-16T08:03:04.9155404Z       at commitPassiveMountOnFiber (node_modules/react-dom/cjs/react-dom.development.js:24931:11)
-2025-12-16T08:03:04.9155865Z       at commitPassiveMountEffects_complete (node_modules/react-dom/cjs/react-dom.development.js:24891:9)
-2025-12-16T08:03:04.9156696Z       at commitPassiveMountEffects_begin (node_modules/react-dom/cjs/react-dom.development.js:24878:7)
-2025-12-16T08:03:04.9157156Z       at commitPassiveMountEffects (node_modules/react-dom/cjs/react-dom.development.js:24866:3)
-2025-12-16T08:03:04.9157597Z       at flushPassiveEffectsImpl (node_modules/react-dom/cjs/react-dom.development.js:27039:3)
-2025-12-16T08:03:04.9158039Z       at flushPassiveEffects (node_modules/react-dom/cjs/react-dom.development.js:26984:14)
-2025-12-16T08:03:04.9158479Z       at performSyncWorkOnRoot (node_modules/react-dom/cjs/react-dom.development.js:26076:3)
-2025-12-16T08:03:04.9158916Z       at flushSyncCallbacks (node_modules/react-dom/cjs/react-dom.development.js:12042:22)
-2025-12-16T08:03:04.9159341Z       at commitRootImpl (node_modules/react-dom/cjs/react-dom.development.js:26959:3)
-2025-12-16T08:03:04.9159761Z       at commitRoot (node_modules/react-dom/cjs/react-dom.development.js:26682:5)
-2025-12-16T08:03:04.9160192Z       at finishConcurrentRender (node_modules/react-dom/cjs/react-dom.development.js:25981:9)
-2025-12-16T08:03:04.9160632Z       at performConcurrentWorkOnRoot (node_modules/react-dom/cjs/react-dom.development.js:25809:7)
-2025-12-16T08:03:04.9161008Z       at flushActQueue (node_modules/react/cjs/react.development.js:2667:24)
-2025-12-16T08:03:04.9161370Z       at recursivelyFlushAsyncActWork (node_modules/react/cjs/react.development.js:2633:9)
-2025-12-16T08:03:04.9161733Z       at Immediate._onImmediate (node_modules/react/cjs/react.development.js:2641:13)
-2025-12-16T08:03:04.9161882Z 
-2025-12-16T08:03:04.9162124Z     console.log
-2025-12-16T08:03:04.9162349Z       [
-2025-12-16T08:03:04.9162599Z         <ref *1> HTMLInputElement {
-2025-12-16T08:03:04.9162939Z           '__reactFiber$2rtkrqvd7gi': FiberNode {
-2025-12-16T08:03:04.9163205Z             tag: 5,
-2025-12-16T08:03:04.9163728Z             key: null,
-2025-12-16T08:03:04.9164044Z             elementType: 'input',
-2025-12-16T08:03:04.9164337Z             type: 'input',
-2025-12-16T08:03:04.9164604Z             stateNode: [Circular *1],
-2025-12-16T08:03:04.9164870Z             return: [FiberNode],
-2025-12-16T08:03:04.9165128Z             child: null,
-2025-12-16T08:03:04.9165394Z             sibling: null,
-2025-12-16T08:03:04.9165643Z             index: 1,
-2025-12-16T08:03:04.9165897Z             ref: [Function (anonymous)],
-2025-12-16T08:03:04.9166163Z             pendingProps: [Object],
-2025-12-16T08:03:04.9166440Z             memoizedProps: [Object],
-2025-12-16T08:03:04.9166704Z             updateQueue: null,
-2025-12-16T08:03:04.9166963Z             memoizedState: null,
-2025-12-16T08:03:04.9167226Z             dependencies: null,
-2025-12-16T08:03:04.9167474Z             mode: 1,
-2025-12-16T08:03:04.9167737Z             flags: 3146240,
-2025-12-16T08:03:04.9167993Z             subtreeFlags: 0,
-2025-12-16T08:03:04.9168251Z             deletions: null,
-2025-12-16T08:03:04.9168496Z             lanes: 0,
-2025-12-16T08:03:04.9168742Z             childLanes: 0,
-2025-12-16T08:03:04.9168998Z             alternate: [FiberNode],
-2025-12-16T08:03:04.9169255Z             actualDuration: 0,
-2025-12-16T08:03:04.9169521Z             actualStartTime: -1,
-2025-12-16T08:03:04.9169784Z             selfBaseDuration: 0,
-2025-12-16T08:03:04.9170046Z             treeBaseDuration: 0,
-2025-12-16T08:03:04.9170309Z             _debugSource: null,
-2025-12-16T08:03:04.9170575Z             _debugOwner: [FiberNode],
-2025-12-16T08:03:04.9170833Z             _debugNeedsRemount: false,
-2025-12-16T08:03:04.9171092Z             _debugHookTypes: null
-2025-12-16T08:03:04.9171336Z           },
-2025-12-16T08:03:04.9171639Z           '__reactProps$2rtkrqvd7gi': {
-2025-12-16T08:03:04.9171956Z             'aria-invalid': false,
-2025-12-16T08:03:04.9172276Z             'aria-describedby': undefined,
-2025-12-16T08:03:04.9172560Z             autoComplete: undefined,
-2025-12-16T08:03:04.9172822Z             autoFocus: false,
-2025-12-16T08:03:04.9173093Z             defaultValue: undefined,
-2025-12-16T08:03:04.9173356Z             disabled: true,
-2025-12-16T08:03:04.9173884Z             id: 'bannerName',
-2025-12-16T08:03:04.9174317Z             onAnimationStart: [Function: handleAutoFill],
-2025-12-16T08:03:04.9174612Z             name: undefined,
-2025-12-16T08:03:04.9174869Z             placeholder: undefined,
-2025-12-16T08:03:04.9175131Z             readOnly: undefined,
-2025-12-16T08:03:04.9175389Z             required: false,
-2025-12-16T08:03:04.9175643Z             rows: undefined,
-2025-12-16T08:03:04.9175932Z             value: 'BannerName1',
-2025-12-16T08:03:04.9176204Z             onKeyDown: undefined,
-2025-12-16T08:03:04.9176474Z             onKeyUp: undefined,
-2025-12-16T08:03:04.9176757Z             type: 'text',
-2025-12-16T08:03:04.9177228Z             className: 'MuiInputBase-input MuiOutlinedInput-input Mui-disabled MuiInputBase-inputSizeSmall css-1n4twyu-MuiInputBase-input-MuiOutlinedInput-input',
-2025-12-16T08:03:04.9177623Z             onBlur: [Function: handleBlur],
-2025-12-16T08:03:04.9177915Z             onChange: [Function: handleChange],
-2025-12-16T08:03:04.9178207Z             onFocus: [Function: handleFocus]
-2025-12-16T08:03:04.9178455Z           },
-2025-12-16T08:03:04.9178820Z           _wrapperState: { initialChecked: undefined, initialValue: '', controlled: false },
-2025-12-16T08:03:04.9179213Z           '__reactEvents$2rtkrqvd7gi': Set(1) { 'invalid__bubble' },
-2025-12-16T08:03:04.9179523Z           value: [Getter/Setter],
-2025-12-16T08:03:04.9179787Z           _valueTracker: {
-2025-12-16T08:03:04.9180058Z             getValue: [Function: getValue],
-2025-12-16T08:03:04.9180332Z             setValue: [Function: setValue],
-2025-12-16T08:03:04.9201380Z             stopTracking: [Function: stopTracking]
-2025-12-16T08:03:04.9201689Z           }
-2025-12-16T08:03:04.9201930Z         },
-2025-12-16T08:03:04.9202193Z         <ref *2> HTMLInputElement {
-2025-12-16T08:03:04.9203022Z           '__reactFiber$2rtkrqvd7gi': FiberNode {
-2025-12-16T08:03:04.9203295Z             tag: 5,
-2025-12-16T08:03:04.9203557Z             key: null,
-2025-12-16T08:03:04.9203855Z             elementType: 'input',
-2025-12-16T08:03:04.9204153Z             type: 'input',
-2025-12-16T08:03:04.9204419Z             stateNode: [Circular *2],
-2025-12-16T08:03:04.9204693Z             return: [FiberNode],
-2025-12-16T08:03:04.9204950Z             child: null,
-2025-12-16T08:03:04.9205221Z             sibling: null,
-2025-12-16T08:03:04.9205474Z             index: 1,
-2025-12-16T08:03:04.9205738Z             ref: [Function (anonymous)],
-2025-12-16T08:03:04.9206022Z             pendingProps: [Object],
-2025-12-16T08:03:04.9206295Z             memoizedProps: [Object],
-2025-12-16T08:03:04.9206566Z             updateQueue: null,
-2025-12-16T08:03:04.9206824Z             memoizedState: null,
-2025-12-16T08:03:04.9207085Z             dependencies: null,
-2025-12-16T08:03:04.9207340Z             mode: 1,
-2025-12-16T08:03:04.9207596Z             flags: 2097156,
-2025-12-16T08:03:04.9207859Z             subtreeFlags: 0,
-2025-12-16T08:03:04.9208117Z             deletions: null,
-2025-12-16T08:03:04.9208357Z             lanes: 0,
-2025-12-16T08:03:04.9208626Z             childLanes: 0,
-2025-12-16T08:03:04.9208897Z             alternate: [FiberNode],
-2025-12-16T08:03:04.9209169Z             actualDuration: 0,
-2025-12-16T08:03:04.9209438Z             actualStartTime: -1,
-2025-12-16T08:03:04.9209712Z             selfBaseDuration: 0,
-2025-12-16T08:03:04.9209972Z             treeBaseDuration: 0,
-2025-12-16T08:03:04.9210237Z             _debugSource: null,
-2025-12-16T08:03:04.9210504Z             _debugOwner: [FiberNode],
-2025-12-16T08:03:04.9210784Z             _debugNeedsRemount: false,
-2025-12-16T08:03:04.9211051Z             _debugHookTypes: null
-2025-12-16T08:03:04.9211299Z           },
-2025-12-16T08:03:04.9211596Z           '__reactProps$2rtkrqvd7gi': {
-2025-12-16T08:03:04.9211915Z             'aria-invalid': false,
-2025-12-16T08:03:04.9212247Z             'aria-describedby': undefined,
-2025-12-16T08:03:04.9212559Z             autoComplete: 'off',
-2025-12-16T08:03:04.9212823Z             autoFocus: false,
-2025-12-16T08:03:04.9213391Z             defaultValue: undefined,
-2025-12-16T08:03:04.9213676Z             disabled: true,
-2025-12-16T08:03:04.9213977Z             id: ':r1:',
-2025-12-16T08:03:04.9214386Z             onAnimationStart: [Function: handleAutoFill],
-2025-12-16T08:03:04.9214686Z             name: undefined,
-2025-12-16T08:03:04.9215013Z             placeholder: 'MM/DD/YYYY hh:mm aa',
-2025-12-16T08:03:04.9215496Z             readOnly: false,
-2025-12-16T08:03:04.9215762Z             required: false,
-2025-12-16T08:03:04.9216013Z             rows: undefined,
-2025-12-16T08:03:04.9216334Z             value: '06/24/2023 06:24 AM',
-2025-12-16T08:03:04.9216642Z             onKeyDown: [Function (anonymous)],
-2025-12-16T08:03:04.9216926Z             onKeyUp: undefined,
-2025-12-16T08:03:04.9217224Z             type: 'text',
-2025-12-16T08:03:04.9217529Z             inputMode: 'text',
-2025-12-16T08:03:04.9217811Z             onPaste: [Function (anonymous)],
-2025-12-16T08:03:04.9218341Z             className: 'MuiInputBase-input MuiOutlinedInput-input Mui-disabled MuiInputBase-inputSizeSmall MuiInputBase-inputAdornedEnd css-19qh8xo-MuiInputBase-input-MuiOutlinedInput-input',
-2025-12-16T08:03:04.9218747Z             onBlur: [Function: handleBlur],
-2025-12-16T08:03:04.9219046Z             onChange: [Function: handleChange],
-2025-12-16T08:03:04.9219333Z             onFocus: [Function: handleFocus]
-2025-12-16T08:03:04.9219586Z           },
-2025-12-16T08:03:04.9219950Z           _wrapperState: { initialChecked: undefined, initialValue: '', controlled: true },
-2025-12-16T08:03:04.9220352Z           '__reactEvents$2rtkrqvd7gi': Set(1) { 'invalid__bubble' },
-2025-12-16T08:03:04.9220651Z           value: [Getter/Setter],
-2025-12-16T08:03:04.9220909Z           _valueTracker: {
-2025-12-16T08:03:04.9221183Z             getValue: [Function: getValue],
-2025-12-16T08:03:04.9221746Z             setValue: [Function: setValue],
-2025-12-16T08:03:04.9222046Z             stopTracking: [Function: stopTracking]
-2025-12-16T08:03:04.9222306Z           }
-2025-12-16T08:03:04.9222535Z         },
-2025-12-16T08:03:04.9222776Z         <ref *3> HTMLInputElement {
-2025-12-16T08:03:04.9223129Z           '__reactFiber$2rtkrqvd7gi': FiberNode {
-2025-12-16T08:03:04.9223397Z             tag: 5,
-2025-12-16T08:03:04.9223648Z             key: null,
-2025-12-16T08:03:04.9223947Z             elementType: 'input',
-2025-12-16T08:03:04.9224244Z             type: 'input',
-2025-12-16T08:03:04.9224500Z             stateNode: [Circular *3],
-2025-12-16T08:03:04.9224770Z             return: [FiberNode],
-2025-12-16T08:03:04.9225025Z             child: null,
-2025-12-16T08:03:04.9225280Z             sibling: null,
-2025-12-16T08:03:04.9225531Z             index: 1,
-2025-12-16T08:03:04.9225800Z             ref: [Function (anonymous)],
-2025-12-16T08:03:04.9226075Z             pendingProps: [Object],
-2025-12-16T08:03:04.9226337Z             memoizedProps: [Object],
-2025-12-16T08:03:04.9226606Z             updateQueue: null,
-2025-12-16T08:03:04.9226869Z             memoizedState: null,
-2025-12-16T08:03:04.9227134Z             dependencies: null,
-2025-12-16T08:03:04.9227383Z             mode: 1,
-2025-12-16T08:03:04.9227634Z             flags: 2097156,
-2025-12-16T08:03:04.9227883Z             subtreeFlags: 0,
-2025-12-16T08:03:04.9228141Z             deletions: null,
-2025-12-16T08:03:04.9228385Z             lanes: 0,
-2025-12-16T08:03:04.9228631Z             childLanes: 0,
-2025-12-16T08:03:04.9228889Z             alternate: [FiberNode],
-2025-12-16T08:03:04.9229152Z             actualDuration: 0,
-2025-12-16T08:03:04.9229407Z             actualStartTime: -1,
-2025-12-16T08:03:04.9229674Z             selfBaseDuration: 0,
-2025-12-16T08:03:04.9229938Z             treeBaseDuration: 0,
-2025-12-16T08:03:04.9230198Z             _debugSource: null,
-2025-12-16T08:03:04.9230478Z             _debugOwner: [FiberNode],
-2025-12-16T08:03:04.9230754Z             _debugNeedsRemount: false,
-2025-12-16T08:03:04.9231019Z             _debugHookTypes: null
-2025-12-16T08:03:04.9231256Z           },
-2025-12-16T08:03:04.9231822Z           '__reactProps$2rtkrqvd7gi': {
-2025-12-16T08:03:04.9232142Z             'aria-invalid': false,
-2025-12-16T08:03:04.9232460Z             'aria-describedby': undefined,
-2025-12-16T08:03:04.9232772Z             autoComplete: 'off',
-2025-12-16T08:03:04.9233037Z             autoFocus: false,
-2025-12-16T08:03:04.9233585Z             defaultValue: undefined,
-2025-12-16T08:03:04.9233892Z             disabled: true,
-2025-12-16T08:03:04.9234197Z             id: ':r3:',
-2025-12-16T08:03:04.9234497Z             onAnimationStart: [Function: handleAutoFill],
-2025-12-16T08:03:04.9234791Z             name: undefined,
-2025-12-16T08:03:04.9235113Z             placeholder: 'MM/DD/YYYY hh:mm aa',
-2025-12-16T08:03:04.9235381Z             readOnly: false,
-2025-12-16T08:03:04.9235651Z             required: false,
-2025-12-16T08:03:04.9235909Z             rows: undefined,
-2025-12-16T08:03:04.9236215Z             value: '09/06/2023 06:24 AM',
-2025-12-16T08:03:04.9236503Z             onKeyDown: [Function (anonymous)],
-2025-12-16T08:03:04.9236800Z             onKeyUp: undefined,
-2025-12-16T08:03:04.9237093Z             type: 'text',
-2025-12-16T08:03:04.9237379Z             inputMode: 'text',
-2025-12-16T08:03:04.9237652Z             onPaste: [Function (anonymous)],
-2025-12-16T08:03:04.9238185Z             className: 'MuiInputBase-input MuiOutlinedInput-input Mui-disabled MuiInputBase-inputSizeSmall MuiInputBase-inputAdornedEnd css-19qh8xo-MuiInputBase-input-MuiOutlinedInput-input',
-2025-12-16T08:03:04.9238591Z             onBlur: [Function: handleBlur],
-2025-12-16T08:03:04.9238888Z             onChange: [Function: handleChange],
-2025-12-16T08:03:04.9239179Z             onFocus: [Function: handleFocus]
-2025-12-16T08:03:04.9239436Z           },
-2025-12-16T08:03:04.9239796Z           _wrapperState: { initialChecked: undefined, initialValue: '', controlled: true },
-2025-12-16T08:03:04.9240575Z           '__reactEvents$2rtkrqvd7gi': Set(1) { 'invalid__bubble' },
-2025-12-16T08:03:04.9240891Z           value: [Getter/Setter],
-2025-12-16T08:03:04.9241165Z           _valueTracker: {
-2025-12-16T08:03:04.9241443Z             getValue: [Function: getValue],
-2025-12-16T08:03:04.9241737Z             setValue: [Function: setValue],
-2025-12-16T08:03:04.9242029Z             stopTracking: [Function: stopTracking]
-2025-12-16T08:03:04.9242294Z           }
-2025-12-16T08:03:04.9242527Z         },
-2025-12-16T08:03:04.9242780Z         <ref *4> HTMLInputElement {
-2025-12-16T08:03:04.9243124Z           '__reactFiber$2rtkrqvd7gi': FiberNode {
-2025-12-16T08:03:04.9243399Z             tag: 5,
-2025-12-16T08:03:04.9243658Z             key: null,
-2025-12-16T08:03:04.9243944Z             elementType: 'input',
-2025-12-16T08:03:04.9244242Z             type: 'input',
-2025-12-16T08:03:04.9244511Z             stateNode: [Circular *4],
-2025-12-16T08:03:04.9244787Z             return: [FiberNode],
-2025-12-16T08:03:04.9245068Z             child: null,
-2025-12-16T08:03:04.9245324Z             sibling: null,
-2025-12-16T08:03:04.9245568Z             index: 1,
-2025-12-16T08:03:04.9245840Z             ref: [Function (anonymous)],
-2025-12-16T08:03:04.9246116Z             pendingProps: [Object],
-2025-12-16T08:03:04.9246397Z             memoizedProps: [Object],
-2025-12-16T08:03:04.9246668Z             updateQueue: null,
-2025-12-16T08:03:04.9246931Z             memoizedState: null,
-2025-12-16T08:03:04.9247198Z             dependencies: null,
-2025-12-16T08:03:04.9247442Z             mode: 1,
-2025-12-16T08:03:04.9247700Z             flags: 3146240,
-2025-12-16T08:03:04.9247969Z             subtreeFlags: 0,
-2025-12-16T08:03:04.9248234Z             deletions: null,
-2025-12-16T08:03:04.9248482Z             lanes: 0,
-2025-12-16T08:03:04.9248733Z             childLanes: 0,
-2025-12-16T08:03:04.9248986Z             alternate: [FiberNode],
-2025-12-16T08:03:04.9249263Z             actualDuration: 0,
-2025-12-16T08:03:04.9249534Z             actualStartTime: -1,
-2025-12-16T08:03:04.9249808Z             selfBaseDuration: 0,
-2025-12-16T08:03:04.9250075Z             treeBaseDuration: 0,
-2025-12-16T08:03:04.9250649Z             _debugSource: null,
-2025-12-16T08:03:04.9250923Z             _debugOwner: [FiberNode],
-2025-12-16T08:03:04.9251207Z             _debugNeedsRemount: false,
-2025-12-16T08:03:04.9251480Z             _debugHookTypes: null
-2025-12-16T08:03:04.9251727Z           },
-2025-12-16T08:03:04.9252057Z           '__reactProps$2rtkrqvd7gi': {
-2025-12-16T08:03:04.9252373Z             'aria-invalid': false,
-2025-12-16T08:03:04.9252706Z             'aria-describedby': undefined,
-2025-12-16T08:03:04.9252983Z             autoComplete: undefined,
-2025-12-16T08:03:04.9253251Z             autoFocus: false,
-2025-12-16T08:03:04.9253521Z             defaultValue: undefined,
-2025-12-16T08:03:04.9253789Z             disabled: true,
-2025-12-16T08:03:04.9254085Z             id: 'bannerLink',
-2025-12-16T08:03:04.9254502Z             onAnimationStart: [Function: handleAutoFill],
-2025-12-16T08:03:04.9254787Z             name: undefined,
-2025-12-16T08:03:04.9255054Z             placeholder: undefined,
-2025-12-16T08:03:04.9255325Z             readOnly: undefined,
-2025-12-16T08:03:04.9255593Z             required: false,
-2025-12-16T08:03:04.9255863Z             rows: undefined,
-2025-12-16T08:03:04.9256236Z             value: 'https://rdc-asia-cmp-test.int-cpbb.ocp.dev.net/backoffice-portal/',
-2025-12-16T08:03:04.9256541Z             onKeyDown: undefined,
-2025-12-16T08:03:04.9256802Z             onKeyUp: undefined,
-2025-12-16T08:03:04.9257096Z             type: 'text',
-2025-12-16T08:03:04.9257562Z             className: 'MuiInputBase-input MuiOutlinedInput-input Mui-disabled MuiInputBase-inputSizeSmall css-1n4twyu-MuiInputBase-input-MuiOutlinedInput-input',
-2025-12-16T08:03:04.9257952Z             onBlur: [Function: handleBlur],
-2025-12-16T08:03:04.9258238Z             onChange: [Function: handleChange],
-2025-12-16T08:03:04.9258782Z             onFocus: [Function: handleFocus]
-2025-12-16T08:03:04.9259054Z           },
-2025-12-16T08:03:04.9259430Z           _wrapperState: { initialChecked: undefined, initialValue: '', controlled: false },
-2025-12-16T08:03:04.9259835Z           '__reactEvents$2rtkrqvd7gi': Set(1) { 'invalid__bubble' },
-2025-12-16T08:03:04.9260140Z           value: [Getter/Setter],
-2025-12-16T08:03:04.9260406Z           _valueTracker: {
-2025-12-16T08:03:04.9260681Z             getValue: [Function: getValue],
-2025-12-16T08:03:04.9260968Z             setValue: [Function: setValue],
-2025-12-16T08:03:04.9261251Z             stopTracking: [Function: stopTracking]
-2025-12-16T08:03:04.9261502Z           }
-2025-12-16T08:03:04.9261723Z         },
-2025-12-16T08:03:04.9261970Z         <ref *5> HTMLInputElement {
-2025-12-16T08:03:04.9262301Z           '__reactFiber$2rtkrqvd7gi': FiberNode {
-2025-12-16T08:03:04.9262569Z             tag: 5,
-2025-12-16T08:03:04.9262816Z             key: null,
-2025-12-16T08:03:04.9263099Z             elementType: 'input',
-2025-12-16T08:03:04.9263396Z             type: 'input',
-2025-12-16T08:03:04.9263656Z             stateNode: [Circular *5],
-2025-12-16T08:03:04.9263934Z             return: [FiberNode],
-2025-12-16T08:03:04.9264202Z             child: null,
-2025-12-16T08:03:04.9264476Z             sibling: null,
-2025-12-16T08:03:04.9264726Z             index: 1,
-2025-12-16T08:03:04.9264997Z             ref: [Function (anonymous)],
-2025-12-16T08:03:04.9265278Z             pendingProps: [Object],
-2025-12-16T08:03:04.9265544Z             memoizedProps: [Object],
-2025-12-16T08:03:04.9265812Z             updateQueue: null,
-2025-12-16T08:03:04.9266077Z             memoizedState: null,
-2025-12-16T08:03:04.9266342Z             dependencies: null,
-2025-12-16T08:03:04.9266596Z             mode: 1,
-2025-12-16T08:03:04.9266854Z             flags: 3146240,
-2025-12-16T08:03:04.9267111Z             subtreeFlags: 0,
-2025-12-16T08:03:04.9267383Z             deletions: null,
-2025-12-16T08:03:04.9267634Z             lanes: 0,
-2025-12-16T08:03:04.9267887Z             childLanes: 0,
-2025-12-16T08:03:04.9268141Z             alternate: [FiberNode],
-2025-12-16T08:03:04.9268412Z             actualDuration: 0,
-2025-12-16T08:03:04.9268929Z             actualStartTime: -1,
-2025-12-16T08:03:04.9269205Z             selfBaseDuration: 0,
-2025-12-16T08:03:04.9269480Z             treeBaseDuration: 0,
-2025-12-16T08:03:04.9269743Z             _debugSource: null,
-2025-12-16T08:03:04.9270004Z             _debugOwner: [FiberNode],
-2025-12-16T08:03:04.9270280Z             _debugNeedsRemount: false,
-2025-12-16T08:03:04.9270545Z             _debugHookTypes: null
-2025-12-16T08:03:04.9270792Z           },
-2025-12-16T08:03:04.9271120Z           '__reactProps$2rtkrqvd7gi': {
-2025-12-16T08:03:04.9271442Z             'aria-invalid': false,
-2025-12-16T08:03:04.9271768Z             'aria-describedby': undefined,
-2025-12-16T08:03:04.9272043Z             autoComplete: undefined,
-2025-12-16T08:03:04.9272326Z             autoFocus: false,
-2025-12-16T08:03:04.9272596Z             defaultValue: undefined,
-2025-12-16T08:03:04.9272863Z             disabled: true,
-2025-12-16T08:03:04.9273163Z             id: 'statusTextId',
-2025-12-16T08:03:04.9273692Z             onAnimationStart: [Function: handleAutoFill],
-2025-12-16T08:03:04.9273977Z             name: undefined,
-2025-12-16T08:03:04.9274249Z             placeholder: undefined,
-2025-12-16T08:03:04.9274515Z             readOnly: undefined,
-2025-12-16T08:03:04.9274781Z             required: false,
-2025-12-16T08:03:04.9275042Z             rows: undefined,
-2025-12-16T08:03:04.9275295Z             value: 'P',
-2025-12-16T08:03:04.9275545Z             onKeyDown: undefined,
-2025-12-16T08:03:04.9275823Z             onKeyUp: undefined,
-2025-12-16T08:03:04.9276119Z             type: 'text',
-2025-12-16T08:03:04.9276591Z             className: 'MuiInputBase-input MuiOutlinedInput-input Mui-disabled MuiInputBase-inputSizeSmall css-1n4twyu-MuiInputBase-input-MuiOutlinedInput-input',
-2025-12-16T08:03:04.9276965Z             onBlur: [Function: handleBlur],
-2025-12-16T08:03:04.9277575Z             onChange: [Function: handleChange],
-2025-12-16T08:03:04.9277878Z             onFocus: [Function: handleFocus]
-2025-12-16T08:03:04.9278158Z           },
-2025-12-16T08:03:04.9278533Z           _wrapperState: { initialChecked: undefined, initialValue: 'P', controlled: true },
-2025-12-16T08:03:04.9278939Z           '__reactEvents$2rtkrqvd7gi': Set(1) { 'invalid__bubble' },
-2025-12-16T08:03:04.9279238Z           value: [Getter/Setter],
-2025-12-16T08:03:04.9279513Z           _valueTracker: {
-2025-12-16T08:03:04.9279789Z             getValue: [Function: getValue],
-2025-12-16T08:03:04.9280076Z             setValue: [Function: setValue],
-2025-12-16T08:03:04.9280355Z             stopTracking: [Function: stopTracking]
-2025-12-16T08:03:04.9280614Z           }
-2025-12-16T08:03:04.9280844Z         },
-2025-12-16T08:03:04.9281106Z         <ref *6> HTMLTextAreaElement {
-2025-12-16T08:03:04.9281454Z           '__reactFiber$2rtkrqvd7gi': FiberNode {
-2025-12-16T08:03:04.9281724Z             tag: 5,
-2025-12-16T08:03:04.9281973Z             key: null,
-2025-12-16T08:03:04.9282262Z             elementType: 'textarea',
-2025-12-16T08:03:04.9282563Z             type: 'textarea',
-2025-12-16T08:03:04.9282834Z             stateNode: [Circular *6],
-2025-12-16T08:03:04.9283107Z             return: [FiberNode],
-2025-12-16T08:03:04.9283375Z             child: null,
-2025-12-16T08:03:04.9283633Z             sibling: [FiberNode],
-2025-12-16T08:03:04.9283882Z             index: 0,
-2025-12-16T08:03:04.9284146Z             ref: [Function (anonymous)],
-2025-12-16T08:03:04.9284417Z             pendingProps: [Object],
-2025-12-16T08:03:04.9284700Z             memoizedProps: [Object],
-2025-12-16T08:03:04.9284974Z             updateQueue: null,
-2025-12-16T08:03:04.9285232Z             memoizedState: null,
-2025-12-16T08:03:04.9285486Z             dependencies: null,
-2025-12-16T08:03:04.9285738Z             mode: 1,
-2025-12-16T08:03:04.9285993Z             flags: 2097156,
-2025-12-16T08:03:04.9286254Z             subtreeFlags: 0,
-2025-12-16T08:03:04.9286511Z             deletions: null,
-2025-12-16T08:03:04.9286759Z             lanes: 0,
-2025-12-16T08:03:04.9287013Z             childLanes: 0,
-2025-12-16T08:03:04.9287573Z             alternate: [FiberNode],
-2025-12-16T08:03:04.9287848Z             actualDuration: 0,
-2025-12-16T08:03:04.9288120Z             actualStartTime: -1,
-2025-12-16T08:03:04.9288401Z             selfBaseDuration: 0,
-2025-12-16T08:03:04.9288667Z             treeBaseDuration: 0,
-2025-12-16T08:03:04.9288947Z             _debugSource: undefined,
-2025-12-16T08:03:04.9289225Z             _debugOwner: [FiberNode],
-2025-12-16T08:03:04.9289499Z             _debugNeedsRemount: false,
-2025-12-16T08:03:04.9289768Z             _debugHookTypes: null
-2025-12-16T08:03:04.9290009Z           },
-2025-12-16T08:03:04.9290319Z           '__reactProps$2rtkrqvd7gi': {
-2025-12-16T08:03:04.9290585Z             value: '',
-2025-12-16T08:03:04.9290861Z             onChange: [Function: handleChange],
-2025-12-16T08:03:04.9291139Z             rows: undefined,
-2025-12-16T08:03:04.9291399Z             style: [Object],
-2025-12-16T08:03:04.9291701Z             'aria-invalid': false,
-2025-12-16T08:03:04.9292025Z             'aria-describedby': undefined,
-2025-12-16T08:03:04.9292311Z             autoComplete: undefined,
-2025-12-16T08:03:04.9292576Z             autoFocus: false,
-2025-12-16T08:03:04.9292837Z             defaultValue: undefined,
-2025-12-16T08:03:04.9293146Z             disabled: false,
-2025-12-16T08:03:04.9293435Z             id: 'comments',
-2025-12-16T08:03:04.9293721Z             onAnimationStart: [Function: handleAutoFill],
-2025-12-16T08:03:04.9294010Z             name: undefined,
-2025-12-16T08:03:04.9294400Z             placeholder: undefined,
-2025-12-16T08:03:04.9294673Z             readOnly: undefined,
-2025-12-16T08:03:04.9294934Z             required: false,
-2025-12-16T08:03:04.9295189Z             onKeyDown: undefined,
-2025-12-16T08:03:04.9295458Z             onKeyUp: undefined,
-2025-12-16T08:03:04.9295958Z             type: undefined,
-2025-12-16T08:03:04.9296464Z             className: 'MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputMultiline MuiInputBase-inputSizeSmall css-12tl3rr-MuiInputBase-input-MuiOutlinedInput-input',
-2025-12-16T08:03:04.9296880Z             onBlur: [Function: handleBlur],
-2025-12-16T08:03:04.9297165Z             onFocus: [Function: handleFocus]
-2025-12-16T08:03:04.9297419Z           },
-2025-12-16T08:03:04.9297717Z           _wrapperState: { initialValue: '' },
-2025-12-16T08:03:04.9298086Z           '__reactEvents$2rtkrqvd7gi': Set(1) { 'invalid__bubble' },
-2025-12-16T08:03:04.9298384Z           value: [Getter/Setter],
-2025-12-16T08:03:04.9298650Z           _valueTracker: {
-2025-12-16T08:03:04.9298924Z             getValue: [Function: getValue],
-2025-12-16T08:03:04.9299201Z             setValue: [Function: setValue],
-2025-12-16T08:03:04.9299500Z             stopTracking: [Function: stopTracking]
-2025-12-16T08:03:04.9299769Z           },
-2025-12-16T08:03:04.9300072Z           [Symbol(SameObject caches)]: [Object: null prototype] { style: [CSSStyleDeclaration] }
-2025-12-16T08:03:04.9300358Z         }
-2025-12-16T08:03:04.9300580Z       ]
-2025-12-16T08:03:04.9300672Z 
-2025-12-16T08:03:04.9300982Z       at Object.<anonymous> (src/__tests__/pages/emailBannerModule/BannerSearch.test.tsx:67:13)
-2025-12-16T08:03:04.9301157Z 
-2025-12-16T08:03:04.9301384Z     console.warn
-2025-12-16T08:03:04.9301652Z       Reject Reason textbox not found
-2025-12-16T08:03:04.9301767Z 
-2025-12-16T08:03:04.9302058Z       72 |       fireEvent.change(rejectReasonTextbox, { target: { value: "test" } });
-2025-12-16T08:03:04.9302359Z       73 |     } else {
-2025-12-16T08:03:04.9302662Z     > 74 |       console.warn("Reject Reason textbox not found");
-2025-12-16T08:03:04.9302951Z          |               ^
-2025-12-16T08:03:04.9303186Z       75 |     }
-2025-12-16T08:03:04.9303416Z       76 |
-2025-12-16T08:03:04.9303698Z       77 |     const buttons = screen.getAllByRole("button");
-2025-12-16T08:03:04.9303830Z 
-2025-12-16T08:03:04.9304145Z       at Object.<anonymous> (src/__tests__/pages/emailBannerModule/BannerSearch.test.tsx:74:15)
-2025-12-16T08:03:04.9304312Z 
-2025-12-16T08:03:04.9304552Z     console.error
-2025-12-16T08:03:04.9305114Z       MUI: A component is changing the uncontrolled value of a picker to be controlled.
-2025-12-16T08:03:04.9305460Z       Elements should not switch from uncontrolled to controlled (or vice versa).
-2025-12-16T08:03:04.9305829Z       Decide between using a controlled or uncontrolled valuefor the lifetime of the component.
-2025-12-16T08:03:04.9306308Z       The nature of the state is determined during the first render. It's considered controlled if the value is not `undefined`.
-2025-12-16T08:03:04.9306722Z       More info: https://fb.me/react-controlled-components
-2025-12-16T08:03:04.9306850Z 
-2025-12-16T08:03:04.9307226Z       at node_modules/@mui/x-date-pickers/node/internals/hooks/usePicker/usePickerValue.js:149:17
-2025-12-16T08:03:04.9307673Z       at commitHookEffectListMount (node_modules/react-dom/cjs/react-dom.development.js:23150:26)
-2025-12-16T08:03:04.9308133Z       at commitPassiveMountOnFiber (node_modules/react-dom/cjs/react-dom.development.js:24931:11)
-2025-12-16T08:03:04.9308598Z       at commitPassiveMountEffects_complete (node_modules/react-dom/cjs/react-dom.development.js:24891:9)
-2025-12-16T08:03:04.9309066Z       at commitPassiveMountEffects_begin (node_modules/react-dom/cjs/react-dom.development.js:24878:7)
-2025-12-16T08:03:04.9309509Z       at commitPassiveMountEffects (node_modules/react-dom/cjs/react-dom.development.js:24866:3)
-2025-12-16T08:03:04.9309957Z       at flushPassiveEffectsImpl (node_modules/react-dom/cjs/react-dom.development.js:27039:3)
-2025-12-16T08:03:04.9310401Z       at flushPassiveEffects (node_modules/react-dom/cjs/react-dom.development.js:26984:14)
-2025-12-16T08:03:04.9310840Z       at performSyncWorkOnRoot (node_modules/react-dom/cjs/react-dom.development.js:26076:3)
-2025-12-16T08:03:04.9311278Z       at flushSyncCallbacks (node_modules/react-dom/cjs/react-dom.development.js:12042:22)
-2025-12-16T08:03:04.9311952Z       at commitRootImpl (node_modules/react-dom/cjs/react-dom.development.js:26959:3)
-2025-12-16T08:03:04.9312374Z       at commitRoot (node_modules/react-dom/cjs/react-dom.development.js:26682:5)
-2025-12-16T08:03:04.9312811Z       at finishConcurrentRender (node_modules/react-dom/cjs/react-dom.development.js:25981:9)
-2025-12-16T08:03:04.9313473Z       at performConcurrentWorkOnRoot (node_modules/react-dom/cjs/react-dom.development.js:25809:7)
-2025-12-16T08:03:04.9313939Z       at flushActQueue (node_modules/react/cjs/react.development.js:2667:24)
-2025-12-16T08:03:04.9314323Z       at recursivelyFlushAsyncActWork (node_modules/react/cjs/react.development.js:2633:9)
-2025-12-16T08:03:04.9314702Z       at Immediate._onImmediate (node_modules/react/cjs/react.development.js:2641:13)
-2025-12-16T08:03:04.9314856Z 
-2025-12-16T08:03:04.9315093Z     console.error
-2025-12-16T08:03:04.9315412Z       MUI: A component is changing the uncontrolled value of a picker to be controlled.
-2025-12-16T08:03:04.9315766Z       Elements should not switch from uncontrolled to controlled (or vice versa).
-2025-12-16T08:03:04.9316114Z       Decide between using a controlled or uncontrolled valuefor the lifetime of the component.
-2025-12-16T08:03:04.9316605Z       The nature of the state is determined during the first render. It's considered controlled if the value is not `undefined`.
-2025-12-16T08:03:04.9317011Z       More info: https://fb.me/react-controlled-components
-2025-12-16T08:03:04.9317138Z 
-2025-12-16T08:03:04.9317524Z       at node_modules/@mui/x-date-pickers/node/internals/hooks/usePicker/usePickerValue.js:149:17
-2025-12-16T08:03:04.9317975Z       at commitHookEffectListMount (node_modules/react-dom/cjs/react-dom.development.js:23150:26)
-2025-12-16T08:03:04.9318419Z       at commitPassiveMountOnFiber (node_modules/react-dom/cjs/react-dom.development.js:24931:11)
-2025-12-16T08:03:04.9318873Z       at commitPassiveMountEffects_complete (node_modules/react-dom/cjs/react-dom.development.js:24891:9)
-2025-12-16T08:03:04.9319335Z       at commitPassiveMountEffects_begin (node_modules/react-dom/cjs/react-dom.development.js:24878:7)
-2025-12-16T08:03:04.9320128Z       at commitPassiveMountEffects (node_modules/react-dom/cjs/react-dom.development.js:24866:3)
-2025-12-16T08:03:04.9320581Z       at flushPassiveEffectsImpl (node_modules/react-dom/cjs/react-dom.development.js:27039:3)
-2025-12-16T08:03:04.9321030Z       at flushPassiveEffects (node_modules/react-dom/cjs/react-dom.development.js:26984:14)
-2025-12-16T08:03:04.9321460Z       at performSyncWorkOnRoot (node_modules/react-dom/cjs/react-dom.development.js:26076:3)
-2025-12-16T08:03:04.9321898Z       at flushSyncCallbacks (node_modules/react-dom/cjs/react-dom.development.js:12042:22)
-2025-12-16T08:03:04.9322328Z       at commitRootImpl (node_modules/react-dom/cjs/react-dom.development.js:26959:3)
-2025-12-16T08:03:04.9322749Z       at commitRoot (node_modules/react-dom/cjs/react-dom.development.js:26682:5)
-2025-12-16T08:03:04.9323177Z       at finishConcurrentRender (node_modules/react-dom/cjs/react-dom.development.js:25981:9)
-2025-12-16T08:03:04.9323612Z       at performConcurrentWorkOnRoot (node_modules/react-dom/cjs/react-dom.development.js:25809:7)
-2025-12-16T08:03:04.9323988Z       at flushActQueue (node_modules/react/cjs/react.development.js:2667:24)
-2025-12-16T08:03:04.9324355Z       at recursivelyFlushAsyncActWork (node_modules/react/cjs/react.development.js:2633:9)
-2025-12-16T08:03:04.9324730Z       at Immediate._onImmediate (node_modules/react/cjs/react.development.js:2641:13)
-2025-12-16T08:03:04.9324882Z 
-2025-12-16T08:03:04.9325112Z     console.error
-2025-12-16T08:03:04.9325419Z       MUI: A component is changing the uncontrolled value of a picker to be controlled.
-2025-12-16T08:03:04.9325764Z       Elements should not switch from uncontrolled to controlled (or vice versa).
-2025-12-16T08:03:04.9326111Z       Decide between using a controlled or uncontrolled valuefor the lifetime of the component.
-2025-12-16T08:03:04.9326864Z       The nature of the state is determined during the first render. It's considered controlled if the value is not `undefined`.
-2025-12-16T08:03:04.9327280Z       More info: https://fb.me/react-controlled-components
-2025-12-16T08:03:04.9327412Z 
-2025-12-16T08:03:04.9327805Z       at node_modules/@mui/x-date-pickers/node/internals/hooks/usePicker/usePickerValue.js:149:17
-2025-12-16T08:03:04.9328258Z       at commitHookEffectListMount (node_modules/react-dom/cjs/react-dom.development.js:23150:26)
-2025-12-16T08:03:04.9328701Z       at commitPassiveMountOnFiber (node_modules/react-dom/cjs/react-dom.development.js:24931:11)
-2025-12-16T08:03:04.9329160Z       at commitPassiveMountEffects_complete (node_modules/react-dom/cjs/react-dom.development.js:24891:9)
-2025-12-16T08:03:04.9329619Z       at commitPassiveMountEffects_begin (node_modules/react-dom/cjs/react-dom.development.js:24878:7)
-2025-12-16T08:03:04.9330083Z       at commitPassiveMountEffects (node_modules/react-dom/cjs/react-dom.development.js:24866:3)
-2025-12-16T08:03:04.9330525Z       at flushPassiveEffectsImpl (node_modules/react-dom/cjs/react-dom.development.js:27039:3)
-2025-12-16T08:03:04.9330968Z       at flushPassiveEffects (node_modules/react-dom/cjs/react-dom.development.js:26984:14)
-2025-12-16T08:03:04.9331403Z       at performSyncWorkOnRoot (node_modules/react-dom/cjs/react-dom.development.js:26076:3)
-2025-12-16T08:03:04.9331838Z       at flushSyncCallbacks (node_modules/react-dom/cjs/react-dom.development.js:12042:22)
-2025-12-16T08:03:04.9332268Z       at commitRootImpl (node_modules/react-dom/cjs/react-dom.development.js:26959:3)
-2025-12-16T08:03:04.9332678Z       at commitRoot (node_modules/react-dom/cjs/react-dom.development.js:26682:5)
-2025-12-16T08:03:04.9333104Z       at finishConcurrentRender (node_modules/react-dom/cjs/react-dom.development.js:25981:9)
-2025-12-16T08:03:04.9333548Z       at performConcurrentWorkOnRoot (node_modules/react-dom/cjs/react-dom.development.js:25809:7)
-2025-12-16T08:03:04.9333912Z       at flushActQueue (node_modules/react/cjs/react.development.js:2667:24)
-2025-12-16T08:03:04.9334388Z       at recursivelyFlushAsyncActWork (node_modules/react/cjs/react.development.js:2633:9)
-2025-12-16T08:03:04.9335128Z       at Immediate._onImmediate (node_modules/react/cjs/react.development.js:2641:13)
-2025-12-16T08:03:04.9335282Z 
-2025-12-16T08:03:04.9335523Z     console.error
-2025-12-16T08:03:04.9335831Z       MUI: A component is changing the uncontrolled value of a picker to be controlled.
-2025-12-16T08:03:04.9336181Z       Elements should not switch from uncontrolled to controlled (or vice versa).
-2025-12-16T08:03:04.9336533Z       Decide between using a controlled or uncontrolled valuefor the lifetime of the component.
-2025-12-16T08:03:04.9337026Z       The nature of the state is determined during the first render. It's considered controlled if the value is not `undefined`.
-2025-12-16T08:03:04.9337445Z       More info: https://fb.me/react-controlled-components
-2025-12-16T08:03:04.9337574Z 
-2025-12-16T08:03:04.9337955Z       at node_modules/@mui/x-date-pickers/node/internals/hooks/usePicker/usePickerValue.js:149:17
-2025-12-16T08:03:04.9338403Z       at commitHookEffectListMount (node_modules/react-dom/cjs/react-dom.development.js:23150:26)
-2025-12-16T08:03:04.9338851Z       at commitPassiveMountOnFiber (node_modules/react-dom/cjs/react-dom.development.js:24931:11)
-2025-12-16T08:03:04.9339309Z       at commitPassiveMountEffects_complete (node_modules/react-dom/cjs/react-dom.development.js:24891:9)
-2025-12-16T08:03:04.9339758Z       at commitPassiveMountEffects_begin (node_modules/react-dom/cjs/react-dom.development.js:24878:7)
-2025-12-16T08:03:04.9340205Z       at commitPassiveMountEffects (node_modules/react-dom/cjs/react-dom.development.js:24866:3)
-2025-12-16T08:03:04.9340650Z       at flushPassiveEffectsImpl (node_modules/react-dom/cjs/react-dom.development.js:27039:3)
-2025-12-16T08:03:04.9341092Z       at flushPassiveEffects (node_modules/react-dom/cjs/react-dom.development.js:26984:14)
-2025-12-16T08:03:04.9341543Z       at performSyncWorkOnRoot (node_modules/react-dom/cjs/react-dom.development.js:26076:3)
-2025-12-16T08:03:04.9342222Z       at flushSyncCallbacks (node_modules/react-dom/cjs/react-dom.development.js:12042:22)
-2025-12-16T08:03:04.9342653Z       at commitRootImpl (node_modules/react-dom/cjs/react-dom.development.js:26959:3)
-2025-12-16T08:03:04.9343065Z       at commitRoot (node_modules/react-dom/cjs/react-dom.development.js:26682:5)
-2025-12-16T08:03:04.9343502Z       at finishConcurrentRender (node_modules/react-dom/cjs/react-dom.development.js:25981:9)
-2025-12-16T08:03:04.9343944Z       at performConcurrentWorkOnRoot (node_modules/react-dom/cjs/react-dom.development.js:25809:7)
-2025-12-16T08:03:04.9344306Z       at flushActQueue (node_modules/react/cjs/react.development.js:2667:24)
-2025-12-16T08:03:04.9344666Z       at recursivelyFlushAsyncActWork (node_modules/react/cjs/react.development.js:2633:9)
-2025-12-16T08:03:04.9345045Z       at Immediate._onImmediate (node_modules/react/cjs/react.development.js:2641:13)
-2025-12-16T08:03:04.9345202Z 
-2025-12-16T08:03:04.9345436Z     console.error
-2025-12-16T08:03:04.9345745Z       MUI: A component is changing the uncontrolled value of a picker to be controlled.
-2025-12-16T08:03:04.9346088Z       Elements should not switch from uncontrolled to controlled (or vice versa).
-2025-12-16T08:03:04.9346436Z       Decide between using a controlled or uncontrolled valuefor the lifetime of the component.
-2025-12-16T08:03:04.9346903Z       The nature of the state is determined during the first render. It's considered controlled if the value is not `undefined`.
-2025-12-16T08:03:04.9347323Z       More info: https://fb.me/react-controlled-components
-2025-12-16T08:03:04.9347458Z 
-2025-12-16T08:03:04.9347829Z       at node_modules/@mui/x-date-pickers/node/internals/hooks/usePicker/usePickerValue.js:149:17
-2025-12-16T08:03:04.9348284Z       at commitHookEffectListMount (node_modules/react-dom/cjs/react-dom.development.js:23150:26)
-2025-12-16T08:03:04.9348735Z       at commitPassiveMountOnFiber (node_modules/react-dom/cjs/react-dom.development.js:24931:11)
-2025-12-16T08:03:04.9349193Z       at commitPassiveMountEffects_complete (node_modules/react-dom/cjs/react-dom.development.js:24891:9)
-2025-12-16T08:03:04.9349907Z       at commitPassiveMountEffects_begin (node_modules/react-dom/cjs/react-dom.development.js:24878:7)
-2025-12-16T08:03:04.9350371Z       at commitPassiveMountEffects (node_modules/react-dom/cjs/react-dom.development.js:24866:3)
-2025-12-16T08:03:04.9350830Z       at flushPassiveEffectsImpl (node_modules/react-dom/cjs/react-dom.development.js:27039:3)
-2025-12-16T08:03:04.9351271Z       at flushPassiveEffects (node_modules/react-dom/cjs/react-dom.development.js:26984:14)
-2025-12-16T08:03:04.9351701Z       at performSyncWorkOnRoot (node_modules/react-dom/cjs/react-dom.development.js:26076:3)
-2025-12-16T08:03:04.9352135Z       at flushSyncCallbacks (node_modules/react-dom/cjs/react-dom.development.js:12042:22)
-2025-12-16T08:03:04.9352560Z       at commitRootImpl (node_modules/react-dom/cjs/react-dom.development.js:26959:3)
-2025-12-16T08:03:04.9352974Z       at commitRoot (node_modules/react-dom/cjs/react-dom.development.js:26682:5)
-2025-12-16T08:03:04.9353670Z       at finishConcurrentRender (node_modules/react-dom/cjs/react-dom.development.js:25981:9)
-2025-12-16T08:03:04.9354137Z       at performConcurrentWorkOnRoot (node_modules/react-dom/cjs/react-dom.development.js:25809:7)
-2025-12-16T08:03:04.9354504Z       at flushActQueue (node_modules/react/cjs/react.development.js:2667:24)
-2025-12-16T08:03:04.9354883Z       at recursivelyFlushAsyncActWork (node_modules/react/cjs/react.development.js:2633:9)
-2025-12-16T08:03:04.9355254Z       at Immediate._onImmediate (node_modules/react/cjs/react.development.js:2641:13)
-2025-12-16T08:03:04.9355408Z 
-2025-12-16T08:03:04.9355643Z     console.error
-2025-12-16T08:03:04.9355955Z       MUI: A component is changing the uncontrolled value of a picker to be controlled.
-2025-12-16T08:03:04.9356300Z       Elements should not switch from uncontrolled to controlled (or vice versa).
-2025-12-16T08:03:04.9356962Z       Decide between using a controlled or uncontrolled valuefor the lifetime of the component.
-2025-12-16T08:03:04.9357447Z       The nature of the state is determined during the first render. It's considered controlled if the value is not `undefined`.
-2025-12-16T08:03:04.9357868Z       More info: https://fb.me/react-controlled-components
-2025-12-16T08:03:04.9357997Z 
-2025-12-16T08:03:04.9358393Z       at node_modules/@mui/x-date-pickers/node/internals/hooks/usePicker/usePickerValue.js:149:17
-2025-12-16T08:03:04.9358844Z       at commitHookEffectListMount (node_modules/react-dom/cjs/react-dom.development.js:23150:26)
-2025-12-16T08:03:04.9359289Z       at commitPassiveMountOnFiber (node_modules/react-dom/cjs/react-dom.development.js:24931:11)
-2025-12-16T08:03:04.9359759Z       at commitPassiveMountEffects_complete (node_modules/react-dom/cjs/react-dom.development.js:24891:9)
-2025-12-16T08:03:04.9360219Z       at commitPassiveMountEffects_begin (node_modules/react-dom/cjs/react-dom.development.js:24878:7)
-2025-12-16T08:03:04.9360668Z       at commitPassiveMountEffects (node_modules/react-dom/cjs/react-dom.development.js:24866:3)
-2025-12-16T08:03:04.9361107Z       at flushPassiveEffectsImpl (node_modules/react-dom/cjs/react-dom.development.js:27039:3)
-2025-12-16T08:03:04.9361543Z       at flushPassiveEffects (node_modules/react-dom/cjs/react-dom.development.js:26984:14)
-2025-12-16T08:03:04.9361990Z       at performSyncWorkOnRoot (node_modules/react-dom/cjs/react-dom.development.js:26076:3)
-2025-12-16T08:03:04.9362420Z       at flushSyncCallbacks (node_modules/react-dom/cjs/react-dom.development.js:12042:22)
-2025-12-16T08:03:04.9362848Z       at commitRootImpl (node_modules/react-dom/cjs/react-dom.development.js:26959:3)
-2025-12-16T08:03:04.9363265Z       at commitRoot (node_modules/react-dom/cjs/react-dom.development.js:26682:5)
-2025-12-16T08:03:04.9363693Z       at finishConcurrentRender (node_modules/react-dom/cjs/react-dom.development.js:25981:9)
-2025-12-16T08:03:04.9364130Z       at performConcurrentWorkOnRoot (node_modules/react-dom/cjs/react-dom.development.js:25809:7)
-2025-12-16T08:03:04.9364489Z       at flushActQueue (node_modules/react/cjs/react.development.js:2667:24)
-2025-12-16T08:03:04.9365143Z       at recursivelyFlushAsyncActWork (node_modules/react/cjs/react.development.js:2633:9)
-2025-12-16T08:03:04.9365518Z       at Immediate._onImmediate (node_modules/react/cjs/react.development.js:2641:13)
-2025-12-16T08:03:04.9365669Z 
-2025-12-16T08:03:04.9365907Z     console.error
-2025-12-16T08:03:04.9366559Z       Warning: A component is changing a controlled input to be uncontrolled. This is likely caused by the value changing from a defined to undefined, which should not happen. Decide between using a controlled or uncontrolled input element for the lifetime of the component. More info: https://reactjs.org/link/controlled-components
-2025-12-16T08:03:04.9367013Z           at input
-2025-12-16T08:03:04.9367440Z           at /ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@emotion/react/dist/emotion-element-48d2c2e4.cjs.dev.js:62:23
-2025-12-16T08:03:04.9367785Z           at div
-2025-12-16T08:03:04.9368200Z           at /ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@emotion/react/dist/emotion-element-48d2c2e4.cjs.dev.js:62:23
-2025-12-16T08:03:04.9368709Z           at InputBase (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@mui/material/node/InputBase/InputBase.js:225:44)
-2025-12-16T08:03:04.9369224Z           at OutlinedInput (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@mui/material/node/OutlinedInput/OutlinedInput.js:130:44)
-2025-12-16T08:03:04.9369565Z           at div
-2025-12-16T08:03:04.9369994Z           at /ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@emotion/react/dist/emotion-element-48d2c2e4.cjs.dev.js:62:23
-2025-12-16T08:03:04.9370506Z           at FormControl (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@mui/material/node/FormControl/FormControl.js:92:44)
-2025-12-16T08:03:04.9371279Z           at /ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@emotion/react/dist/emotion-element-48d2c2e4.cjs.dev.js:62:23
-2025-12-16T08:03:04.9371785Z           at TextField (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@mui/material/node/TextField/TextField.js:83:44)
-2025-12-16T08:03:04.9372110Z           at div
-2025-12-16T08:03:04.9372520Z           at /ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@emotion/react/dist/emotion-element-48d2c2e4.cjs.dev.js:62:23
-2025-12-16T08:03:04.9373013Z           at Grid (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@mui/material/node/Grid/Grid.js:380:49)
-2025-12-16T08:03:04.9373330Z           at div
-2025-12-16T08:03:04.9373744Z           at /ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@emotion/react/dist/emotion-element-48d2c2e4.cjs.dev.js:62:23
-2025-12-16T08:03:04.9374312Z           at Grid (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@mui/material/node/Grid/Grid.js:380:49)
-2025-12-16T08:03:04.9374630Z           at div
-2025-12-16T08:03:04.9375049Z           at /ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@emotion/react/dist/emotion-element-48d2c2e4.cjs.dev.js:62:23
-2025-12-16T08:03:04.9375517Z           at Box (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@mui/system/createBox.js:31:41)
-2025-12-16T08:03:04.9376006Z           at BannerSearch (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/src/pages/emailBannerModule/BannerSearch.tsx:30:28)
-2025-12-16T08:03:04.9376536Z           at Router (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/react-router-dom/node_modules/react-router/lib/components.tsx:413:13)
-2025-12-16T08:03:04.9377084Z           at MemoryRouter (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/react-router-dom/node_modules/react-router/lib/components.tsx:219:3)
-2025-12-16T08:03:04.9377275Z 
-2025-12-16T08:03:04.9377633Z       at printWarning (node_modules/react-dom/cjs/react-dom.development.js:86:30)
-2025-12-16T08:03:04.9378055Z       at error (node_modules/react-dom/cjs/react-dom.development.js:60:7)
-2025-12-16T08:03:04.9378484Z       at updateWrapper (node_modules/react-dom/cjs/react-dom.development.js:1819:7)
-2025-12-16T08:03:04.9379190Z       at updateProperties (node_modules/react-dom/cjs/react-dom.development.js:10151:7)
-2025-12-16T08:03:04.9379627Z       at commitUpdate (node_modules/react-dom/cjs/react-dom.development.js:11047:3)
-2025-12-16T08:03:04.9380072Z       at commitMutationEffectsOnFiber (node_modules/react-dom/cjs/react-dom.development.js:24389:19)
-2025-12-16T08:03:04.9380529Z       at recursivelyTraverseMutationEffects (node_modules/react-dom/cjs/react-dom.development.js:24273:7)
-2025-12-16T08:03:04.9380983Z       at commitMutationEffectsOnFiber (node_modules/react-dom/cjs/react-dom.development.js:24293:9)
-2025-12-16T08:03:04.9381430Z       at recursivelyTraverseMutationEffects (node_modules/react-dom/cjs/react-dom.development.js:24273:7)
-2025-12-16T08:03:04.9381889Z       at commitMutationEffectsOnFiber (node_modules/react-dom/cjs/react-dom.development.js:24576:9)
-2025-12-16T08:03:04.9382352Z       at recursivelyTraverseMutationEffects (node_modules/react-dom/cjs/react-dom.development.js:24273:7)
-2025-12-16T08:03:04.9382804Z       at commitMutationEffectsOnFiber (node_modules/react-dom/cjs/react-dom.development.js:24346:9)
-2025-12-16T08:03:04.9383253Z       at recursivelyTraverseMutationEffects (node_modules/react-dom/cjs/react-dom.development.js:24273:7)
-2025-12-16T08:03:04.9383698Z       at commitMutationEffectsOnFiber (node_modules/react-dom/cjs/react-dom.development.js:24293:9)
-2025-12-16T08:03:04.9384145Z       at recursivelyTraverseMutationEffects (node_modules/react-dom/cjs/react-dom.development.js:24273:7)
-2025-12-16T08:03:04.9384594Z       at commitMutationEffectsOnFiber (node_modules/react-dom/cjs/react-dom.development.js:24293:9)
-2025-12-16T08:03:04.9385035Z       at recursivelyTraverseMutationEffects (node_modules/react-dom/cjs/react-dom.development.js:24273:7)
-2025-12-16T08:03:04.9385471Z       at commitMutationEffectsOnFiber (node_modules/react-dom/cjs/react-dom.development.js:24293:9)
-2025-12-16T08:03:04.9386160Z       at recursivelyTraverseMutationEffects (node_modules/react-dom/cjs/react-dom.development.js:24273:7)
-2025-12-16T08:03:04.9386604Z       at commitMutationEffectsOnFiber (node_modules/react-dom/cjs/react-dom.development.js:24346:9)
-2025-12-16T08:03:04.9387057Z       at recursivelyTraverseMutationEffects (node_modules/react-dom/cjs/react-dom.development.js:24273:7)
-2025-12-16T08:03:04.9387491Z       at commitMutationEffectsOnFiber (node_modules/react-dom/cjs/react-dom.development.js:24293:9)
-2025-12-16T08:03:04.9387924Z       at recursivelyTraverseMutationEffects (node_modules/react-dom/cjs/react-dom.development.js:24273:7)
-2025-12-16T08:03:04.9388375Z       at commitMutationEffectsOnFiber (node_modules/react-dom/cjs/react-dom.development.js:24576:9)
-2025-12-16T08:03:04.9388815Z       at recursivelyTraverseMutationEffects (node_modules/react-dom/cjs/react-dom.development.js:24273:7)
-2025-12-16T08:03:04.9389251Z       at commitMutationEffectsOnFiber (node_modules/react-dom/cjs/react-dom.development.js:24293:9)
-2025-12-16T08:03:04.9389680Z       at recursivelyTraverseMutationEffects (node_modules/react-dom/cjs/react-dom.development.js:24273:7)
-2025-12-16T08:03:04.9390114Z       at commitMutationEffectsOnFiber (node_modules/react-dom/cjs/react-dom.development.js:24293:9)
-2025-12-16T08:03:04.9390551Z       at recursivelyTraverseMutationEffects (node_modules/react-dom/cjs/react-dom.development.js:24273:7)
-2025-12-16T08:03:04.9390983Z       at commitMutationEffectsOnFiber (node_modules/react-dom/cjs/react-dom.development.js:24293:9)
-2025-12-16T08:03:04.9391422Z       at recursivelyTraverseMutationEffects (node_modules/react-dom/cjs/react-dom.development.js:24273:7)
-2025-12-16T08:03:04.9391852Z       at commitMutationEffectsOnFiber (node_modules/react-dom/cjs/react-dom.development.js:24346:9)
-2025-12-16T08:03:04.9392298Z       at recursivelyTraverseMutationEffects (node_modules/react-dom/cjs/react-dom.development.js:24273:7)
-2025-12-16T08:03:04.9392742Z       at commitMutationEffectsOnFiber (node_modules/react-dom/cjs/react-dom.development.js:24293:9)
-2025-12-16T08:03:04.9393696Z       at recursivelyTraverseMutationEffects (node_modules/react-dom/cjs/react-dom.development.js:24273:7)
-2025-12-16T08:03:04.9394179Z       at commitMutationEffectsOnFiber (node_modules/react-dom/cjs/react-dom.development.js:24576:9)
-2025-12-16T08:03:04.9394653Z       at recursivelyTraverseMutationEffects (node_modules/react-dom/cjs/react-dom.development.js:24273:7)
-2025-12-16T08:03:04.9395097Z       at commitMutationEffectsOnFiber (node_modules/react-dom/cjs/react-dom.development.js:24293:9)
-2025-12-16T08:03:04.9395543Z       at recursivelyTraverseMutationEffects (node_modules/react-dom/cjs/react-dom.development.js:24273:7)
-2025-12-16T08:03:04.9395990Z       at commitMutationEffectsOnFiber (node_modules/react-dom/cjs/react-dom.development.js:24346:9)
-2025-12-16T08:03:04.9396435Z       at recursivelyTraverseMutationEffects (node_modules/react-dom/cjs/react-dom.development.js:24273:7)
-2025-12-16T08:03:04.9396884Z       at commitMutationEffectsOnFiber (node_modules/react-dom/cjs/react-dom.development.js:24293:9)
-2025-12-16T08:03:04.9397327Z       at recursivelyTraverseMutationEffects (node_modules/react-dom/cjs/react-dom.development.js:24273:7)
-2025-12-16T08:03:04.9397772Z       at commitMutationEffectsOnFiber (node_modules/react-dom/cjs/react-dom.development.js:24576:9)
-2025-12-16T08:03:04.9398217Z       at recursivelyTraverseMutationEffects (node_modules/react-dom/cjs/react-dom.development.js:24273:7)
-2025-12-16T08:03:04.9398666Z       at commitMutationEffectsOnFiber (node_modules/react-dom/cjs/react-dom.development.js:24293:9)
-2025-12-16T08:03:04.9399118Z       at recursivelyTraverseMutationEffects (node_modules/react-dom/cjs/react-dom.development.js:24273:7)
-2025-12-16T08:03:04.9399721Z       at commitMutationEffectsOnFiber (node_modules/react-dom/cjs/react-dom.development.js:24346:9)
-2025-12-16T08:03:04.9399967Z 
-2025-12-16T08:03:04.9404436Z   ● banner preview List › landing page- PRIMARY_APPROVE
-2025-12-16T08:03:04.9404721Z 
-2025-12-16T08:03:04.9405178Z     expect(received).toMatchSnapshot()
-2025-12-16T08:03:04.9405356Z 
-2025-12-16T08:03:04.9405933Z     Snapshot name: `banner preview List landing page- PRIMARY_APPROVE 1`
-2025-12-16T08:03:04.9406132Z 
-2025-12-16T08:03:04.9406545Z     - Snapshot  - 2
-2025-12-16T08:03:04.9406925Z     + Received  + 2
-2025-12-16T08:03:04.9407066Z 
-2025-12-16T08:03:04.9407517Z     @@ -104,11 +104,11 @@
-2025-12-16T08:03:04.9407895Z                     disabled=""
-2025-12-16T08:03:04.9408298Z                     id=":r1:"
-2025-12-16T08:03:04.9408684Z                     inputmode="text"
-2025-12-16T08:03:04.9409110Z                     placeholder="MM/DD/YYYY hh:mm aa"
-2025-12-16T08:03:04.9409503Z                     type="text"
-2025-12-16T08:03:04.9409985Z     -               value="06/24/2023 11:54 AM"
-2025-12-16T08:03:04.9410407Z     +               value="06/24/2023 06:24 AM"
-2025-12-16T08:03:04.9410811Z                   />
-2025-12-16T08:03:04.9411148Z                   <div
-2025-12-16T08:03:04.9411845Z                     class="MuiInputAdornment-root MuiInputAdornment-positionEnd MuiInputAdornment-outlined MuiInputAdornment-sizeSmall css-1laqsz7-MuiInputAdornment-root"
-2025-12-16T08:03:04.9412369Z                   >
-2025-12-16T08:03:04.9412737Z                     <button
-2025-12-16T08:03:04.9413177Z     @@ -180,11 +180,11 @@
-2025-12-16T08:03:04.9413565Z                     disabled=""
-2025-12-16T08:03:04.9413940Z                     id=":r3:"
-2025-12-16T08:03:04.9414466Z                     inputmode="text"
-2025-12-16T08:03:04.9414899Z                     placeholder="MM/DD/YYYY hh:mm aa"
-2025-12-16T08:03:04.9415302Z                     type="text"
-2025-12-16T08:03:04.9415767Z     -               value="09/06/2023 11:54 AM"
-2025-12-16T08:03:04.9416192Z     +               value="09/06/2023 06:24 AM"
-2025-12-16T08:03:04.9416566Z                   />
-2025-12-16T08:03:04.9416950Z                   <div
-2025-12-16T08:03:04.9417658Z                     class="MuiInputAdornment-root MuiInputAdornment-positionEnd MuiInputAdornment-outlined MuiInputAdornment-sizeSmall css-1laqsz7-MuiInputAdornment-root"
-2025-12-16T08:03:04.9418532Z                   >
-2025-12-16T08:03:04.9418886Z                     <button
-2025-12-16T08:03:04.9419040Z 
-2025-12-16T08:03:04.9419394Z       78 |     userEvent.click(buttons[0]);
-2025-12-16T08:03:04.9419766Z       79 |
-2025-12-16T08:03:04.9420219Z     > 80 |     await waitFor(() => expect(component.asFragment()).toMatchSnapshot());
-2025-12-16T08:03:04.9420705Z          |                                                        ^
-2025-12-16T08:03:04.9421074Z       81 |   });
-2025-12-16T08:03:04.9421420Z       82 |
-2025-12-16T08:03:04.9421749Z       83 |   
-2025-12-16T08:03:04.9421887Z 
-2025-12-16T08:03:04.9422312Z       at src/__tests__/pages/emailBannerModule/BannerSearch.test.tsx:80:56
-2025-12-16T08:03:04.9423012Z       at runWithExpensiveErrorDiagnosticsDisabled (node_modules/@testing-library/dom/dist/config.js:47:12)
-2025-12-16T08:03:04.9423687Z       at checkCallback (node_modules/@testing-library/dom/dist/wait-for.js:127:77)
-2025-12-16T08:03:04.9424281Z       at node_modules/@testing-library/dom/dist/wait-for.js:100:7
-2025-12-16T08:03:04.9424875Z       at waitFor (node_modules/@testing-library/dom/dist/wait-for.js:34:10)
-2025-12-16T08:03:04.9425487Z       at node_modules/@testing-library/dom/dist/wait-for.js:167:54
-2025-12-16T08:03:04.9426110Z       at Object.asyncWrapper (node_modules/@testing-library/react/dist/pure.js:71:20)
-2025-12-16T08:03:04.9426741Z       at waitForWrapper (node_modules/@testing-library/dom/dist/wait-for.js:167:35)
-2025-12-16T08:03:04.9427279Z       at Object.<anonymous> (src/__tests__/pages/emailBannerModule/BannerSearch.test.tsx:80:18)
-2025-12-16T08:03:04.9427533Z 
-2025-12-16T08:03:04.9428044Z   ● banner preview List › landing page- PRIMARY_APPROVE - cancel
-2025-12-16T08:03:04.9428245Z 
-2025-12-16T08:03:04.9428623Z     expect(received).toMatchSnapshot()
-2025-12-16T08:03:04.9429094Z 
-2025-12-16T08:03:04.9429662Z     Snapshot name: `banner preview List landing page- PRIMARY_APPROVE - cancel 1`
-2025-12-16T08:03:04.9429867Z 
-2025-12-16T08:03:04.9430311Z     - Snapshot  - 2
-2025-12-16T08:03:04.9430691Z     + Received  + 2
-2025-12-16T08:03:04.9430838Z 
-2025-12-16T08:03:04.9431245Z     @@ -104,11 +104,11 @@
-2025-12-16T08:03:04.9431614Z                     disabled=""
-2025-12-16T08:03:04.9432039Z                     id=":rv:"
-2025-12-16T08:03:04.9432439Z                     inputmode="text"
-2025-12-16T08:03:04.9432863Z                     placeholder="MM/DD/YYYY hh:mm aa"
-2025-12-16T08:03:04.9433489Z                     type="text"
-2025-12-16T08:03:04.9434013Z     -               value="06/24/2023 11:54 AM"
-2025-12-16T08:03:04.9434431Z     +               value="06/24/2023 06:24 AM"
-2025-12-16T08:03:04.9434812Z                   />
-2025-12-16T08:03:04.9435176Z                   <div
-2025-12-16T08:03:04.9435895Z                     class="MuiInputAdornment-root MuiInputAdornment-positionEnd MuiInputAdornment-outlined MuiInputAdornment-sizeSmall css-1laqsz7-MuiInputAdornment-root"
-2025-12-16T08:03:04.9436448Z                   >
-2025-12-16T08:03:04.9436830Z                     <button
-2025-12-16T08:03:04.9437293Z     @@ -180,11 +180,11 @@
-2025-12-16T08:03:04.9437701Z                     disabled=""
-2025-12-16T08:03:04.9437968Z                     id=":r11:"
-2025-12-16T08:03:04.9438229Z                     inputmode="text"
-2025-12-16T08:03:04.9438509Z                     placeholder="MM/DD/YYYY hh:mm aa"
-2025-12-16T08:03:04.9438780Z                     type="text"
-2025-12-16T08:03:04.9439098Z     -               value="09/06/2023 11:54 AM"
-2025-12-16T08:03:04.9439397Z     +               value="09/06/2023 06:24 AM"
-2025-12-16T08:03:04.9439648Z                   />
-2025-12-16T08:03:04.9439887Z                   <div
-2025-12-16T08:03:04.9440338Z                     class="MuiInputAdornment-root MuiInputAdornment-positionEnd MuiInputAdornment-outlined MuiInputAdornment-sizeSmall css-1laqsz7-MuiInputAdornment-root"
-2025-12-16T08:03:04.9440688Z                   >
-2025-12-16T08:03:04.9440929Z                     <button
-2025-12-16T08:03:04.9441027Z 
-2025-12-16T08:03:04.9441595Z       163 |     }
-2025-12-16T08:03:04.9441873Z       164 |     userEvent.click(buttons[2])
-2025-12-16T08:03:04.9442195Z     > 165 |     await waitFor(() => expect(component.asFragment()).toMatchSnapshot());
-2025-12-16T08:03:04.9442509Z           |                                                        ^
-2025-12-16T08:03:04.9442763Z       166 |   });
-2025-12-16T08:03:04.9442998Z       167 |
-2025-12-16T08:03:04.9443227Z       168 |
-2025-12-16T08:03:04.9443311Z 
-2025-12-16T08:03:04.9443613Z       at src/__tests__/pages/emailBannerModule/BannerSearch.test.tsx:165:56
-2025-12-16T08:03:04.9444074Z       at runWithExpensiveErrorDiagnosticsDisabled (node_modules/@testing-library/dom/dist/config.js:47:12)
-2025-12-16T08:03:04.9444513Z       at checkCallback (node_modules/@testing-library/dom/dist/wait-for.js:127:77)
-2025-12-16T08:03:04.9444913Z       at node_modules/@testing-library/dom/dist/wait-for.js:100:7
-2025-12-16T08:03:04.9445309Z       at waitFor (node_modules/@testing-library/dom/dist/wait-for.js:34:10)
-2025-12-16T08:03:04.9445698Z       at node_modules/@testing-library/dom/dist/wait-for.js:167:54
-2025-12-16T08:03:04.9446115Z       at Object.asyncWrapper (node_modules/@testing-library/react/dist/pure.js:71:20)
-2025-12-16T08:03:04.9446536Z       at waitForWrapper (node_modules/@testing-library/dom/dist/wait-for.js:167:35)
-2025-12-16T08:03:04.9446911Z       at Object.<anonymous> (src/__tests__/pages/emailBannerModule/BannerSearch.test.tsx:165:18)
-2025-12-16T08:03:04.9447079Z 
-2025-12-16T08:03:04.9447352Z  › 2 snapshots failed.
+FAIL src/__tests__/pages/contentDeliveryModule/ContentDeliveryScreen.test.tsx (11.908 s)
+2025-12-16T08:03:09.9587037Z   ● Console
+2025-12-16T08:03:09.9587132Z 
+2025-12-16T08:03:09.9587371Z     console.error
+2025-12-16T08:03:09.9587971Z       Warning: Select elements must be either controlled or uncontrolled (specify either the value prop, or the defaultValue prop, but not both). Decide between using a controlled or uncontrolled select element and remove one of these props. More info: https://reactjs.org/link/controlled-components
+2025-12-16T08:03:09.9588409Z           at select
+2025-12-16T08:03:09.9588839Z           at /ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@emotion/react/dist/emotion-element-48d2c2e4.cjs.dev.js:62:23
+2025-12-16T08:03:09.9589369Z           at NativeSelectInput (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@mui/material/node/NativeSelect/NativeSelectInput.js:146:7)
+2025-12-16T08:03:09.9589886Z           at /ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@emotion/react/dist/emotion-element-48d2c2e4.cjs.dev.js:62:23
+2025-12-16T08:03:09.9590208Z           at div
+2025-12-16T08:03:09.9590608Z           at /ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@emotion/react/dist/emotion-element-48d2c2e4.cjs.dev.js:62:23
+2025-12-16T08:03:09.9591112Z           at InputBase (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@mui/material/node/InputBase/InputBase.js:225:44)
+2025-12-16T08:03:09.9591593Z           at Input (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@mui/material/node/Input/Input.js:121:44)
+2025-12-16T08:03:09.9592095Z           at NativeSelect (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@mui/material/node/NativeSelect/NativeSelect.js:41:44)
+2025-12-16T08:03:09.9592591Z           at /ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@emotion/react/dist/emotion-element-48d2c2e4.cjs.dev.js:62:23
+2025-12-16T08:03:09.9592900Z           at div
+2025-12-16T08:03:09.9593450Z           at /ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@emotion/react/dist/emotion-element-48d2c2e4.cjs.dev.js:62:23
+2025-12-16T08:03:09.9593983Z           at FormControl (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@mui/material/node/FormControl/FormControl.js:92:44)
+2025-12-16T08:03:09.9594744Z           at InputSelect (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/src/components/controls/InputSelect.tsx:36:5)
+2025-12-16T08:03:09.9595071Z           at div
+2025-12-16T08:03:09.9595489Z           at /ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@emotion/react/dist/emotion-element-48d2c2e4.cjs.dev.js:62:23
+2025-12-16T08:03:09.9595964Z           at Grid (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@mui/material/node/Grid/Grid.js:380:49)
+2025-12-16T08:03:09.9596270Z           at div
+2025-12-16T08:03:09.9596668Z           at /ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@emotion/react/dist/emotion-element-48d2c2e4.cjs.dev.js:62:23
+2025-12-16T08:03:09.9597160Z           at Grid (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@mui/material/node/Grid/Grid.js:380:49)
+2025-12-16T08:03:09.9597475Z           at div
+2025-12-16T08:03:09.9597889Z           at /ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@emotion/react/dist/emotion-element-48d2c2e4.cjs.dev.js:62:23
+2025-12-16T08:03:09.9598418Z           at AccordionDetails (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@mui/material/node/AccordionDetails/AccordionDetails.js:41:44)
+2025-12-16T08:03:09.9598757Z           at div
+2025-12-16T08:03:09.9598993Z           at div
+2025-12-16T08:03:09.9599424Z           at /ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@emotion/react/dist/emotion-element-48d2c2e4.cjs.dev.js:62:23
+2025-12-16T08:03:09.9599738Z           at div
+2025-12-16T08:03:09.9600140Z           at /ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@emotion/react/dist/emotion-element-48d2c2e4.cjs.dev.js:62:23
+2025-12-16T08:03:09.9600442Z           at div
+2025-12-16T08:03:09.9600834Z           at /ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@emotion/react/dist/emotion-element-48d2c2e4.cjs.dev.js:62:23
+2025-12-16T08:03:09.9601631Z           at Transition (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@mui/material/node_modules/react-transition-group/cjs/Transition.js:135:30)
+2025-12-16T08:03:09.9602157Z           at Collapse (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@mui/material/node/Collapse/Collapse.js:103:44)
+2025-12-16T08:03:09.9602472Z           at div
+2025-12-16T08:03:09.9602890Z           at /ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@emotion/react/dist/emotion-element-48d2c2e4.cjs.dev.js:62:23
+2025-12-16T08:03:09.9603369Z           at Paper (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@mui/material/node/Paper/Paper.js:69:44)
+2025-12-16T08:03:09.9603861Z           at /ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@emotion/react/dist/emotion-element-48d2c2e4.cjs.dev.js:62:23
+2025-12-16T08:03:09.9604353Z           at Accordion (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@mui/material/node/Accordion/Accordion.js:124:44)
+2025-12-16T08:03:09.9604669Z           at div
+2025-12-16T08:03:09.9605081Z           at /ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@emotion/react/dist/emotion-element-48d2c2e4.cjs.dev.js:62:23
+2025-12-16T08:03:09.9605551Z           at Box (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@mui/system/createBox.js:31:41)
+2025-12-16T08:03:09.9605860Z           at div
+2025-12-16T08:03:09.9606265Z           at /ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@emotion/react/dist/emotion-element-48d2c2e4.cjs.dev.js:62:23
+2025-12-16T08:03:09.9606744Z           at Box (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@mui/system/createBox.js:31:41)
+2025-12-16T08:03:09.9607247Z           at ContentDeliveryScreen (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/src/pages/contentDeliveryModule/ContentDeliveryScreen.tsx:126:41)
+2025-12-16T08:03:09.9607776Z           at Router (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/react-router-dom/node_modules/react-router/lib/components.tsx:413:13)
+2025-12-16T08:03:09.9608544Z           at MemoryRouter (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/react-router-dom/node_modules/react-router/lib/components.tsx:219:3)
+2025-12-16T08:03:09.9608739Z 
+2025-12-16T08:03:09.9609087Z       at printWarning (node_modules/react-dom/cjs/react-dom.development.js:86:30)
+2025-12-16T08:03:09.9609500Z       at error (node_modules/react-dom/cjs/react-dom.development.js:60:7)
+2025-12-16T08:03:09.9609921Z       at initWrapperState$1 (node_modules/react-dom/cjs/react-dom.development.js:2193:7)
+2025-12-16T08:03:09.9610358Z       at setInitialProperties (node_modules/react-dom/cjs/react-dom.development.js:9901:7)
+2025-12-16T08:03:09.9610796Z       at finalizeInitialChildren (node_modules/react-dom/cjs/react-dom.development.js:10950:3)
+2025-12-16T08:03:09.9611221Z       at completeWork (node_modules/react-dom/cjs/react-dom.development.js:22193:17)
+2025-12-16T08:03:09.9611649Z       at completeUnitOfWork (node_modules/react-dom/cjs/react-dom.development.js:26593:16)
+2025-12-16T08:03:09.9612073Z       at performUnitOfWork (node_modules/react-dom/cjs/react-dom.development.js:26568:5)
+2025-12-16T08:03:09.9612490Z       at workLoopSync (node_modules/react-dom/cjs/react-dom.development.js:26466:5)
+2025-12-16T08:03:09.9612901Z       at renderRootSync (node_modules/react-dom/cjs/react-dom.development.js:26434:7)
+2025-12-16T08:03:09.9613321Z       at performConcurrentWorkOnRoot (node_modules/react-dom/cjs/react-dom.development.js:25738:74)
+2025-12-16T08:03:09.9613682Z       at flushActQueue (node_modules/react/cjs/react.development.js:2667:24)
+2025-12-16T08:03:09.9614034Z       at recursivelyFlushAsyncActWork (node_modules/react/cjs/react.development.js:2633:9)
+2025-12-16T08:03:09.9614457Z       at node_modules/react/cjs/react.development.js:2545:15
+2025-12-16T08:03:09.9614594Z 
+2025-12-16T08:03:09.9615044Z     console.error
+2025-12-16T08:03:09.9615381Z       Warning: An update to ContentDeliveryScreen inside a test was not wrapped in act(...).
+2025-12-16T08:03:09.9615662Z       
+2025-12-16T08:03:09.9615957Z       When testing, code that causes React state updates should be wrapped into act(...):
+2025-12-16T08:03:09.9616231Z       
+2025-12-16T08:03:09.9616455Z       act(() => {
+2025-12-16T08:03:09.9616717Z         /* fire events that update state */
+2025-12-16T08:03:09.9616957Z       });
+2025-12-16T08:03:09.9617204Z       /* assert on the output */
+2025-12-16T08:03:09.9617444Z       
+2025-12-16T08:03:09.9617877Z       This ensures that you're testing the behavior the user would see in the browser. Learn more at https://reactjs.org/link/wrap-tests-with-act
+2025-12-16T08:03:09.9618416Z           at ContentDeliveryScreen (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/src/pages/contentDeliveryModule/ContentDeliveryScreen.tsx:126:41)
+2025-12-16T08:03:09.9618942Z           at Router (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/react-router-dom/node_modules/react-router/lib/components.tsx:413:13)
+2025-12-16T08:03:09.9619475Z           at MemoryRouter (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/react-router-dom/node_modules/react-router/lib/components.tsx:219:3)
+2025-12-16T08:03:09.9619671Z 
+2025-12-16T08:03:09.9619965Z       518 |           getAlertCatergoriesByType(authContext.countryCode, searchStateObj?.alertType)
+2025-12-16T08:03:09.9620281Z       519 |           .then((value: any) => {
+2025-12-16T08:03:09.9620558Z     > 520 |             setSubAlertTypes(value);
+2025-12-16T08:03:09.9620812Z           |             ^
+2025-12-16T08:03:09.9621062Z       521 |             if(value!?.length>0){
+2025-12-16T08:03:09.9621391Z       522 |               setCategoryMaps(new Map<string,AlertCategory>(value.map((obj: any) =>[obj.categoryCode,obj])));
+2025-12-16T08:03:09.9621698Z       523 |             }
+2025-12-16T08:03:09.9621791Z 
+2025-12-16T08:03:09.9622155Z       at printWarning (node_modules/react-dom/cjs/react-dom.development.js:86:30)
+2025-12-16T08:03:09.9622565Z       at error (node_modules/react-dom/cjs/react-dom.development.js:60:7)
+2025-12-16T08:03:09.9623254Z       at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-dom/cjs/react-dom.development.js:27589:9)
+2025-12-16T08:03:09.9623704Z       at scheduleUpdateOnFiber (node_modules/react-dom/cjs/react-dom.development.js:25508:5)
+2025-12-16T08:03:09.9624128Z       at setSubAlertTypes (node_modules/react-dom/cjs/react-dom.development.js:17527:7)
+2025-12-16T08:03:09.9624495Z       at src/pages/contentDeliveryModule/ContentDeliveryScreen.tsx:520:13
+2025-12-16T08:03:09.9624638Z 
+2025-12-16T08:03:09.9624866Z     console.error
+2025-12-16T08:03:09.9625174Z       Warning: An update to ContentDeliveryScreen inside a test was not wrapped in act(...).
+2025-12-16T08:03:09.9625463Z       
+2025-12-16T08:03:09.9625757Z       When testing, code that causes React state updates should be wrapped into act(...):
+2025-12-16T08:03:09.9626029Z       
+2025-12-16T08:03:09.9626260Z       act(() => {
+2025-12-16T08:03:09.9626525Z         /* fire events that update state */
+2025-12-16T08:03:09.9626766Z       });
+2025-12-16T08:03:09.9627026Z       /* assert on the output */
+2025-12-16T08:03:09.9627259Z       
+2025-12-16T08:03:09.9627677Z       This ensures that you're testing the behavior the user would see in the browser. Learn more at https://reactjs.org/link/wrap-tests-with-act
+2025-12-16T08:03:09.9628213Z           at ContentDeliveryScreen (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/src/pages/contentDeliveryModule/ContentDeliveryScreen.tsx:126:41)
+2025-12-16T08:03:09.9628741Z           at Router (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/react-router-dom/node_modules/react-router/lib/components.tsx:413:13)
+2025-12-16T08:03:09.9629269Z           at MemoryRouter (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/react-router-dom/node_modules/react-router/lib/components.tsx:219:3)
+2025-12-16T08:03:09.9629466Z 
+2025-12-16T08:03:09.9629926Z       520 |             setSubAlertTypes(value);
+2025-12-16T08:03:09.9630214Z       521 |             if(value!?.length>0){
+2025-12-16T08:03:09.9630549Z     > 522 |               setCategoryMaps(new Map<string,AlertCategory>(value.map((obj: any) =>[obj.categoryCode,obj])));
+2025-12-16T08:03:09.9630856Z           |               ^
+2025-12-16T08:03:09.9631090Z       523 |             }
+2025-12-16T08:03:09.9631320Z       524 |           })
+2025-12-16T08:03:09.9631577Z       525 |       ).catch((e:any)=>{
+2025-12-16T08:03:09.9631690Z 
+2025-12-16T08:03:09.9632044Z       at printWarning (node_modules/react-dom/cjs/react-dom.development.js:86:30)
+2025-12-16T08:03:09.9632461Z       at error (node_modules/react-dom/cjs/react-dom.development.js:60:7)
+2025-12-16T08:03:09.9632902Z       at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-dom/cjs/react-dom.development.js:27589:9)
+2025-12-16T08:03:09.9633494Z       at scheduleUpdateOnFiber (node_modules/react-dom/cjs/react-dom.development.js:25508:5)
+2025-12-16T08:03:09.9633934Z       at setCategoryMaps (node_modules/react-dom/cjs/react-dom.development.js:17527:7)
+2025-12-16T08:03:09.9634302Z       at src/pages/contentDeliveryModule/ContentDeliveryScreen.tsx:522:15
+2025-12-16T08:03:09.9634451Z 
+2025-12-16T08:03:09.9634675Z     console.error
+2025-12-16T08:03:09.9634963Z       Warning: An update to Spinner inside a test was not wrapped in act(...).
+2025-12-16T08:03:09.9635231Z       
+2025-12-16T08:03:09.9635521Z       When testing, code that causes React state updates should be wrapped into act(...):
+2025-12-16T08:03:09.9635796Z       
+2025-12-16T08:03:09.9636031Z       act(() => {
+2025-12-16T08:03:09.9636291Z         /* fire events that update state */
+2025-12-16T08:03:09.9636530Z       });
+2025-12-16T08:03:09.9636773Z       /* assert on the output */
+2025-12-16T08:03:09.9637001Z       
+2025-12-16T08:03:09.9637436Z       This ensures that you're testing the behavior the user would see in the browser. Learn more at https://reactjs.org/link/wrap-tests-with-act
+2025-12-16T08:03:09.9637939Z           at Spinner (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/src/components/controls/Spinner.tsx:21:50)
+2025-12-16T08:03:09.9638507Z           at h6
+2025-12-16T08:03:09.9638945Z           at /ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@emotion/react/dist/emotion-element-48d2c2e4.cjs.dev.js:62:23
+2025-12-16T08:03:09.9639446Z           at Typography (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@mui/material/node/Typography/Typography.js:90:49)
+2025-12-16T08:03:09.9639769Z           at div
+2025-12-16T08:03:09.9640186Z           at /ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@emotion/react/dist/emotion-element-48d2c2e4.cjs.dev.js:62:23
+2025-12-16T08:03:09.9640655Z           at Box (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@mui/system/createBox.js:31:41)
+2025-12-16T08:03:09.9640950Z           at div
+2025-12-16T08:03:09.9641362Z           at /ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@emotion/react/dist/emotion-element-48d2c2e4.cjs.dev.js:62:23
+2025-12-16T08:03:09.9641832Z           at Box (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@mui/system/createBox.js:31:41)
+2025-12-16T08:03:09.9642351Z           at ContentDeliveryScreen (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/src/pages/contentDeliveryModule/ContentDeliveryScreen.tsx:126:41)
+2025-12-16T08:03:09.9642872Z           at Router (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/react-router-dom/node_modules/react-router/lib/components.tsx:413:13)
+2025-12-16T08:03:09.9643406Z           at MemoryRouter (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/react-router-dom/node_modules/react-router/lib/components.tsx:219:3)
+2025-12-16T08:03:09.9643601Z 
+2025-12-16T08:03:09.9643945Z       at printWarning (node_modules/react-dom/cjs/react-dom.development.js:86:30)
+2025-12-16T08:03:09.9644347Z       at error (node_modules/react-dom/cjs/react-dom.development.js:60:7)
+2025-12-16T08:03:09.9644780Z       at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-dom/cjs/react-dom.development.js:27589:9)
+2025-12-16T08:03:09.9645503Z       at scheduleUpdateOnFiber (node_modules/react-dom/cjs/react-dom.development.js:25508:5)
+2025-12-16T08:03:09.9645945Z       at dispatchSetState (node_modules/react-dom/cjs/react-dom.development.js:17527:7)
+2025-12-16T08:03:09.9646384Z       at updatePromiseTrackerStatus (node_modules/react-promise-tracker/lib/trackerHook.js:83:7)
+2025-12-16T08:03:09.9646817Z       at Emitter.emit (node_modules/react-promise-tracker/lib/tinyEmmiter.js:40:14)
+2025-12-16T08:03:09.9647253Z       at decrementPromiseCounter (node_modules/react-promise-tracker/lib/trackPromise.js:62:11)
+2025-12-16T08:03:09.9647680Z       at onResolveHandler (node_modules/react-promise-tracker/lib/trackPromise.js:32:12)
+2025-12-16T08:03:09.9647835Z 
+2025-12-16T08:03:09.9648062Z     console.error
+2025-12-16T08:03:09.9648353Z       Warning: An update to Spinner inside a test was not wrapped in act(...).
+2025-12-16T08:03:09.9648618Z       
+2025-12-16T08:03:09.9648912Z       When testing, code that causes React state updates should be wrapped into act(...):
+2025-12-16T08:03:09.9649184Z       
+2025-12-16T08:03:09.9649409Z       act(() => {
+2025-12-16T08:03:09.9649667Z         /* fire events that update state */
+2025-12-16T08:03:09.9649903Z       });
+2025-12-16T08:03:09.9650147Z       /* assert on the output */
+2025-12-16T08:03:09.9650381Z       
+2025-12-16T08:03:09.9650815Z       This ensures that you're testing the behavior the user would see in the browser. Learn more at https://reactjs.org/link/wrap-tests-with-act
+2025-12-16T08:03:09.9651304Z           at Spinner (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/src/components/controls/Spinner.tsx:21:50)
+2025-12-16T08:03:09.9651604Z           at h6
+2025-12-16T08:03:09.9652021Z           at /ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@emotion/react/dist/emotion-element-48d2c2e4.cjs.dev.js:62:23
+2025-12-16T08:03:09.9652520Z           at Typography (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@mui/material/node/Typography/Typography.js:90:49)
+2025-12-16T08:03:09.9652836Z           at div
+2025-12-16T08:03:09.9653251Z           at /ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@emotion/react/dist/emotion-element-48d2c2e4.cjs.dev.js:62:23
+2025-12-16T08:03:09.9653955Z           at Box (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@mui/system/createBox.js:31:41)
+2025-12-16T08:03:09.9654335Z           at div
+2025-12-16T08:03:09.9654754Z           at /ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@emotion/react/dist/emotion-element-48d2c2e4.cjs.dev.js:62:23
+2025-12-16T08:03:09.9655230Z           at Box (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@mui/system/createBox.js:31:41)
+2025-12-16T08:03:09.9655733Z           at ContentDeliveryScreen (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/src/pages/contentDeliveryModule/ContentDeliveryScreen.tsx:126:41)
+2025-12-16T08:03:09.9656260Z           at Router (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/react-router-dom/node_modules/react-router/lib/components.tsx:413:13)
+2025-12-16T08:03:09.9656814Z           at MemoryRouter (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/react-router-dom/node_modules/react-router/lib/components.tsx:219:3)
+2025-12-16T08:03:09.9657009Z 
+2025-12-16T08:03:09.9657355Z       at printWarning (node_modules/react-dom/cjs/react-dom.development.js:86:30)
+2025-12-16T08:03:09.9657760Z       at error (node_modules/react-dom/cjs/react-dom.development.js:60:7)
+2025-12-16T08:03:09.9658207Z       at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-dom/cjs/react-dom.development.js:27589:9)
+2025-12-16T08:03:09.9658652Z       at scheduleUpdateOnFiber (node_modules/react-dom/cjs/react-dom.development.js:25508:5)
+2025-12-16T08:03:09.9659082Z       at dispatchSetState (node_modules/react-dom/cjs/react-dom.development.js:17527:7)
+2025-12-16T08:03:09.9659530Z       at updatePromiseTrackerStatus (node_modules/react-promise-tracker/lib/trackerHook.js:89:9)
+2025-12-16T08:03:09.9660217Z       at Emitter.emit (node_modules/react-promise-tracker/lib/tinyEmmiter.js:40:14)
+2025-12-16T08:03:09.9660649Z       at decrementPromiseCounter (node_modules/react-promise-tracker/lib/trackPromise.js:62:11)
+2025-12-16T08:03:09.9661080Z       at onResolveHandler (node_modules/react-promise-tracker/lib/trackPromise.js:32:12)
+2025-12-16T08:03:09.9661234Z 
+2025-12-16T08:03:09.9661461Z     console.error
+2025-12-16T08:03:09.9661769Z       Warning: An update to ContentDeliveryScreen inside a test was not wrapped in act(...).
+2025-12-16T08:03:09.9662057Z       
+2025-12-16T08:03:09.9662350Z       When testing, code that causes React state updates should be wrapped into act(...):
+2025-12-16T08:03:09.9662620Z       
+2025-12-16T08:03:09.9662837Z       act(() => {
+2025-12-16T08:03:09.9663098Z         /* fire events that update state */
+2025-12-16T08:03:09.9663336Z       });
+2025-12-16T08:03:09.9663584Z       /* assert on the output */
+2025-12-16T08:03:09.9663818Z       
+2025-12-16T08:03:09.9664241Z       This ensures that you're testing the behavior the user would see in the browser. Learn more at https://reactjs.org/link/wrap-tests-with-act
+2025-12-16T08:03:09.9664769Z           at ContentDeliveryScreen (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/src/pages/contentDeliveryModule/ContentDeliveryScreen.tsx:126:41)
+2025-12-16T08:03:09.9665290Z           at Router (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/react-router-dom/node_modules/react-router/lib/components.tsx:413:13)
+2025-12-16T08:03:09.9665824Z           at MemoryRouter (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/react-router-dom/node_modules/react-router/lib/components.tsx:219:3)
+2025-12-16T08:03:09.9666015Z 
+2025-12-16T08:03:09.9666310Z       518 |           getAlertCatergoriesByType(authContext.countryCode, searchStateObj?.alertType)
+2025-12-16T08:03:09.9666631Z       519 |           .then((value: any) => {
+2025-12-16T08:03:09.9666906Z     > 520 |             setSubAlertTypes(value);
+2025-12-16T08:03:09.9667161Z           |             ^
+2025-12-16T08:03:09.9667413Z       521 |             if(value!?.length>0){
+2025-12-16T08:03:09.9667967Z       522 |               setCategoryMaps(new Map<string,AlertCategory>(value.map((obj: any) =>[obj.categoryCode,obj])));
+2025-12-16T08:03:09.9668293Z       523 |             }
+2025-12-16T08:03:09.9668387Z 
+2025-12-16T08:03:09.9668749Z       at printWarning (node_modules/react-dom/cjs/react-dom.development.js:86:30)
+2025-12-16T08:03:09.9669151Z       at error (node_modules/react-dom/cjs/react-dom.development.js:60:7)
+2025-12-16T08:03:09.9669592Z       at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-dom/cjs/react-dom.development.js:27589:9)
+2025-12-16T08:03:09.9670034Z       at scheduleUpdateOnFiber (node_modules/react-dom/cjs/react-dom.development.js:25508:5)
+2025-12-16T08:03:09.9670463Z       at setSubAlertTypes (node_modules/react-dom/cjs/react-dom.development.js:17527:7)
+2025-12-16T08:03:09.9670816Z       at src/pages/contentDeliveryModule/ContentDeliveryScreen.tsx:520:13
+2025-12-16T08:03:09.9670961Z 
+2025-12-16T08:03:09.9671186Z     console.error
+2025-12-16T08:03:09.9671481Z       Warning: An update to Spinner inside a test was not wrapped in act(...).
+2025-12-16T08:03:09.9671747Z       
+2025-12-16T08:03:09.9672038Z       When testing, code that causes React state updates should be wrapped into act(...):
+2025-12-16T08:03:09.9672307Z       
+2025-12-16T08:03:09.9672530Z       act(() => {
+2025-12-16T08:03:09.9672791Z         /* fire events that update state */
+2025-12-16T08:03:09.9673029Z       });
+2025-12-16T08:03:09.9673435Z       /* assert on the output */
+2025-12-16T08:03:09.9673675Z       
+2025-12-16T08:03:09.9674102Z       This ensures that you're testing the behavior the user would see in the browser. Learn more at https://reactjs.org/link/wrap-tests-with-act
+2025-12-16T08:03:09.9674591Z           at Spinner (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/src/components/controls/Spinner.tsx:21:50)
+2025-12-16T08:03:09.9674891Z           at h6
+2025-12-16T08:03:09.9675675Z           at /ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@emotion/react/dist/emotion-element-48d2c2e4.cjs.dev.js:62:23
+2025-12-16T08:03:09.9676188Z           at Typography (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@mui/material/node/Typography/Typography.js:90:49)
+2025-12-16T08:03:09.9676507Z           at div
+2025-12-16T08:03:09.9676939Z           at /ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@emotion/react/dist/emotion-element-48d2c2e4.cjs.dev.js:62:23
+2025-12-16T08:03:09.9677411Z           at Box (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@mui/system/createBox.js:31:41)
+2025-12-16T08:03:09.9677712Z           at div
+2025-12-16T08:03:09.9678130Z           at /ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@emotion/react/dist/emotion-element-48d2c2e4.cjs.dev.js:62:23
+2025-12-16T08:03:09.9678601Z           at Box (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@mui/system/createBox.js:31:41)
+2025-12-16T08:03:09.9679102Z           at ContentDeliveryScreen (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/src/pages/contentDeliveryModule/ContentDeliveryScreen.tsx:126:41)
+2025-12-16T08:03:09.9679625Z           at Router (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/react-router-dom/node_modules/react-router/lib/components.tsx:413:13)
+2025-12-16T08:03:09.9680165Z           at MemoryRouter (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/react-router-dom/node_modules/react-router/lib/components.tsx:219:3)
+2025-12-16T08:03:09.9680356Z 
+2025-12-16T08:03:09.9680701Z       at printWarning (node_modules/react-dom/cjs/react-dom.development.js:86:30)
+2025-12-16T08:03:09.9681102Z       at error (node_modules/react-dom/cjs/react-dom.development.js:60:7)
+2025-12-16T08:03:09.9681531Z       at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-dom/cjs/react-dom.development.js:27589:9)
+2025-12-16T08:03:09.9681985Z       at scheduleUpdateOnFiber (node_modules/react-dom/cjs/react-dom.development.js:25508:5)
+2025-12-16T08:03:09.9682415Z       at dispatchSetState (node_modules/react-dom/cjs/react-dom.development.js:17527:7)
+2025-12-16T08:03:09.9683146Z       at updatePromiseTrackerStatus (node_modules/react-promise-tracker/lib/trackerHook.js:83:7)
+2025-12-16T08:03:09.9683582Z       at Emitter.emit (node_modules/react-promise-tracker/lib/tinyEmmiter.js:40:14)
+2025-12-16T08:03:09.9684011Z       at decrementPromiseCounter (node_modules/react-promise-tracker/lib/trackPromise.js:62:11)
+2025-12-16T08:03:09.9684440Z       at onResolveHandler (node_modules/react-promise-tracker/lib/trackPromise.js:32:12)
+2025-12-16T08:03:09.9684592Z 
+2025-12-16T08:03:09.9684821Z     console.error
+2025-12-16T08:03:09.9685118Z       Warning: An update to Spinner inside a test was not wrapped in act(...).
+2025-12-16T08:03:09.9685381Z       
+2025-12-16T08:03:09.9685671Z       When testing, code that causes React state updates should be wrapped into act(...):
+2025-12-16T08:03:09.9685941Z       
+2025-12-16T08:03:09.9686175Z       act(() => {
+2025-12-16T08:03:09.9686441Z         /* fire events that update state */
+2025-12-16T08:03:09.9686683Z       });
+2025-12-16T08:03:09.9686936Z       /* assert on the output */
+2025-12-16T08:03:09.9687180Z       
+2025-12-16T08:03:09.9687599Z       This ensures that you're testing the behavior the user would see in the browser. Learn more at https://reactjs.org/link/wrap-tests-with-act
+2025-12-16T08:03:09.9688091Z           at Spinner (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/src/components/controls/Spinner.tsx:21:50)
+2025-12-16T08:03:09.9688397Z           at h6
+2025-12-16T08:03:09.9688825Z           at /ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@emotion/react/dist/emotion-element-48d2c2e4.cjs.dev.js:62:23
+2025-12-16T08:03:09.9689328Z           at Typography (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@mui/material/node/Typography/Typography.js:90:49)
+2025-12-16T08:03:09.9689645Z           at div
+2025-12-16T08:03:09.9690058Z           at /ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@emotion/react/dist/emotion-element-48d2c2e4.cjs.dev.js:62:23
+2025-12-16T08:03:09.9690754Z           at Box (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@mui/system/createBox.js:31:41)
+2025-12-16T08:03:09.9691072Z           at div
+2025-12-16T08:03:09.9691487Z           at /ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@emotion/react/dist/emotion-element-48d2c2e4.cjs.dev.js:62:23
+2025-12-16T08:03:09.9691950Z           at Box (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/@mui/system/createBox.js:31:41)
+2025-12-16T08:03:09.9692447Z           at ContentDeliveryScreen (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/src/pages/contentDeliveryModule/ContentDeliveryScreen.tsx:126:41)
+2025-12-16T08:03:09.9692968Z           at Router (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/react-router-dom/node_modules/react-router/lib/components.tsx:413:13)
+2025-12-16T08:03:09.9693502Z           at MemoryRouter (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/react-router-dom/node_modules/react-router/lib/components.tsx:219:3)
+2025-12-16T08:03:09.9693699Z 
+2025-12-16T08:03:09.9694050Z       at printWarning (node_modules/react-dom/cjs/react-dom.development.js:86:30)
+2025-12-16T08:03:09.9694553Z       at error (node_modules/react-dom/cjs/react-dom.development.js:60:7)
+2025-12-16T08:03:09.9695001Z       at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-dom/cjs/react-dom.development.js:27589:9)
+2025-12-16T08:03:09.9695560Z       at scheduleUpdateOnFiber (node_modules/react-dom/cjs/react-dom.development.js:25508:5)
+2025-12-16T08:03:09.9699640Z       at dispatchSetState (node_modules/react-dom/cjs/react-dom.development.js:17527:7)
+2025-12-16T08:03:09.9700219Z       at updatePromiseTrackerStatus (node_modules/react-promise-tracker/lib/trackerHook.js:89:9)
+2025-12-16T08:03:09.9700663Z       at Emitter.emit (node_modules/react-promise-tracker/lib/tinyEmmiter.js:40:14)
+2025-12-16T08:03:09.9701099Z       at decrementPromiseCounter (node_modules/react-promise-tracker/lib/trackPromise.js:62:11)
+2025-12-16T08:03:09.9701546Z       at onResolveHandler (node_modules/react-promise-tracker/lib/trackPromise.js:32:12)
+2025-12-16T08:03:09.9702006Z 
+2025-12-16T08:03:09.9702250Z     console.error
+2025-12-16T08:03:09.9702542Z       Error: Not implemented: navigation (except hash changes)
+2025-12-16T08:03:09.9703012Z           at module.exports (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/jsdom/lib/jsdom/browser/not-implemented.js:9:17)
+2025-12-16T08:03:09.9703524Z           at navigateFetch (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/jsdom/lib/jsdom/living/window/navigation.js:76:3)
+2025-12-16T08:03:09.9704034Z           at exports.navigate (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/jsdom/lib/jsdom/living/window/navigation.js:54:3)
+2025-12-16T08:03:09.9704569Z           at Timeout._onTimeout (/ado-agent-workdir/1/s/51599-cmp-ui-backoffice/node_modules/jsdom/lib/jsdom/living/nodes/HTMLHyperlinkElementUtils-impl.js:81:7)
+2025-12-16T08:03:09.9704961Z           at listOnTimeout (node:internal/timers:557:17)
+2025-12-16T08:03:09.9705299Z           at processTimers (node:internal/timers:500:7) undefined
+2025-12-16T08:03:09.9705445Z 
+2025-12-16T08:03:09.9705808Z       at VirtualConsole.<anonymous> (node_modules/jsdom/lib/jsdom/virtual-console.js:29:45)
+2025-12-16T08:03:09.9706232Z       at module.exports (node_modules/jsdom/lib/jsdom/browser/not-implemented.js:12:26)
+2025-12-16T08:03:09.9706588Z       at navigateFetch (node_modules/jsdom/lib/jsdom/living/window/navigation.js:76:3)
+2025-12-16T08:03:09.9706943Z       at exports.navigate (node_modules/jsdom/lib/jsdom/living/window/navigation.js:54:3)
+2025-12-16T08:03:09.9707386Z       at Timeout._onTimeout (node_modules/jsdom/lib/jsdom/living/nodes/HTMLHyperlinkElementUtils-impl.js:81:7)
+2025-12-16T08:03:09.9707552Z 
+2025-12-16T08:03:09.9707904Z   ● cdm › Content Delivery Management - grid cell renderers and utility functions
+2025-12-16T08:03:09.9708048Z 
+2025-12-16T08:03:09.9708668Z     Cannot find module 'util/enumUtil' from 'src/__tests__/pages/contentDeliveryModule/ContentDeliveryScreen.test.tsx'
+2025-12-16T08:03:09.9708843Z 
+2025-12-16T08:03:09.9709205Z       45 |   it('Content Delivery Management - grid cell renderers and utility functions', async () => {
+2025-12-16T08:03:09.9709487Z       46 |
+2025-12-16T08:03:09.9709873Z     > 47 |     const { getEnumKeyByEnumValue } = require('util/enumUtil') || { getEnumKeyByEnumValue: (e: any, v: any) => v };
+2025-12-16T08:03:09.9710192Z          |                                       ^
+2025-12-16T08:03:09.9710562Z       48 |     const DeliveryMessageStatus = { DELIVERED: 'Delivered', FAILED: 'Failed' };
+2025-12-16T08:03:09.9710884Z       49 |     const categoryMaps = new Map();
+2025-12-16T08:03:09.9711258Z       50 |     categoryMaps.set('10', { categoryName: 'Banking Transaction' });
+2025-12-16T08:03:09.9711402Z 
+2025-12-16T08:03:09.9711760Z       at Resolver.resolveModule (node_modules/jest-resolve/build/resolver.js:324:11)
+2025-12-16T08:03:09.9712136Z       at Object.<anonymous> (src/__tests__/pages/contentDeliveryModule/ContentDeliveryScreen.test.tsx:47:39)
+2025-12-16T08:03:09.9712307Z 
+2025-12-16T08:03:09.9712657Z   ● cdm › Content Delivery Management - handleDownload error and catch branches
+2025-12-16T08:03:09.9712803Z 
+2025-12-16T08:03:09.9713054Z     expect(received).toMatchSnapshot(hint)
+2025-12-16T08:03:09.9713173Z 
+2025-12-16T08:03:09.9713743Z     Snapshot name: `cdm Content Delivery Management - handleDownload error and catch branches: handleDownload-no-data 1`
+2025-12-16T08:03:09.9713933Z 
+2025-12-16T08:03:09.9714184Z     - Snapshot  - 1
+2025-12-16T08:03:09.9714420Z     + Received  + 1
+2025-12-16T08:03:09.9714515Z 
+2025-12-16T08:03:09.9714782Z     @@ -335,11 +335,11 @@
+2025-12-16T08:03:09.9715276Z                                     class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputSizeSmall MuiInputBase-inputAdornedEnd css-19qh8xo-MuiInputBase-input-MuiOutlinedInput-input"
+2025-12-16T08:03:09.9715653Z                                     id=":rj:"
+2025-12-16T08:03:09.9715922Z                                     inputmode="text"
+2025-12-16T08:03:09.9716497Z                                     placeholder="MM/DD/YYYY hh:mm aa"
+2025-12-16T08:03:09.9716776Z                                     type="text"
+2025-12-16T08:03:09.9717119Z     -                               value="01/01/1970 05:30 AM"
+2025-12-16T08:03:09.9717417Z     +                               value="01/01/1970 12:00 AM"
+2025-12-16T08:03:09.9717685Z                                   />
+2025-12-16T08:03:09.9717928Z                                   <div
+2025-12-16T08:03:09.9718398Z                                     class="MuiInputAdornment-root MuiInputAdornment-positionEnd MuiInputAdornment-outlined MuiInputAdornment-sizeSmall css-1laqsz7-MuiInputAdornment-root"
+2025-12-16T08:03:09.9718752Z                                   >
+2025-12-16T08:03:09.9718994Z                                     <button
+2025-12-16T08:03:09.9719096Z 
+2025-12-16T08:03:09.9719379Z       128 |       userEvent.click(await screen.findByText("Download"));
+2025-12-16T08:03:09.9719655Z       129 |     });
+2025-12-16T08:03:09.9720011Z     > 130 |     expect(document.body).toMatchSnapshot('handleDownload-no-data');
+2025-12-16T08:03:09.9720303Z           |                           ^
+2025-12-16T08:03:09.9720529Z       131 |
+2025-12-16T08:03:09.9720966Z       132 |     generateReport.mockRejectedValue({ title: 'Report Download Error', message: 'Report data not available, please check with system adminstrator' });
+2025-12-16T08:03:09.9721334Z       133 |     await act(async () => {
+2025-12-16T08:03:09.9721443Z 
+2025-12-16T08:03:09.9721751Z       at Object.<anonymous> (src/__tests__/pages/contentDeliveryModule/ContentDeliveryScreen.test.tsx:130:27)
+2025-12-16T08:03:09.9721920Z 
+2025-12-16T08:03:09.9722255Z   ● cdm › Content Delivery Management - handleDownload error and catch branches
+2025-12-16T08:03:09.9722395Z 
+2025-12-16T08:03:09.9722646Z     expect(received).toMatchSnapshot(hint)
+2025-12-16T08:03:09.9723004Z 
+2025-12-16T08:03:09.9723435Z     Snapshot name: `cdm Content Delivery Management - handleDownload error and catch branches: handleDownload-error-catch 1`
+2025-12-16T08:03:09.9723624Z 
+2025-12-16T08:03:09.9723882Z     - Snapshot  - 1
+2025-12-16T08:03:09.9724121Z     + Received  + 1
+2025-12-16T08:03:09.9724213Z 
+2025-12-16T08:03:09.9724473Z     @@ -335,11 +335,11 @@
+2025-12-16T08:03:09.9724969Z                                     class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputSizeSmall MuiInputBase-inputAdornedEnd css-19qh8xo-MuiInputBase-input-MuiOutlinedInput-input"
+2025-12-16T08:03:09.9725351Z                                     id=":rj:"
+2025-12-16T08:03:09.9725620Z                                     inputmode="text"
+2025-12-16T08:03:09.9725901Z                                     placeholder="MM/DD/YYYY hh:mm aa"
+2025-12-16T08:03:09.9726171Z                                     type="text"
+2025-12-16T08:03:09.9726494Z     -                               value="01/01/1970 05:30 AM"
+2025-12-16T08:03:09.9726782Z     +                               value="01/01/1970 12:00 AM"
+2025-12-16T08:03:09.9727045Z                                   />
+2025-12-16T08:03:09.9727293Z                                   <div
+2025-12-16T08:03:09.9727761Z                                     class="MuiInputAdornment-root MuiInputAdornment-positionEnd MuiInputAdornment-outlined MuiInputAdornment-sizeSmall css-1laqsz7-MuiInputAdornment-root"
+2025-12-16T08:03:09.9728116Z                                   >
+2025-12-16T08:03:09.9728359Z                                     <button
+2025-12-16T08:03:09.9728459Z 
+2025-12-16T08:03:09.9728730Z       134 |       userEvent.click(await screen.findByText("Download"));
+2025-12-16T08:03:09.9729000Z       135 |     });
+2025-12-16T08:03:09.9729351Z     > 136 |     expect(document.body).toMatchSnapshot('handleDownload-error-catch');
+2025-12-16T08:03:09.9729642Z           |                           ^
+2025-12-16T08:03:09.9729875Z       137 |   });
+2025-12-16T08:03:09.9730108Z       138 |
+2025-12-16T08:03:09.9730456Z       139 |   it('Content Delivery Management - criteriaBuilder and sorting', () => {
+2025-12-16T08:03:09.9730800Z 
+2025-12-16T08:03:09.9731130Z       at Object.<anonymous> (src/__tests__/pages/contentDeliveryModule/ContentDeliveryScreen.test.tsx:136:27)
+2025-12-16T08:03:09.9731299Z 
+2025-12-16T08:03:09.9731626Z   ● cdm › Content Delivery Management - date validation errors
+2025-12-16T08:03:09.9731759Z 
+2025-12-16T08:03:09.9732011Z     expect(received).toMatchSnapshot(hint)
+2025-12-16T08:03:09.9732127Z 
+2025-12-16T08:03:09.9732508Z     Snapshot name: `cdm Content Delivery Management - date validation errors: start-date-future-error 1`
+2025-12-16T08:03:09.9732672Z 
+2025-12-16T08:03:09.9732924Z     - Snapshot  - 1
+2025-12-16T08:03:09.9733163Z     + Received  + 1
+2025-12-16T08:03:09.9733258Z 
+2025-12-16T08:03:09.9733522Z     @@ -279,11 +279,11 @@
+2025-12-16T08:03:09.9734019Z                                     class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputSizeSmall MuiInputBase-inputAdornedEnd css-19qh8xo-MuiInputBase-input-MuiOutlinedInput-input"
+2025-12-16T08:03:09.9734498Z                                     id=":r6t:"
+2025-12-16T08:03:09.9734782Z                                     inputmode="text"
+2025-12-16T08:03:09.9735069Z                                     placeholder="MM/DD/YYYY hh:mm aa"
+2025-12-16T08:03:09.9735351Z                                     type="text"
+2025-12-16T08:03:09.9735680Z     -                               value="01/01/1970 05:30 AM"
+2025-12-16T08:03:09.9735966Z     +                               value="01/01/1970 12:00 AM"
+2025-12-16T08:03:09.9736226Z                                   />
+2025-12-16T08:03:09.9736468Z                                   <div
+2025-12-16T08:03:09.9736934Z                                     class="MuiInputAdornment-root MuiInputAdornment-positionEnd MuiInputAdornment-outlined MuiInputAdornment-sizeSmall css-1laqsz7-MuiInputAdornment-root"
+2025-12-16T08:03:09.9737548Z                                   >
+2025-12-16T08:03:09.9737794Z                                     <button
+2025-12-16T08:03:09.9737896Z 
+2025-12-16T08:03:09.9738142Z       435 |     fireEvent.blur(startInput);
+2025-12-16T08:03:09.9738460Z       436 |     await act(async () => { await new Promise(r => setTimeout(r, 100)); });
+2025-12-16T08:03:09.9738864Z     > 437 |     expect(document.body).toMatchSnapshot('start-date-future-error');
+2025-12-16T08:03:09.9739151Z           |                           ^
+2025-12-16T08:03:09.9739398Z       438 |     if (endInput) {
+2025-12-16T08:03:09.9739628Z       439 |
+2025-12-16T08:03:09.9739977Z       440 |       fireEvent.change(startInput, { target: { value: '2024-07-10' } });
+2025-12-16T08:03:09.9740117Z 
+2025-12-16T08:03:09.9740422Z       at Object.<anonymous> (src/__tests__/pages/contentDeliveryModule/ContentDeliveryScreen.test.tsx:437:27)
+2025-12-16T08:03:09.9740589Z 
+2025-12-16T08:03:09.9740917Z   ● cdm › Content Delivery Management - date validation errors
+2025-12-16T08:03:09.9741050Z 
+2025-12-16T08:03:09.9741297Z     expect(received).toMatchSnapshot(hint)
+2025-12-16T08:03:09.9741413Z 
+2025-12-16T08:03:09.9741792Z     Snapshot name: `cdm Content Delivery Management - date validation errors: end-date-before-start-error 1`
+2025-12-16T08:03:09.9741955Z 
+2025-12-16T08:03:09.9742202Z     - Snapshot  - 1
+2025-12-16T08:03:09.9742454Z     + Received  + 1
+2025-12-16T08:03:09.9742549Z 
+2025-12-16T08:03:09.9742808Z     @@ -346,11 +346,11 @@
+2025-12-16T08:03:09.9743295Z                                     class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputSizeSmall MuiInputBase-inputAdornedEnd css-19qh8xo-MuiInputBase-input-MuiOutlinedInput-input"
+2025-12-16T08:03:09.9743679Z                                     id=":r6v:"
+2025-12-16T08:03:09.9743949Z                                     inputmode="text"
+2025-12-16T08:03:09.9744229Z                                     placeholder="MM/DD/YYYY hh:mm aa"
+2025-12-16T08:03:09.9744495Z                                     type="text"
+2025-12-16T08:03:09.9744821Z     -                               value="01/01/1970 05:30 AM"
+2025-12-16T08:03:09.9745114Z     +                               value="01/01/1970 12:00 AM"
+2025-12-16T08:03:09.9745600Z                                   />
+2025-12-16T08:03:09.9745850Z                                   <div
+2025-12-16T08:03:09.9746338Z                                     class="MuiInputAdornment-root MuiInputAdornment-positionEnd MuiInputAdornment-outlined MuiInputAdornment-sizeSmall css-1laqsz7-MuiInputAdornment-root"
+2025-12-16T08:03:09.9746690Z                                   >
+2025-12-16T08:03:09.9746936Z                                     <button
+2025-12-16T08:03:09.9747038Z 
+2025-12-16T08:03:09.9747278Z       443 |       fireEvent.blur(endInput);
+2025-12-16T08:03:09.9747586Z       444 |       await act(async () => { await new Promise(r => setTimeout(r, 100)); });
+2025-12-16T08:03:09.9748000Z     > 445 |       expect(document.body).toMatchSnapshot('end-date-before-start-error');
+2025-12-16T08:03:09.9748308Z           |                             ^
+2025-12-16T08:03:09.9748535Z       446 |
+2025-12-16T08:03:09.9748882Z       447 |       fireEvent.change(startInput, { target: { value: '2024-06-01' } });
+2025-12-16T08:03:09.9749192Z       448 |       fireEvent.blur(startInput);
+2025-12-16T08:03:09.9749302Z 
+2025-12-16T08:03:09.9749604Z       at Object.<anonymous> (src/__tests__/pages/contentDeliveryModule/ContentDeliveryScreen.test.tsx:445:29)
+2025-12-16T08:03:09.9749769Z 
+2025-12-16T08:03:09.9750112Z   ● cdm › Content Delivery Management - handleDownload error and success branches
+2025-12-16T08:03:09.9750255Z 
+2025-12-16T08:03:09.9750499Z     expect(received).toMatchSnapshot(hint)
+2025-12-16T08:03:09.9750614Z 
+2025-12-16T08:03:09.9751018Z     Snapshot name: `cdm Content Delivery Management - handleDownload error and success branches: download-clicked-alert-state 1`
+2025-12-16T08:03:09.9751190Z 
+2025-12-16T08:03:09.9751446Z     - Snapshot  - 2
+2025-12-16T08:03:09.9751682Z     + Received  + 2
+2025-12-16T08:03:09.9751985Z 
+2025-12-16T08:03:09.9752273Z     @@ -279,11 +279,11 @@
+2025-12-16T08:03:09.9752772Z                                     class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputSizeSmall MuiInputBase-inputAdornedEnd css-19qh8xo-MuiInputBase-input-MuiOutlinedInput-input"
+2025-12-16T08:03:09.9753154Z                                     id=":r7i:"
+2025-12-16T08:03:09.9753568Z                                     inputmode="text"
+2025-12-16T08:03:09.9753865Z                                     placeholder="MM/DD/YYYY hh:mm aa"
+2025-12-16T08:03:09.9754150Z                                     type="text"
+2025-12-16T08:03:09.9754485Z     -                               value="01/01/1970 05:30 AM"
+2025-12-16T08:03:09.9754780Z     +                               value="01/01/1970 12:00 AM"
+2025-12-16T08:03:09.9755040Z                                   />
+2025-12-16T08:03:09.9755279Z                                   <div
+2025-12-16T08:03:09.9755744Z                                     class="MuiInputAdornment-root MuiInputAdornment-positionEnd MuiInputAdornment-outlined MuiInputAdornment-sizeSmall css-1laqsz7-MuiInputAdornment-root"
+2025-12-16T08:03:09.9756113Z                                   >
+2025-12-16T08:03:09.9756360Z                                     <button
+2025-12-16T08:03:09.9756640Z     @@ -346,11 +346,11 @@
+2025-12-16T08:03:09.9757124Z                                     class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputSizeSmall MuiInputBase-inputAdornedEnd css-19qh8xo-MuiInputBase-input-MuiOutlinedInput-input"
+2025-12-16T08:03:09.9757499Z                                     id=":r7k:"
+2025-12-16T08:03:09.9757765Z                                     inputmode="text"
+2025-12-16T08:03:09.9758052Z                                     placeholder="MM/DD/YYYY hh:mm aa"
+2025-12-16T08:03:09.9758333Z                                     type="text"
+2025-12-16T08:03:09.9758660Z     -                               value="01/01/1970 05:30 AM"
+2025-12-16T08:03:09.9758950Z     +                               value="01/01/1970 12:00 AM"
+2025-12-16T08:03:09.9759212Z                                   />
+2025-12-16T08:03:09.9759727Z                                   <div
+2025-12-16T08:03:09.9760204Z                                     class="MuiInputAdornment-root MuiInputAdornment-positionEnd MuiInputAdornment-outlined MuiInputAdornment-sizeSmall css-1laqsz7-MuiInputAdornment-root"
+2025-12-16T08:03:09.9760563Z                                   >
+2025-12-16T08:03:09.9760817Z                                     <button
+2025-12-16T08:03:09.9760917Z 
+2025-12-16T08:03:09.9761153Z       510 |     });
+2025-12-16T08:03:09.9761373Z       511 |
+2025-12-16T08:03:09.9761727Z     > 512 |     expect(document.body).toMatchSnapshot('download-clicked-alert-state');
+2025-12-16T08:03:09.9762022Z           |                           ^
+2025-12-16T08:03:09.9762245Z       513 |
+2025-12-16T08:03:09.9762509Z       514 |     generateReport.mockResolvedValue({});
+2025-12-16T08:03:09.9762792Z       515 |     await act(async () => {
+2025-12-16T08:03:09.9762899Z 
+2025-12-16T08:03:09.9763208Z       at Object.<anonymous> (src/__tests__/pages/contentDeliveryModule/ContentDeliveryScreen.test.tsx:512:27)
+2025-12-16T08:03:09.9763377Z 
+2025-12-16T08:03:09.9763735Z   ● cdm › Content Delivery Management - handleDownload error and success branches
+2025-12-16T08:03:09.9763878Z 
+2025-12-16T08:03:09.9764130Z     expect(received).toMatchSnapshot(hint)
+2025-12-16T08:03:09.9764248Z 
+2025-12-16T08:03:09.9764651Z     Snapshot name: `cdm Content Delivery Management - handleDownload error and success branches: download-no-data-alert-state 1`
+2025-12-16T08:03:09.9764827Z 
+2025-12-16T08:03:09.9765081Z     - Snapshot  - 2
+2025-12-16T08:03:09.9765315Z     + Received  + 2
+2025-12-16T08:03:09.9765409Z 
+2025-12-16T08:03:09.9765669Z     @@ -335,11 +335,11 @@
+2025-12-16T08:03:09.9766154Z                                     class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputSizeSmall MuiInputBase-inputAdornedEnd css-19qh8xo-MuiInputBase-input-MuiOutlinedInput-input"
+2025-12-16T08:03:09.9766783Z                                     id=":r7i:"
+2025-12-16T08:03:09.9767062Z                                     inputmode="text"
+2025-12-16T08:03:09.9767347Z                                     placeholder="MM/DD/YYYY hh:mm aa"
+2025-12-16T08:03:09.9767615Z                                     type="text"
+2025-12-16T08:03:09.9767946Z     -                               value="01/01/1970 05:30 AM"
+2025-12-16T08:03:09.9768244Z     +                               value="01/01/1970 12:00 AM"
+2025-12-16T08:03:09.9768504Z                                   />
+2025-12-16T08:03:09.9768742Z                                   <div
+2025-12-16T08:03:09.9769208Z                                     class="MuiInputAdornment-root MuiInputAdornment-positionEnd MuiInputAdornment-outlined MuiInputAdornment-sizeSmall css-1laqsz7-MuiInputAdornment-root"
+2025-12-16T08:03:09.9769552Z                                   >
+2025-12-16T08:03:09.9769797Z                                     <button
+2025-12-16T08:03:09.9770076Z     @@ -402,11 +402,11 @@
+2025-12-16T08:03:09.9770551Z                                     class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputSizeSmall MuiInputBase-inputAdornedEnd css-19qh8xo-MuiInputBase-input-MuiOutlinedInput-input"
+2025-12-16T08:03:09.9770932Z                                     id=":r7k:"
+2025-12-16T08:03:09.9771201Z                                     inputmode="text"
+2025-12-16T08:03:09.9771484Z                                     placeholder="MM/DD/YYYY hh:mm aa"
+2025-12-16T08:03:09.9771765Z                                     type="text"
+2025-12-16T08:03:09.9772093Z     -                               value="01/01/1970 05:30 AM"
+2025-12-16T08:03:09.9772377Z     +                               value="01/01/1970 12:00 AM"
+2025-12-16T08:03:09.9772638Z                                   />
+2025-12-16T08:03:09.9772880Z                                   <div
+2025-12-16T08:03:09.9773337Z                                     class="MuiInputAdornment-root MuiInputAdornment-positionEnd MuiInputAdornment-outlined MuiInputAdornment-sizeSmall css-1laqsz7-MuiInputAdornment-root"
+2025-12-16T08:03:09.9773895Z                                   >
+2025-12-16T08:03:09.9774221Z                                     <button
+2025-12-16T08:03:09.9774322Z 
+2025-12-16T08:03:09.9774605Z       516 |       userEvent.click(await screen.findByText("Download"));
+2025-12-16T08:03:09.9774879Z       517 |     });
+2025-12-16T08:03:09.9775245Z     > 518 |     expect(document.body).toMatchSnapshot('download-no-data-alert-state');
+2025-12-16T08:03:09.9775537Z           |                           ^
+2025-12-16T08:03:09.9775776Z       519 |
+2025-12-16T08:03:09.9776239Z       520 |     generateReport.mockRejectedValue({ title: 'Report Download Error', message: 'Report data not available, please check with system adminstrator' });
+2025-12-16T08:03:09.9776601Z       521 |     await act(async () => {
+2025-12-16T08:03:09.9776710Z 
+2025-12-16T08:03:09.9777034Z       at Object.<anonymous> (src/__tests__/pages/contentDeliveryModule/ContentDeliveryScreen.test.tsx:518:27)
+2025-12-16T08:03:09.9777205Z 
+2025-12-16T08:03:09.9777547Z   ● cdm › Content Delivery Management - handleDownload error and success branches
+2025-12-16T08:03:09.9777690Z 
+2025-12-16T08:03:09.9777935Z     expect(received).toMatchSnapshot(hint)
+2025-12-16T08:03:09.9778054Z 
+2025-12-16T08:03:09.9778450Z     Snapshot name: `cdm Content Delivery Management - handleDownload error and success branches: download-error-alert-state 1`
+2025-12-16T08:03:09.9778637Z 
+2025-12-16T08:03:09.9778900Z     - Snapshot  - 2
+2025-12-16T08:03:09.9779136Z     + Received  + 2
+2025-12-16T08:03:09.9779229Z 
+2025-12-16T08:03:09.9779492Z     @@ -335,11 +335,11 @@
+2025-12-16T08:03:09.9779974Z                                     class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputSizeSmall MuiInputBase-inputAdornedEnd css-19qh8xo-MuiInputBase-input-MuiOutlinedInput-input"
+2025-12-16T08:03:09.9780351Z                                     id=":r7i:"
+2025-12-16T08:03:09.9780848Z                                     inputmode="text"
+2025-12-16T08:03:09.9781151Z                                     placeholder="MM/DD/YYYY hh:mm aa"
+2025-12-16T08:03:09.9781422Z                                     type="text"
+2025-12-16T08:03:09.9781757Z     -                               value="01/01/1970 05:30 AM"
+2025-12-16T08:03:09.9782041Z     +                               value="01/01/1970 12:00 AM"
+2025-12-16T08:03:09.9782302Z                                   />
+2025-12-16T08:03:09.9782543Z                                   <div
+2025-12-16T08:03:09.9783015Z                                     class="MuiInputAdornment-root MuiInputAdornment-positionEnd MuiInputAdornment-outlined MuiInputAdornment-sizeSmall css-1laqsz7-MuiInputAdornment-root"
+2025-12-16T08:03:09.9783359Z                                   >
+2025-12-16T08:03:09.9783603Z                                     <button
+2025-12-16T08:03:09.9783886Z     @@ -402,11 +402,11 @@
+2025-12-16T08:03:09.9784367Z                                     class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputSizeSmall MuiInputBase-inputAdornedEnd css-19qh8xo-MuiInputBase-input-MuiOutlinedInput-input"
+2025-12-16T08:03:09.9784740Z                                     id=":r7k:"
+2025-12-16T08:03:09.9785015Z                                     inputmode="text"
+2025-12-16T08:03:09.9785300Z                                     placeholder="MM/DD/YYYY hh:mm aa"
+2025-12-16T08:03:09.9785569Z                                     type="text"
+2025-12-16T08:03:09.9785894Z     -                               value="01/01/1970 05:30 AM"
+2025-12-16T08:03:09.9786177Z     +                               value="01/01/1970 12:00 AM"
+2025-12-16T08:03:09.9786440Z                                   />
+2025-12-16T08:03:09.9786681Z                                   <div
+2025-12-16T08:03:09.9787142Z                                     class="MuiInputAdornment-root MuiInputAdornment-positionEnd MuiInputAdornment-outlined MuiInputAdornment-sizeSmall css-1laqsz7-MuiInputAdornment-root"
+2025-12-16T08:03:09.9787485Z                                   >
+2025-12-16T08:03:09.9787947Z                                     <button
+2025-12-16T08:03:09.9788047Z 
+2025-12-16T08:03:09.9788327Z       522 |       userEvent.click(await screen.findByText("Download"));
+2025-12-16T08:03:09.9788603Z       523 |     });
+2025-12-16T08:03:09.9788967Z     > 524 |     expect(document.body).toMatchSnapshot('download-error-alert-state');
+2025-12-16T08:03:09.9789271Z           |                           ^
+2025-12-16T08:03:09.9789509Z       525 |   });
+2025-12-16T08:03:09.9789730Z       526 |
+2025-12-16T08:03:09.9789968Z       527 |   beforeEach(() => {
+2025-12-16T08:03:09.9790075Z 
+2025-12-16T08:03:09.9790383Z       at Object.<anonymous> (src/__tests__/pages/contentDeliveryModule/ContentDeliveryScreen.test.tsx:524:27)
+2025-12-16T08:03:09.9790550Z 
+2025-12-16T08:03:09.9790823Z  › 7 snapshots failed.
