@@ -1,0 +1,299 @@
+import {
+  render,
+  cleanup,
+  fireEvent,
+  screen,
+  RenderResult,
+  act,
+  waitFor,
+} from "@testing-library/react";
+import { AppContext } from "config/AppContextProvider";
+import { AuthContext } from "dto/AuthContext";
+import { MemoryRouter } from "react-router-dom";
+import CardTransCode from "pages/transactionModule/CardTransCode";
+
+/* ------------------ COMMON SETUP ------------------ */
+
+afterEach(cleanup);
+
+jest.mock("service/TransactionService", () => ({
+  txnManagementAction: jest.fn(),
+  getTxnByAlertIdAndType: jest.fn(),
+  getAllActiveAlertConfigurationByCountryCode: jest.fn(),
+  getAllActiveAlertCategories: jest.fn(),
+}));
+
+jest.mock("service/LanguageService", () => ({
+  getAllLanguage: jest.fn(),
+}));
+
+const mockAuthContext = () => {
+  const authContext: AuthContext = new AuthContext();
+  authContext.countryCode = "VN";
+  authContext.username = "1616146";
+  authContext.timezone = "Asia/Dhaka";
+  AppContext.getAuthContext = jest.fn().mockReturnValue(authContext);
+};
+
+const mockMenuRights = (rights: string) => {
+  AppContext.getCurrentMenu = jest.fn().mockReturnValue({
+    userRights: rights,
+  });
+};
+
+const renderComponent = async (state: any) => {
+  let component!: RenderResult;
+  await act(async () => {
+    component = render(
+      <MemoryRouter initialEntries={[{ pathname: "/", state }]}>
+        <CardTransCode />
+      </MemoryRouter>
+    );
+  });
+  return component;
+};
+
+/* ------------------ MOCK DATA ------------------ */
+
+const getTxnByAlertIdAndTypeMock = () => ({
+  alertType: "CARDS_TRANSACTION_ALERTS",
+  templateDtoList: [
+    {
+      languageCode: "ENG",
+      smsTemplate: "Test SMS",
+      active: true,
+    },
+  ],
+});
+
+const getAllActiveAlertConfigurationByCountryCodeMock = () => [
+  {
+    cnfAlertId: 3,
+    countryCode: "VN",
+    interfaceName: "C400",
+    serviceName: "REALTIME",
+    alertType: "CARDS_TRANSACTION_ALERTS",
+    active: true,
+  },
+];
+
+/* ------------------ TESTS ------------------ */
+
+describe("CardTransCode Form", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+    mockAuthContext();
+  });
+
+  /* ---------- ORIGINAL TEST (UNCHANGED) ---------- */
+
+  it(
+    "maker landing page",
+    async () => {
+      mockMenuRights(
+        "VIEW,ADD,EDIT,DELETE,VIEWDETAIL,RE_ACTIVATE,SYNC"
+      );
+
+      const { getAllLanguage } = require("service/LanguageService");
+      getAllLanguage.mockResolvedValue([
+        {
+          languageCode: "ENG",
+          activeStatus: true,
+        },
+      ]);
+
+      const {
+        getTxnByAlertIdAndType,
+        getAllActiveAlertConfigurationByCountryCode,
+      } = require("service/TransactionService");
+
+      getTxnByAlertIdAndType.mockResolvedValue(
+        getTxnByAlertIdAndTypeMock()
+      );
+      getAllActiveAlertConfigurationByCountryCode.mockResolvedValue(
+        getAllActiveAlertConfigurationByCountryCodeMock()
+      );
+
+      const component = await renderComponent({
+        operation: "maker",
+        txnCode: "addTranscode",
+      });
+
+      await waitFor(() =>
+        expect(component.asFragment()).toMatchSnapshot()
+      );
+    },
+    60_000
+  );
+
+  /* ---------- EXTENDED COVERAGE ---------- */
+
+  it("renders maker page and allows input change", async () => {
+    mockMenuRights("ADD,EDIT");
+
+    const { getAllLanguage } = require("service/LanguageService");
+    getAllLanguage.mockResolvedValue([
+      { languageCode: "ENG", activeStatus: true },
+    ]);
+
+    const {
+      getAllActiveAlertConfigurationByCountryCode,
+    } = require("service/TransactionService");
+    getAllActiveAlertConfigurationByCountryCode.mockResolvedValue(
+      getAllActiveAlertConfigurationByCountryCodeMock()
+    );
+
+    await renderComponent({
+      operation: "maker",
+      txnCode: "addTranscode",
+    });
+
+    const input = await screen.findByLabelText(
+      "Transaction Description"
+    );
+
+    fireEvent.change(input, {
+      target: { value: "Test Transaction" },
+    });
+
+    expect(input).toHaveValue("Test Transaction");
+  });
+
+  it("shows validation alert when save is clicked with errors", async () => {
+    mockMenuRights("ADD");
+
+    const { getAllLanguage } = require("service/LanguageService");
+    getAllLanguage.mockResolvedValue([
+      { languageCode: "ENG", activeStatus: true },
+    ]);
+
+    await renderComponent({
+      operation: "maker",
+      txnCode: "addTranscode",
+    });
+
+    fireEvent.click(await screen.findByText("Save"));
+
+    expect(
+      await screen.findByText(
+        "Transaction code validation issue"
+      )
+    ).toBeInTheDocument();
+  });
+
+  it("calls save API when editing existing transaction", async () => {
+    mockMenuRights("EDIT");
+
+    const {
+      txnManagementAction,
+      getTxnByAlertIdAndType,
+    } = require("service/TransactionService");
+
+    txnManagementAction.mockResolvedValue({});
+    getTxnByAlertIdAndType.mockResolvedValue(
+      getTxnByAlertIdAndTypeMock()
+    );
+
+    const { getAllLanguage } = require("service/LanguageService");
+    getAllLanguage.mockResolvedValue([
+      { languageCode: "ENG", activeStatus: true },
+    ]);
+
+    await renderComponent({
+      operation: "maker",
+      txnCode: "TXN001",
+    });
+
+    fireEvent.click(await screen.findByText("Save"));
+
+    await waitFor(() => {
+      expect(txnManagementAction).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  it("checker can approve transaction", async () => {
+    mockMenuRights("APPROVE");
+
+    const { getTxnByAlertIdAndType } = require(
+      "service/TransactionService"
+    );
+    getTxnByAlertIdAndType.mockResolvedValue(
+      getTxnByAlertIdAndTypeMock()
+    );
+
+    const { getAllLanguage } = require("service/LanguageService");
+    getAllLanguage.mockResolvedValue([
+      { languageCode: "ENG", activeStatus: true },
+    ]);
+
+    await renderComponent({
+      operation: "checker",
+      txnCode: "TXN002",
+    });
+
+    fireEvent.click(await screen.findByText("Approve"));
+
+    fireEvent.click(
+      screen.getByRole("button", { name: /approve/i })
+    );
+
+    await waitFor(() =>
+      expect(
+        screen.queryByText("Approve confirmation")
+      ).not.toBeInTheDocument()
+    );
+  });
+
+  it("checker can reject transaction with reason", async () => {
+    mockMenuRights("REJECT");
+
+    const { getAllLanguage } = require("service/LanguageService");
+    getAllLanguage.mockResolvedValue([
+      { languageCode: "ENG", activeStatus: true },
+    ]);
+
+    await renderComponent({
+      operation: "checker",
+      txnCode: "TXN003",
+    });
+
+    fireEvent.click(await screen.findByText("Reject"));
+
+    fireEvent.change(
+      await screen.findByLabelText("Reject Reason"),
+      {
+        target: { value: "Invalid setup" },
+      }
+    );
+
+    fireEvent.click(
+      screen.getByRole("button", { name: /reject/i })
+    );
+
+    await waitFor(() =>
+      expect(
+        screen.queryByText("Reject confirmation")
+      ).not.toBeInTheDocument()
+    );
+  });
+
+  it("cancel button works correctly", async () => {
+    mockMenuRights("VIEW");
+
+    const { getAllLanguage } = require("service/LanguageService");
+    getAllLanguage.mockResolvedValue([
+      { languageCode: "ENG", activeStatus: true },
+    ]);
+
+    await renderComponent({
+      operation: "maker",
+      txnCode: "addTranscode",
+    });
+
+    fireEvent.click(await screen.findByText("Cancel"));
+
+    expect(
+      screen.getByText(/card transaction code/i)
+    ).toBeInTheDocument();
+  });
+});
