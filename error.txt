@@ -1,20 +1,35 @@
-FAIL src/__tests__/pages/emailBannerModule/BannerSearch.test.tsx
-  ● banner preview List › landing page- PRIMARY_APPROVE
- 
-    ReferenceError: approveMock is not defined
- 
-      79 |     const { primarySecondaryApprovalAction, getApprovalBanner } = require("service/EmailBannerService");
-      80 |     getApprovalBanner.mockResolvedValue(getdetailMock());
-    > 81 |     primarySecondaryApprovalAction.mockResolvedValue(approveMock());
-         |                                    ^
-      82 |
-      83 |     let component!: RenderResult;
-      84 |     const props = {
- 
-      at Object.<anonymous> (src/__tests__/pages/emailBannerModule/BannerSearch.test.tsx:81:36)
- 
-  ● banner preview List › landing page- SECONDARY_APPROVE
- 
-    ReferenceError: approveMock is not defined
- 
-      124 |     const { primarySecondaryApprovalAction, getApprovalBanner } = require("service/EmailBannerService");
+FAIL src/__tests__/pages/emailBannerModule/AddBanner.test.tsx
+2025-12-17T05:17:54.4252646Z   ● Add banner List › landing page - clear
+2025-12-17T05:17:54.4252762Z 
+2025-12-17T05:17:54.4253113Z     expect(element).toHaveValue(MM/20/2025 05:43 PM)
+2025-12-17T05:17:54.4253251Z 
+2025-12-17T05:17:54.4253493Z     Expected the element to have value:
+2025-12-17T05:17:54.4253752Z       MM/20/2025 05:43 PM
+2025-12-17T05:17:54.4253987Z     Received:
+2025-12-17T05:17:54.4254224Z       MM/20/2025 12:13 PM
+2025-12-17T05:17:54.4254338Z 
+2025-12-17T05:17:54.4254625Z       301 |     // Assert the actual rendered Expiry Date value and take the snapshot as-is
+2025-12-17T05:17:54.4254936Z       302 |     if (textboxes.length > 2) {
+2025-12-17T05:17:54.4255306Z     > 303 |       expect(textboxes[2]).toHaveValue('MM/20/2025 05:43 PM');
+2025-12-17T05:17:54.4255588Z           |                            ^
+2025-12-17T05:17:54.4255822Z       304 |     }
+2025-12-17T05:17:54.4256048Z       305 |   });
+2025-12-17T05:17:54.4256271Z       306 |
+2025-12-17T05:17:54.4256361Z 
+2025-12-17T05:17:54.4256656Z       at Object.<anonymous> (src/__tests__/pages/emailBannerModule/AddBanner.test.tsx:303:28)
+2025-12-17T05:17:54.4256815Z 
+2025-12-17T05:17:54.4257092Z FAIL src/__tests__/pages/contentDeliveryModule/ContentDeliveryScreen.test.tsx
+2025-12-17T05:17:54.4257663Z   ● Test suite failed to run
+2025-12-17T05:17:54.4257770Z 
+2025-12-17T05:17:54.4258147Z     Cannot find module 'util/dateUtil' from 'src/__tests__/pages/contentDeliveryModule/ContentDeliveryScreen.test.tsx'
+2025-12-17T05:17:54.4258317Z 
+2025-12-17T05:17:54.4258540Z        8 |  
+2025-12-17T05:17:54.4258838Z        9 | // Mock util/dateUtil to always return fixed date strings and functions for stable snapshots
+2025-12-17T05:17:54.4259207Z     > 10 | jest.mock('util/dateUtil', () => ({
+2025-12-17T05:17:54.4259460Z          |      ^
+2025-12-17T05:17:54.4259775Z       11 |   formatDate: () => '01/01/1970 05:30 AM',
+2025-12-17T05:17:54.4260127Z       12 |   zonedDateTimeFormat: () => '01/01/1970 05:30 AM',
+2025-12-17T05:17:54.4260485Z       13 |   zonedDateDefaultDateFormat: () => '01/01/1970',
+2025-12-17T05:17:54.4260615Z 
+2025-12-17T05:17:54.4260961Z       at Resolver.resolveModule (node_modules/jest-resolve/build/resolver.js:324:11)
+2025-12-17T05:17:54.4261329Z       at Object.<anonymous> (src/__tests__/pages/contentDeliveryModule/ContentDeliveryScreen.test.tsx:10:6)
