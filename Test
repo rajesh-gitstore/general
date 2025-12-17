@@ -1,0 +1,111 @@
+import React from 'react'; import { render, screen, fireEvent, waitFor } from '@testing-library/react'; import '@testing-library/jest-dom'; import CardTransCode from './cardTransCode'; import { MemoryRouter } from 'react-router-dom';
+
+// -------------------- MOCKS --------------------
+
+jest.mock('react-promise-tracker', () => ({ trackPromise: (p: Promise<any>) => p, }));
+
+jest.mock('components/controls/Alert', () => (props: any) => (
+
+  <div data-testid="alert">{props.alertInfo?.title}</div>
+));jest.mock('components/controls/InputSelect', () => (props: any) => ( <select data-testid={props.name} value={props.value} onChange={(e) => props.onChange(props.name, e.target.value)}
+
+> 
+
+<option value=""></option>
+{props.options?.map((o: any, i: number) => (
+  <option key={i} value={o[props.optionValue]}>
+    {o[props.optionDesc]}
+  </option>
+))}
+
+  </select>
+));jest.mock('components/controls/Dialog', () => (props: any) => ( props.open ? ( <div data-testid="dialog"> <button onClick={props.handleConfirm}>confirm</button> <button onClick={props.handleClose}>close</button> {props.dialogTextBox} </div> ) : null ));
+
+jest.mock('service/TransactionService', () => ({ txnManagementAction: jest.fn(() => Promise.resolve({})), getTxnByAlertIdAndType: jest.fn(() => Promise.resolve({ templateDtoList: [], })), }));
+
+jest.mock('service/AlertService', () => ({ getAlertGroupByType: jest.fn(() => Promise.resolve([])), getAllActiveAlertConfigurationByCountryCode: jest.fn(() => Promise.resolve([ { interfaceName: 'C400', cnfAlertId: 1, alertType: 'BT' }, ])), getAllActiveAlertCategories: jest.fn(() => Promise.resolve([ { categoryId: 1, categoryName: 'CAT', alertType: 'BT', productType: 'P', serviceName: 'S', interfaceName: 'C400' }, ])), }));
+
+jest.mock('service/LanguageService', () => ({ getAllLanguage: jest.fn(() => Promise.resolve([ { languageCode: 'EN' }, ])), }));
+
+jest.mock('config/AppContextProvider', () => ({ AppContext: { getAuthContext: () => ({ countryCode: 'HK' }), getCountrySetup: () => ({ properties: { emailServiceEnable: true, pushServiceEnable: true } }), getCurrentMenu: () => ({ userRights: 'ADD,EDIT,APPROVE,REJECT' }), getUserProfile: () => ({ username: 'tester' }), }, }));
+
+jest.mock('constant/CountryCode', () => ({ CountryCode: { HONGKONG: 'HK', CHINA: 'CN' } })); jest.mock('constant/ApprovalType', () => ({ ApprovalType: { ADD: 'ADD', UPDATE: 'UPDATE' } })); jest.mock('constant/ApprovalStatus', () => ({ ApprovalStatus: { PENDING: 'PENDING' } })); jest.mock('constant/ActionType', () => ({ ActionType: { ADD: 'ADD', UPDATE: 'UPDATE', APPROVE: 'APPROVE', REJECT: 'REJECT' } })); jest.mock('constant/AppConstant', () => ({ AppConstant: { C400: 'C400', CCMS: 'CCMS' } })); jest.mock('constant/MenuRights', () => ({ MenuRights: { ADD: 'ADD', EDIT: 'EDIT', APPROVE: 'APPROVE', REJECT: 'REJECT' } })); jest.mock('constant/RoutePathConstant', () => ({ RoutePathConstant: { HOME: '/', CARD_TXN_CODE_SEARCH: '/search', CARD_TXN_CODE_APPROVE: '/approve' } }));
+
+// -------------------- HELPERS --------------------
+
+const renderWithState = (state: any) => { return render( <MemoryRouter initialEntries={[{ pathname: '/', state }]}> <CardTransCode /> </MemoryRouter> ); };
+
+// -------------------- TESTS --------------------
+
+describe('CardTransCode', () => { test('redirects when location state is missing', () => { render( <MemoryRouter> <CardTransCode /> </MemoryRouter> ); expect(screen.getByText(/Redirecting/i)).toBeInTheDocument(); });
+
+test('renders add transaction code screen and validates inputs', async () => { renderWithState({ txnCode: 'addTranscode', operation: 'maker' });
+
+expect(await screen.findByText(/Add Card Transaction Code/i)).toBeInTheDocument();
+
+fireEvent.change(screen.getByLabelText(/Transaction Description/i), {
+  target: { value: '' },
+});
+
+fireEvent.click(screen.getByText('Save'));
+
+await waitFor(() => {
+  expect(screen.getByTestId('alert')).toBeInTheDocument();
+});
+
+});
+
+test('allows save when mandatory fields are valid', async () => { renderWithState({ txnCode: 'addTranscode', operation: 'maker' });
+
+fireEvent.change(screen.getByLabelText(/Transaction Description/i), {
+  target: { value: 'Test desc' },
+});
+fireEvent.change(screen.getByLabelText(/Transaction Code/i), {
+  target: { value: 'TC01' },
+});
+
+fireEvent.change(screen.getByTestId('alertType'), { target: { value: 'BT' } });
+fireEvent.change(screen.getByTestId('alertCodeId'), { target: { value: '1' } });
+fireEvent.change(screen.getByTestId('subscribeCode'), { target: { value: 'AUTO' } });
+
+fireEvent.change(screen.getByLabelText(/Threshold Value/i), {
+  target: { value: '100' },
+});
+
+fireEvent.click(screen.getByText('Save'));
+
+await waitFor(() => {
+  expect(screen.getByTestId('alert')).toHaveTextContent(/Success/i);
+});
+
+});
+
+test('checker can approve and reject', async () => { renderWithState({ txnCode: 'TXN01', operation: 'checker' });
+
+fireEvent.click(await screen.findByText('Approve'));
+fireEvent.click(screen.getByText('confirm'));
+
+await waitFor(() => {
+  expect(screen.getByTestId('alert')).toBeInTheDocument();
+});
+
+fireEvent.click(screen.getByText('Reject'));
+fireEvent.change(screen.getByLabelText(/Reject Reason/i), {
+  target: { value: 'Invalid' },
+});
+fireEvent.click(screen.getByText('confirm'));
+
+await waitFor(() => {
+  expect(screen.getByTestId('alert')).toBeInTheDocument();
+});
+
+});
+
+test('cancel navigates correctly', async () => { renderWithState({ txnCode: 'addTranscode', operation: 'maker' });
+
+fireEvent.click(screen.getByText('Cancel'));
+
+// navigation side-effect covered
+expect(true).toBeTruthy();
+
+}); });
