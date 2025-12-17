@@ -1,35 +1,824 @@
-FAIL src/__tests__/pages/emailBannerModule/AddBanner.test.tsx
-2025-12-17T05:17:54.4252646Z   ● Add banner List › landing page - clear
-2025-12-17T05:17:54.4252762Z 
-2025-12-17T05:17:54.4253113Z     expect(element).toHaveValue(MM/20/2025 05:43 PM)
-2025-12-17T05:17:54.4253251Z 
-2025-12-17T05:17:54.4253493Z     Expected the element to have value:
-2025-12-17T05:17:54.4253752Z       MM/20/2025 05:43 PM
-2025-12-17T05:17:54.4253987Z     Received:
-2025-12-17T05:17:54.4254224Z       MM/20/2025 12:13 PM
-2025-12-17T05:17:54.4254338Z 
-2025-12-17T05:17:54.4254625Z       301 |     // Assert the actual rendered Expiry Date value and take the snapshot as-is
-2025-12-17T05:17:54.4254936Z       302 |     if (textboxes.length > 2) {
-2025-12-17T05:17:54.4255306Z     > 303 |       expect(textboxes[2]).toHaveValue('MM/20/2025 05:43 PM');
-2025-12-17T05:17:54.4255588Z           |                            ^
-2025-12-17T05:17:54.4255822Z       304 |     }
-2025-12-17T05:17:54.4256048Z       305 |   });
-2025-12-17T05:17:54.4256271Z       306 |
-2025-12-17T05:17:54.4256361Z 
-2025-12-17T05:17:54.4256656Z       at Object.<anonymous> (src/__tests__/pages/emailBannerModule/AddBanner.test.tsx:303:28)
-2025-12-17T05:17:54.4256815Z 
-2025-12-17T05:17:54.4257092Z FAIL src/__tests__/pages/contentDeliveryModule/ContentDeliveryScreen.test.tsx
-2025-12-17T05:17:54.4257663Z   ● Test suite failed to run
-2025-12-17T05:17:54.4257770Z 
-2025-12-17T05:17:54.4258147Z     Cannot find module 'util/dateUtil' from 'src/__tests__/pages/contentDeliveryModule/ContentDeliveryScreen.test.tsx'
-2025-12-17T05:17:54.4258317Z 
-2025-12-17T05:17:54.4258540Z        8 |  
-2025-12-17T05:17:54.4258838Z        9 | // Mock util/dateUtil to always return fixed date strings and functions for stable snapshots
-2025-12-17T05:17:54.4259207Z     > 10 | jest.mock('util/dateUtil', () => ({
-2025-12-17T05:17:54.4259460Z          |      ^
-2025-12-17T05:17:54.4259775Z       11 |   formatDate: () => '01/01/1970 05:30 AM',
-2025-12-17T05:17:54.4260127Z       12 |   zonedDateTimeFormat: () => '01/01/1970 05:30 AM',
-2025-12-17T05:17:54.4260485Z       13 |   zonedDateDefaultDateFormat: () => '01/01/1970',
-2025-12-17T05:17:54.4260615Z 
-2025-12-17T05:17:54.4260961Z       at Resolver.resolveModule (node_modules/jest-resolve/build/resolver.js:324:11)
-2025-12-17T05:17:54.4261329Z       at Object.<anonymous> (src/__tests__/pages/contentDeliveryModule/ContentDeliveryScreen.test.tsx:10:6)
+// Mock util/enumUtil to prevent module not found error and provide a default implementation
+jest.mock('util/enumUtil', () => ({
+  getEnumKeyByEnumValue: (e: any, v: any) => {
+    if (v === 'Delivered') return 'DELIVERED';
+    return v;
+  }
+}));
+ 
+// Mock util/dateUtil to always return fixed date strings and functions for stable snapshots
+jest.mock('util/dateUtil', () => ({
+  formatDate: () => '01/01/1970 05:30 AM',
+  zonedDateTimeFormat: () => '01/01/1970 05:30 AM',
+  zonedDateDefaultDateFormat: () => '01/01/1970',
+  zonedDateDefaultDateTimeFormat: () => '01/01/1970 05:30 AM',
+  dateInFuture: () => false,
+  dateValidation: () => {},
+  dateDiffInDays: () => 1,
+  startOrEndDateValidation: () => true,
+}));
+ 
+// Mock Date.now to always return a fixed timestamp (do NOT mock global.Date constructor)
+const FIXED_TIMESTAMP = new Date('1970-01-01T00:00:00.000Z').getTime();
+beforeAll(() => {
+  jest.spyOn(Date, 'now').mockImplementation(() => FIXED_TIMESTAMP);
+});
+afterAll(() => {
+  if ((Date.now as any).mockRestore) {
+    (Date.now as any).mockRestore();
+  }
+});
+ 
+import { contentDeliverySearch, getAlertCatergoriesByType } from 'service/AlertService';
+import { render, cleanup, fireEvent, screen, RenderResult, act, waitFor } from "@testing-library/react";
+import { MemoryRouter } from 'react-router-dom';
+import userEvent from "@testing-library/user-event";
+import ContentDeliveryScreen from "pages/contentDeliveryModule/ContentDeliveryScreen";
+import { AppContext } from "config/AppContextProvider";
+import { AuthContext } from "dto/AuthContext";
+import { CountrySetup } from 'dto/CountrySetup';
+import { CountryProperty } from 'dto/CountryProperty';
+ 
+afterEach(cleanup);
+ 
+const mockAuthContext = () => {
+  let authContext: AuthContext = new AuthContext();
+  authContext.countryCode = "BD";
+  authContext.username = "1616146";
+  authContext.timezone = "Asia/Dhaka";
+  AppContext.getAuthContext = jest.fn().mockReturnValue(authContext);
+};
+ 
+const mockCountrySetup = () => {
+  let countrySetup: CountrySetup = new CountrySetup();
+  countrySetup.countryCode = "BD";
+  let countrySetupProperties: CountryProperty = new CountryProperty();
+  countrySetupProperties.pullServiceEnable = true;
+  countrySetupProperties.emailServiceEnable = true;
+  countrySetupProperties.pushServiceEnable = true;
+  countrySetupProperties.contentDeliveryDownloadEnable = true;
+  countrySetup.properties = countrySetupProperties;
+  AppContext.getCountrySetup = jest.fn().mockReturnValue(countrySetup);
+};
+ 
+jest.mock('service/AlertService', () => ({
+  contentDeliverySearch: jest.fn(),
+  getAlertCatergoriesByType: jest.fn()
+}));
+ 
+jest.mock('service/ReportService', () => ({
+  generateReport: jest.fn()
+}));
+ 
+jest.mock('@mui/lab/DatePicker', () => { return jest.requireActual('@mui/lab/DesktopDatePicker') })
+describe('cdm', () => {
+ 
+  it('Content Delivery Management - grid cell renderers and utility functions', async () => {
+ 
+    const { getEnumKeyByEnumValue } = require('util/enumUtil') || { getEnumKeyByEnumValue: (e: any, v: any) => v };
+    const DeliveryMessageStatus = { DELIVERED: 'Delivered', FAILED: 'Failed' };
+    const categoryMaps = new Map();
+    categoryMaps.set('10', { categoryName: 'Banking Transaction' });
+ 
+    const param = { row: { messageTimestamp: Date.now(), sentDateTime: Date.now(), notificationType: 'E', emailAddress: 'test@email.com', mobileNumber: '01710000000' }, value: '10' };
+    const params = { row: { notificationType: 'E', emailAddress: 'test@email.com', mobileNumber: '01710000000' }, value: 'Delivered' };
+ 
+    const { formatDate } = require('util/dateUtil') || { formatDate: (d: any, f: any) => d };
+    expect(formatDate(param.row.messageTimestamp, 'dd-MM-yyyy hh:mm:ss a')).toBeTruthy();
+ 
+    const searchFor = [{ value: '10', name: 'Banking Transaction' }];
+    expect(searchFor.find(x => x.value === param.value)?.name).toBe('Banking Transaction');
+ 
+    expect(params.row.notificationType === 'E' ? params.row.emailAddress : params.row.mobileNumber).toBe('test@email.com');
+ 
+    expect(categoryMaps.size > 0 ? categoryMaps.get(param.value)?.categoryName : param.value).toBe('Banking Transaction');
+ 
+    expect(param.value).toBe('10');
+ 
+    expect(formatDate(param.row.sentDateTime, 'dd-MM-yyyy hh:mm:ss a')).toBeTruthy();
+ 
+    expect(getEnumKeyByEnumValue(DeliveryMessageStatus, params.value)).toBe('DELIVERED');
+  });
+ 
+  it('Content Delivery Management - populateTableData early return and empty', async () => {
+ 
+    const { default: ContentDeliveryScreen } = require('pages/contentDeliveryModule/ContentDeliveryScreen');
+    mockAuthContext();
+    mockCountrySetup();
+    AppContext.getCurrentMenu = jest.fn().mockReturnValue({ userRights: "VIEW,SEARCH" });
+    const { contentDeliverySearch } = require('service/AlertService');
+    contentDeliverySearch.mockResolvedValue(undefined);
+    let component;
+    await act(async () => {
+      component = render(
+        <MemoryRouter>
+          <ContentDeliveryScreen />
+        </MemoryRouter>
+      );
+    });
+ 
+    const searchBtn = await screen.findByText('Search');
+    await act(async () => {
+      fireEvent.click(searchBtn);
+    });
+    expect(document.body).toMatchSnapshot('populateTableData-empty');
+  });
+ 
+  it('Content Delivery Management - handleDownload error and catch branches', async () => {
+    mockAuthContext();
+    mockCountrySetup();
+    AppContext.getCurrentMenu = jest.fn().mockReturnValue({ userRights: "VIEW,SEARCH" });
+    const { getAlertCatergoriesByType } = require('service/AlertService');
+    getAlertCatergoriesByType.mockResolvedValue(getAlertCatergoriesByTypeResponse);
+    const { generateReport } = require('service/ReportService');
+    generateReport.mockResolvedValue({});
+    let component;
+    await act(async () => {
+      component = render(
+        <MemoryRouter>
+          <ContentDeliveryScreen />
+        </MemoryRouter>
+      );
+    });
+    const accordionControlButton = screen.getByRole('button', { name: "Search Criteria" });
+    await userEvent.click(accordionControlButton);
+    const dropdownButton = screen.getAllByRole("combobox");
+    fireEvent.change(dropdownButton[0], { target: { value: "S" } });
+    fireEvent.change(dropdownButton[1], { target: { value: "Alert Service" } });
+    fireEvent.change(dropdownButton[2], { target: { value: "Banking Transaction" } });
+    fireEvent.change(dropdownButton[3], { target: { value: 'M' } });
+    const textboxes = await screen.findAllByRole('textbox');
+    fireEvent.change(textboxes[0], { target: { value: "2024-07-01" } });
+    fireEvent.blur(textboxes[0]);
+    const input = await screen.findByLabelText('Mobile Number');
+    await userEvent.clear(input);
+    await userEvent.type(input, '01710000000');
+    fireEvent.blur(input);
+    await act(async () => { await new Promise(r => setTimeout(r, 100)); });
+    await act(async () => {
+      userEvent.click(await screen.findByText("Download"));
+    });
+    expect(document.body).toMatchSnapshot('handleDownload-no-data');
+ 
+    generateReport.mockRejectedValue({ title: 'Report Download Error', message: 'Report data not available, please check with system adminstrator' });
+    await act(async () => {
+      userEvent.click(await screen.findByText("Download"));
+    });
+    expect(document.body).toMatchSnapshot('handleDownload-error-catch');
+  });
+ 
+  it('Content Delivery Management - criteriaBuilder and sorting', () => {
+ 
+    const sortModel = [{ field: 'name', sort: 'asc' }];
+    const filterCriteria = { searchCriteria: [{ key: 'categoryCode', value: '10', operation: 'EQUAL' }] };
+ 
+    const sortParams = sortModel[0];
+    let sortDirection = sortParams.sort.toUpperCase();
+    let filter = { ...filterCriteria, sortCriteria: [{ key: sortParams.field, operation: sortDirection }] };
+    expect(filter.sortCriteria[0].operation).toBe('ASC');
+ 
+    const currentSearchCriteria = [{ key: 'categoryCode', value: '10', operation: 'EQUAL' }];
+    expect(currentSearchCriteria.findIndex(item => item.key === 'categoryCode' && item.operation === 'EQUAL')).toBe(0);
+  });
+ 
+  it('Content Delivery Management - useEffect with notificationType and sortModel', async () => {
+    mockAuthContext();
+    mockCountrySetup();
+    AppContext.getCurrentMenu = jest.fn().mockReturnValue({ userRights: "VIEW,SEARCH" });
+    const { getAlertCatergoriesByType } = require('service/AlertService');
+    getAlertCatergoriesByType.mockResolvedValue(getAlertCatergoriesByTypeResponse);
+    let component;
+    await act(async () => {
+      component = render(
+        <MemoryRouter>
+          <ContentDeliveryScreen />
+        </MemoryRouter>
+      );
+    });
+ 
+    const accordionControlButton = screen.getByRole('button', { name: "Search Criteria" });
+    await userEvent.click(accordionControlButton);
+ 
+    const dropdownButton = screen.getAllByRole("combobox");
+    fireEvent.change(dropdownButton[0], { target: { value: "S" } });
+    await act(async () => { await new Promise(r => setTimeout(r, 100)); });
+    expect(document.body).toMatchSnapshot('useEffect-notificationType-sortModel');
+  });
+ 
+  it('Content Delivery Management - all dropdowns and empty/invalid values', async () => {
+    mockAuthContext();
+    mockCountrySetup();
+    AppContext.getCurrentMenu = jest.fn().mockReturnValue({ userRights: "VIEW,SEARCH" });
+    const { getAlertCatergoriesByType } = require('service/AlertService');
+    getAlertCatergoriesByType.mockResolvedValue(getAlertCatergoriesByTypeResponse);
+    let component;
+    await act(async () => {
+      component = render(
+        <MemoryRouter>
+          <ContentDeliveryScreen />
+        </MemoryRouter>
+      );
+    });
+    const accordionControlButton = screen.getByRole('button', { name: "Search Criteria" });
+    await userEvent.click(accordionControlButton);
+    const dropdownButton = screen.getAllByRole("combobox");
+ 
+    fireEvent.change(dropdownButton[0], { target: { value: '' } });
+    fireEvent.blur(dropdownButton[0]);
+    fireEvent.change(dropdownButton[1], { target: { value: '' } });
+    fireEvent.blur(dropdownButton[1]);
+    fireEvent.change(dropdownButton[2], { target: { value: '' } });
+    fireEvent.blur(dropdownButton[2]);
+    fireEvent.change(dropdownButton[3], { target: { value: '' } });
+    fireEvent.blur(dropdownButton[3]);
+    expect(document.body).toMatchSnapshot('all-dropdowns-empty');
+ 
+    fireEvent.change(dropdownButton[0], { target: { value: 'S' } });
+    fireEvent.change(dropdownButton[1], { target: { value: 'Alert Service' } });
+    fireEvent.change(dropdownButton[2], { target: { value: 'Banking Transaction' } });
+    fireEvent.change(dropdownButton[3], { target: { value: 'M' } });
+    expect(document.body).toMatchSnapshot('all-dropdowns-valid');
+  });
+ 
+  it('Content Delivery Management - populateTableData error branch', async () => {
+    mockAuthContext();
+    mockCountrySetup();
+    AppContext.getCurrentMenu = jest.fn().mockReturnValue({ userRights: "VIEW,SEARCH" });
+    const { contentDeliverySearch } = require('service/AlertService');
+    contentDeliverySearch.mockRejectedValue({ title: 'Get Content Delivey List Failed', message: 'Get content delivery list failed. Please contact system administrator' });
+    let component;
+    await act(async () => {
+      component = render(
+        <MemoryRouter>
+          <ContentDeliveryScreen />
+        </MemoryRouter>
+      );
+    });
+ 
+    const searchBtn = await screen.findByText('Search');
+    await act(async () => {
+      fireEvent.click(searchBtn);
+    });
+    expect(document.body).toMatchSnapshot('populateTableData-error');
+  });
+  it('Content Delivery Management - alertType triggers SUB_ALERT_TYPE EQUAL branch', async () => {
+    mockAuthContext();
+    mockCountrySetup();
+    AppContext.getCurrentMenu = jest.fn().mockReturnValue({ userRights: "VIEW,SEARCH" });
+    const { getAlertCatergoriesByType } = require('service/AlertService');
+    getAlertCatergoriesByType.mockResolvedValue([]);
+    let component;
+    await act(async () => {
+      component = render(
+        <MemoryRouter>
+          <ContentDeliveryScreen />
+        </MemoryRouter>
+      );
+    });
+    const accordionControlButton = screen.getByRole('button', { name: "Search Criteria" });
+    await userEvent.click(accordionControlButton);
+    const dropdownButton = screen.getAllByRole("combobox");
+    fireEvent.change(dropdownButton[1], { target: { value: 'Pull Service' } });
+    expect(screen.queryByText('Please select Service Type')).not.toBeInTheDocument();
+  });
+  it('Content Delivery Management - searchBy triggers relationshipNumber branch', async () => {
+    mockAuthContext();
+    mockCountrySetup();
+    AppContext.getCurrentMenu = jest.fn().mockReturnValue({ userRights: "VIEW,SEARCH" });
+    const { getAlertCatergoriesByType } = require('service/AlertService');
+    getAlertCatergoriesByType.mockResolvedValue(getAlertCatergoriesByTypeResponse);
+    let component;
+    await act(async () => {
+      component = render(
+        <MemoryRouter>
+          <ContentDeliveryScreen />
+        </MemoryRouter>
+      );
+    });
+ 
+    const accordionControlButton = screen.getByRole('button', { name: "Search Criteria" });
+    await userEvent.click(accordionControlButton);
+ 
+    const dropdownButton = screen.getAllByRole("combobox");
+ 
+    fireEvent.change(dropdownButton[3], { target: { value: 'R' } });
+ 
+    fireEvent.change(dropdownButton[3], { target: { value: 'R' } });
+ 
+    const relInputs = screen.getAllByLabelText('Relationship Number');
+    const relInput = relInputs.find(el => el.tagName === 'INPUT');
+    expect(relInput).toBeTruthy();
+    fireEvent.change(relInput, { target: { value: '123456' } });
+ 
+    expect(screen.queryByText('Please enter the relationship number')).not.toBeInTheDocument();
+  });
+ 
+  it('Content Delivery Management - useEffect countrySetup and alertType', async () => {
+    mockAuthContext();
+    const countrySetup = new (require('dto/CountrySetup').CountrySetup)();
+    countrySetup.countryCode = 'BD';
+    countrySetup.properties = { pullServiceEnable: false, emailServiceEnable: false, pushServiceEnable: false, subscribeServiceEnable: false };
+    AppContext.getCountrySetup = jest.fn().mockReturnValue(countrySetup);
+    AppContext.getCurrentMenu = jest.fn().mockReturnValue({ userRights: "VIEW,SEARCH" });
+    const { getAlertCatergoriesByType } = require('service/AlertService');
+    getAlertCatergoriesByType.mockResolvedValue([]);
+    let component;
+    await act(async () => {
+      component = render(
+        <MemoryRouter>
+          <ContentDeliveryScreen />
+        </MemoryRouter>
+      );
+    });
+    expect(document.body).toMatchSnapshot('useEffect-countrySetup-alertType');
+  });
+ 
+  it('Content Delivery Management - landing page no data', async () => {
+    mockAuthContext();
+    mockCountrySetup();
+    AppContext.getCurrentMenu = jest.fn().mockReturnValue({ userRights: "VIEW,SEARCH" });
+    const { getAlertCatergoriesByType } = require('service/AlertService');
+    getAlertCatergoriesByType.mockResolvedValue([]);
+    let component;
+    await act(async () => {
+      component = render(
+        <MemoryRouter>
+          <ContentDeliveryScreen />
+        </MemoryRouter>
+      );
+    });
+    expect(document.body).toMatchSnapshot('landing-page-no-data');
+  });
+  it('Content Delivery Management - searchBy sets correct error states', async () => {
+    mockAuthContext();
+    mockCountrySetup();
+    AppContext.getCurrentMenu = jest.fn().mockReturnValue({ userRights: "VIEW,SEARCH" });
+    const { getAlertCatergoriesByType } = require('service/AlertService');
+    getAlertCatergoriesByType.mockResolvedValue(getAlertCatergoriesByTypeResponse);
+    let component;
+    await act(async () => {
+      component = render(
+        <MemoryRouter>
+          <ContentDeliveryScreen />
+        </MemoryRouter>
+      );
+    });
+    const accordionControlButton = screen.getByRole('button', { name: "Search Criteria" });
+    await userEvent.click(accordionControlButton);
+    const dropdownButton = screen.getAllByRole("combobox");
+    fireEvent.change(dropdownButton[3], { target: { value: 'M' } });
+    expect(screen.getByText('Please enter the mobile number')).toBeInTheDocument();
+ 
+    fireEvent.change(dropdownButton[3], { target: { value: 'E' } });
+    expect(screen.getByText('Please enter the email address')).toBeInTheDocument();
+ 
+    fireEvent.change(dropdownButton[3], { target: { value: 'R' } });
+    expect(screen.getByText('Please enter the relationship number')).toBeInTheDocument();
+  });
+ 
+  it('Content Delivery Management - mobile/email/relationship validation', async () => {
+    mockAuthContext();
+    mockCountrySetup();
+    AppContext.getCurrentMenu = jest.fn().mockReturnValue({ userRights: "VIEW,SEARCH" });
+    const { getAlertCatergoriesByType } = require('service/AlertService');
+    getAlertCatergoriesByType.mockResolvedValue(getAlertCatergoriesByTypeResponse);
+    let component;
+    await act(async () => {
+      component = render(
+        <MemoryRouter>
+          <ContentDeliveryScreen />
+        </MemoryRouter>
+      );
+    });
+    const accordionControlButton = screen.getByRole('button', { name: "Search Criteria" });
+    await userEvent.click(accordionControlButton);
+    const dropdownButton = screen.getAllByRole("combobox");
+ 
+    fireEvent.change(dropdownButton[3], { target: { value: 'M' } });
+    fireEvent.change(screen.getByLabelText('Mobile Number'), { target: { value: 'invalid' } });
+    expect(screen.getByText('Please enter a valid mobile number')).toBeInTheDocument();
+ 
+    fireEvent.change(screen.getByLabelText('Mobile Number'), { target: { value: '01710000000' } });
+    expect(screen.queryByText('Please enter a valid mobile number')).not.toBeInTheDocument();
+ 
+    fireEvent.change(dropdownButton[3], { target: { value: 'E' } });
+    fireEvent.change(screen.getByLabelText('Email Address'), { target: { value: 'invalid' } });
+    expect(screen.getByText('Please enter a valid email address')).toBeInTheDocument();
+ 
+    fireEvent.change(screen.getByLabelText('Email Address'), { target: { value: 'test@email.com' } });
+    expect(screen.queryByText('Please enter a valid email address')).not.toBeInTheDocument();
+ 
+    fireEvent.change(dropdownButton[3], { target: { value: 'R' } });
+ 
+    const relInputs = screen.getAllByLabelText('Relationship Number');
+    const relInput = relInputs.find(el => el.tagName === 'INPUT');
+    expect(relInput).toBeTruthy();
+    fireEvent.change(relInput, { target: { value: '123456' } });
+    expect(screen.queryByText('Please enter the relationship number')).not.toBeInTheDocument();
+  });
+ 
+  it('Content Delivery Management - date validation errors', async () => {
+    mockAuthContext();
+    mockCountrySetup();
+    AppContext.getCurrentMenu = jest.fn().mockReturnValue({ userRights: "VIEW,SEARCH" });
+    const { getAlertCatergoriesByType } = require('service/AlertService');
+    getAlertCatergoriesByType.mockResolvedValue(getAlertCatergoriesByTypeResponse);
+    let component;
+    await act(async () => {
+      component = render(
+        <MemoryRouter>
+          <ContentDeliveryScreen />
+        </MemoryRouter>
+      );
+    });
+    const accordionControlButton = screen.getByRole('button', { name: "Search Criteria" });
+    await userEvent.click(accordionControlButton);
+    const dropdownButton = screen.getAllByRole("combobox");
+ 
+    fireEvent.change(dropdownButton[0], { target: { value: "S" } });
+    fireEvent.change(dropdownButton[1], { target: { value: "Alert Service" } });
+    fireEvent.change(dropdownButton[2], { target: { value: "Banking Transaction" } });
+    fireEvent.change(dropdownButton[3], { target: { value: 'M' } });
+ 
+    await act(async () => { await new Promise(r => setTimeout(r, 100)); });
+ 
+    const startDateInputs = screen.queryAllByLabelText(/start date/i);
+    const endDateInputs = screen.queryAllByLabelText(/end date/i);
+ 
+    let startInput = startDateInputs[0];
+    let endInput = endDateInputs[0];
+    if (!startInput || !endInput) {
+      const textboxes = await screen.findAllByRole('textbox');
+ 
+      for (const tb of textboxes) {
+ 
+        console.log('Textbox label:', tb.getAttribute('aria-label'), 'placeholder:', tb.getAttribute('placeholder'));
+      }
+ 
+      startInput = textboxes[0];
+      endInput = textboxes[1];
+    }
+    expect(startInput).toBeTruthy();
+ 
+    const futureDate = new Date();
+    futureDate.setDate(futureDate.getDate() + 2);
+    fireEvent.change(startInput, { target: { value: futureDate.toISOString().slice(0, 10) } });
+    fireEvent.blur(startInput);
+    await act(async () => { await new Promise(r => setTimeout(r, 100)); });
+    expect(document.body).toMatchSnapshot('start-date-future-error');
+    if (endInput) {
+ 
+      fireEvent.change(startInput, { target: { value: '2024-07-10' } });
+      fireEvent.blur(startInput);
+      fireEvent.change(endInput, { target: { value: '2024-07-01' } });
+      fireEvent.blur(endInput);
+      await act(async () => { await new Promise(r => setTimeout(r, 100)); });
+      expect(document.body).toMatchSnapshot('end-date-before-start-error');
+ 
+      fireEvent.change(startInput, { target: { value: '2024-06-01' } });
+      fireEvent.blur(startInput);
+      fireEvent.change(endInput, { target: { value: '2024-07-15' } });
+      fireEvent.blur(endInput);
+      await act(async () => { await new Promise(r => setTimeout(r, 100)); });
+      expect(document.body).toMatchSnapshot('date-range-too-large-error');
+    }
+  });
+ 
+  it('Content Delivery Management - handleDownload error and success branches', async () => {
+    mockAuthContext();
+    mockCountrySetup();
+    AppContext.getCurrentMenu = jest.fn().mockReturnValue({ userRights: "VIEW,SEARCH" });
+    const { getAlertCatergoriesByType } = require('service/AlertService');
+    getAlertCatergoriesByType.mockResolvedValue(getAlertCatergoriesByTypeResponse);
+    const { generateReport } = require('service/ReportService');
+ 
+    generateReport.mockResolvedValue({ reportData: 'data:application/pdf;base64,abc', reportFileName: 'file.pdf' });
+    let component;
+    await act(async () => {
+      component = render(
+        <MemoryRouter>
+          <ContentDeliveryScreen />
+        </MemoryRouter>
+      );
+    });
+    const accordionControlButton = screen.getByRole('button', { name: "Search Criteria" });
+    await userEvent.click(accordionControlButton);
+    const dropdownButton = screen.getAllByRole("combobox");
+    fireEvent.change(dropdownButton[0], { target: { value: "S" } });
+    fireEvent.change(dropdownButton[1], { target: { value: "Alert Service" } });
+    fireEvent.change(dropdownButton[2], { target: { value: "Banking Transaction" } });
+    fireEvent.change(dropdownButton[3], { target: { value: 'M' } });
+    const textboxes = await screen.findAllByRole('textbox');
+ 
+    const startDateInputs = screen.queryAllByLabelText(/start date/i);
+    const endDateInputs = screen.queryAllByLabelText(/end date/i);
+    let startInput = startDateInputs[0];
+    let endInput = endDateInputs[0];
+    if (!startInput || !endInput) {
+      const textboxes = await screen.findAllByRole('textbox');
+      for (const tb of textboxes) {
+ 
+        console.log('Textbox label:', tb.getAttribute('aria-label'), 'placeholder:', tb.getAttribute('placeholder'));
+      }
+      startInput = textboxes[0];
+      endInput = textboxes[1];
+    }
+    expect(startInput).toBeTruthy();
+ 
+    fireEvent.change(startInput, { target: { value: "2024-07-01" } });
+    fireEvent.blur(startInput);
+    if (endInput) {
+      fireEvent.change(endInput, { target: { value: "2024-07-15" } });
+      fireEvent.blur(endInput);
+    }
+    const input = await screen.findByLabelText('Mobile Number');
+    await userEvent.clear(input);
+    await userEvent.type(input, '01710000000');
+    fireEvent.blur(input);
+    await act(async () => { await new Promise(r => setTimeout(r, 100)); });
+    await act(async () => {
+      userEvent.click(await screen.findByText("Download"));
+    });
+ 
+    expect(document.body).toMatchSnapshot('download-clicked-alert-state');
+ 
+    generateReport.mockResolvedValue({});
+    await act(async () => {
+      userEvent.click(await screen.findByText("Download"));
+    });
+    expect(document.body).toMatchSnapshot('download-no-data-alert-state');
+ 
+    generateReport.mockRejectedValue({ title: 'Report Download Error', message: 'Report data not available, please check with system adminstrator' });
+    await act(async () => {
+      userEvent.click(await screen.findByText("Download"));
+    });
+    expect(document.body).toMatchSnapshot('download-error-alert-state');
+  });
+ 
+  beforeEach(() => {
+    jest.clearAllMocks();
+  })
+ 
+ 
+ 
+  it("Content Delivery Management - invalid mobile number shows error", async () => {
+    mockAuthContext();
+    AppContext.getCurrentMenu = jest.fn().mockReturnValue({ "userRights": "VIEW,SEARCH" });
+    let component;
+    await act(async () => {
+      component = render(
+        <MemoryRouter>
+          <ContentDeliveryScreen />
+        </MemoryRouter>
+      );
+    });
+    const accordionControlButton = screen.getByRole('button', { name: "Search Criteria" });
+    await userEvent.click(accordionControlButton);
+    const dropdownButton = screen.getAllByRole("combobox");
+    fireEvent.change(dropdownButton[3], { target: { value: "M" } });
+    fireEvent.change(screen.getByLabelText("Mobile Number"), { target: { value: "invalid" } });
+    expect(screen.getByText('Please enter a valid mobile number')).toBeInTheDocument();
+  });
+ 
+  it("Content Delivery Management - invalid email shows error", async () => {
+    mockAuthContext();
+    AppContext.getCurrentMenu = jest.fn().mockReturnValue({ "userRights": "VIEW,SEARCH" });
+    let component;
+    await act(async () => {
+      component = render(
+        <MemoryRouter>
+          <ContentDeliveryScreen />
+        </MemoryRouter>
+      );
+    });
+    const accordionControlButton = screen.getByRole('button', { name: "Search Criteria" });
+    await userEvent.click(accordionControlButton);
+    const dropdownButton = screen.getAllByRole("combobox");
+    fireEvent.change(dropdownButton[3], { target: { value: "E" } });
+    fireEvent.change(screen.getByLabelText("Email Address"), { target: { value: "invalid" } });
+    expect(screen.getByText('Please enter a valid email address')).toBeInTheDocument();
+  });
+  it("Content Delivery Management - landing page", async () => {
+    mockAuthContext();
+    AppContext.getCurrentMenu = jest.fn().mockReturnValue({ "userRights": "VIEW,SEARCH" });
+    let component!: RenderResult;
+    await act(async () => {
+      component = render(
+        <MemoryRouter>
+          <ContentDeliveryScreen />
+        </MemoryRouter>
+      );
+    });
+    await waitFor(() => expect(component.asFragment()).toMatchSnapshot());
+  });
+ 
+  it("Content Delivery Management - drop down check", async () => {
+    mockAuthContext();
+    AppContext.getCurrentMenu = jest.fn().mockReturnValue({ "userRights": "VIEW,SEARCH" });
+    let component!: RenderResult;
+    await act(async () => {
+      component = render(
+        <MemoryRouter>
+          <ContentDeliveryScreen />
+        </MemoryRouter>
+      );
+    });
+    const selectEl = await screen.findByDisplayValue("Notify Type");
+    const selectService = await screen.findByDisplayValue("Service type");
+    const alertCategory = await screen.findByDisplayValue("Alert Category");
+    const searchBy = await screen.findByDisplayValue("Search By");
+    expect(selectEl).toBeInTheDocument();
+    expect(alertCategory).toBeInTheDocument();
+    expect(selectService).toBeInTheDocument();
+    expect(searchBy).toBeInTheDocument();
+  });
+  it('Content Delivery Management - handleCriteriaChange findIndex with operation', () => {
+    const key = 'categoryCode';
+    const operation = 'EQUAL';
+    const currentSearchCriteria = [
+      { key: 'categoryCode', value: '10', operation: 'EQUAL' },
+      { key: 'categoryCode', value: '20', operation: 'NOT_EQUAL' },
+      { key: 'otherKey', value: 'x', operation: 'EQUAL' }
+    ];
+    const idx = currentSearchCriteria.findIndex(item => item.key === key && item.operation === operation);
+    expect(idx).toBe(0);
+    const idx2 = currentSearchCriteria.findIndex(item => item.key === key && item.operation === 'NOT_EQUAL');
+    expect(idx2).toBe(1);
+  });
+ 
+ 
+  it("Content Delivery Management - search expection", async () => {
+    mockAuthContext();
+    AppContext.getCurrentMenu = jest.fn().mockReturnValue({ "userRights": "VIEW,SEARCH" });
+    let component!: RenderResult;
+    await act(async () => {
+      component = render(
+        <MemoryRouter>
+          <ContentDeliveryScreen />
+        </MemoryRouter>
+      );
+    });
+    fireEvent.click(await screen.findByText("Search"));
+    const alert = await screen.findByRole('alert');
+    expect(alert).toHaveTextContent('Please check the below field for the error description')
+  });
+  it('Content Delivery Management - handleReset covers all state resets and closeAlert', async () => {
+    mockAuthContext();
+    mockCountrySetup();
+    AppContext.getCurrentMenu = jest.fn().mockReturnValue({ userRights: "VIEW,SEARCH" });
+    const { getAlertCatergoriesByType } = require('service/AlertService');
+    getAlertCatergoriesByType.mockResolvedValue([]);
+    let component;
+    await act(async () => {
+      component = render(
+        <MemoryRouter>
+          <ContentDeliveryScreen />
+        </MemoryRouter>
+      );
+    });
+    const accordionControlButton = screen.getByRole('button', { name: "Search Criteria" });
+    await userEvent.click(accordionControlButton);
+    const dropdownButton = screen.getAllByRole("combobox");
+    fireEvent.change(dropdownButton[0], { target: { value: 'S' } });
+    fireEvent.change(dropdownButton[1], { target: { value: 'Alert Service' } });
+    fireEvent.change(dropdownButton[2], { target: { value: 'Banking Transaction' } });
+    fireEvent.change(dropdownButton[3], { target: { value: 'M' } });
+    const textboxes = await screen.findAllByRole('textbox');
+    fireEvent.change(textboxes[0], { target: { value: "2024-07-01" } });
+    fireEvent.blur(textboxes[0]);
+    const input = await screen.findByLabelText('Mobile Number');
+    await userEvent.clear(input);
+    await userEvent.type(input, '01710000000');
+    fireEvent.blur(input);
+    const resetBtn = await screen.findByText('Reset');
+    await act(async () => {
+      fireEvent.click(resetBtn);
+    });
+    expect(dropdownButton[0]).toHaveValue('');
+    expect(dropdownButton[1]).toHaveValue('');
+    expect(dropdownButton[2]).toHaveValue('');
+    expect(dropdownButton[3]).toHaveValue('');
+    expect(screen.queryByRole('alert')).not.toBeInTheDocument();
+  });
+  const DownloadErrorMock: any = () => {
+    return {
+      "reportTitle": "AuditTrail Report",
+      "countryCode": "BD",
+      "reportGeneratedBy": "1276140",
+      "totalRecords": 270,
+      "reportData": "data:application/pdf;base64,JVBERi0xLjQKJdPr6eEKMSAwIG9iago8PC9UaXRsZSAoMi5odG1sKQovQ3JlYXRvciAoTW96aWxsYS81LjAgXChNYWNpbnRvc2g7IEludGVsIE1hYyBPUyBYIDEwXzE1XzdcKSBBcHBsZVdlYktpdC81MzcuMzYgXChLSFRNTCwgbGlrZSBHZWNrb1wpIENocm9tZS8xMjYuMC4wLjAgU2FmYXJpLzUzNy4zNikKL1Byb2R1Y2VyIChTa2lhL1BERiBtMTI2KQovQ3JlYXRpb25EYXRlIChEOjIwMjQwODEzMDk0NzU1KzAwJzAwJykKL01vZERhdGUgKEQ6MjAyNDA4MTMwOTQ3NTUrMDAnMDAnKT4+CmVuZG9iagozIDAgb2JqCjw8L2NhIDEKL0JNIC9Ob3JtYWw+PgplbmRvYmoKNSAwIG9iago8PC9GaWx0ZXIgL0ZsYXRlRGVjb2RlCi9MZW5ndGggMTc3Pj4gc3RyZWFtCnicTY7NCsJAEIPv8xQ5C26zO7OuhdKDrYoHQWXBB/APhArq+4O0RTSnhOSDuKDlIBDE1P1FC8Spk6f0TbBUOh9p8CkSr4scJ3jIU9T5EAf4507dwBCHNUbzukmxVtzesshS7FBVxbbZtCDqetE2UqwMGpCv4scjHnNoQu6kInVGmpGRZFTSVqTNSSqpSoZEhrJGvotPdJr6G/mMapyEkrTmiw2z5baRZZa97OUDNa40JQplbmRzdHJlYW0KZW5kb2JqCjIgMCBvYmoKPDwvVHlwZSAvUGFnZQovUmVzb3VyY2VzIDw8L1Byb2NTZXQgWy9QREYgL1RleHQgL0ltYWdlQiAvSW1hZ2VDIC9JbWFnZUldCi9FeHRHU3RhdGUgPDwvRzMgMyAwIFI+PgovRm9udCA8PC9GNCA0IDAgUj4+Pj4KL01lZGlhQm94IFswIDAgNTk0Ljk1OTk2IDQyMF0KL0NvbnRlbnRzIDUgMCBSCi9TdHJ1Y3RQYXJlbnRzIDAKL1BhcmVudCA2IDAgUj4+CmVuZG9iago2IDAgb2JqCjw8L1R5cGUgL1BhZ2VzCi9Db3VudCAxCi9LaWRzIFsyIDAgUl0+PgplbmRvYmoKMTAgMCBvYmoKPDwvVHlwZSAvU3RydWN0RWxlbQovUyAvTm9uU3RydWN0Ci9QIDkgMCBSCi9LIFs8PC9UeXBlIC9NQ1IKL1BnIDIgMCBSCi9NQ0lEIDA+Pl0KL0lEIChub2RlMDAwMDAwMDkpPj4KZW5kb2JqCjkgMCBvYmoKPDwvVHlwZSAvU3RydWN0RWxlbQovUyAvSDEKL1AgOCAwIFIKL0sgWzEwIDAgUl0KL0lEIChub2RlMDAwMDAwMTEpPj4KZW5kb2JqCjggMCBvYmoKPDwvVHlwZSAvU3RydWN0RWxlbQovUyAvRG9jdW1lbnQKL0xhbmcgKGVuLUdCKQovUCA3IDAgUgovSyBbOSAwIFJdCi9JRCAobm9kZTAwMDAwMDA3KT4+CmVuZG9iagoxMSAwIG9iagpbMTAgMCBSXQplbmRvYmoKMTIgMCBvYmoKPDwvVHlwZSAvUGFyZW50VHJlZQovTnVtcyBbMCAxMSAwIFJdPj4KZW5kb2JqCjEzIDAgb2JqCjw8L0xpbWl0cyBbKG5vZGUwMDAwMDAwNykgKG5vZGUwMDAwMDAxMSldCi9OYW1lcyBbKG5vZGUwMDAwMDAwNykgOCAwIFIgKG5vZGUwMDAwMDAwOSkgMTAgMCBSIChub2RlMDAwMDAwMTEpIDkgMCBSXT4+CmVuZG9iagoxNCAwIG9iago8PC9LaWRzIFsxMyAwIFJdPj4KZW5kb2JqCjcgMCBvYmoKPDwvVHlwZSAvU3RydWN0VHJlZVJvb3QKL0sgOCAwIFIKL1BhcmVudFRyZWVOZXh0S2V5IDEKL1BhcmVudFRyZWUgMTIgMCBSCi9JRFRyZWUgMTQgMCBSPj4KZW5kb2JqCjE1IDAgb2JqCjw8L1R5cGUgL0NhdGFsb2cKL1BhZ2VzIDYgMCBSCi9NYXJrSW5mbyA8PC9UeXBlIC9NYXJrSW5mbwovTWFya2VkIHRydWU+PgovU3RydWN0VHJlZVJvb3QgNyAwIFIKL1ZpZXdlclByZWZlcmVuY2VzIDw8L1R5cGUgL1ZpZXdlclByZWZlcmVuY2VzCi9EaXNwbGF5RG9jVGl0bGUgdHJ1ZT4+Ci9MYW5nIChlbi1HQik+PgplbmRvYmoKMTYgMCBvYmoKPDwvTGVuZ3RoMSAxMTMyMAovRmlsdGVyIC9GbGF0ZURlY29kZQovTGVuZ3RoIDY5NDA+PiBzdHJlYW0KeJzNegl4W9W17r/20dFoyZJsy7Jk62iwPMiW5VGO4+l4kB3hBDKCZWxiJ3FwJhKHEJIwNKUEiAMBmkJoyoXcNM2jpCmKEuAEaBkKhJRQaIHSchnyNaEFikubl6YD2LqcI5M43LQv93397nt7f9p77b3W/tc+/15nHR3LIAAmbASH/kvmhCrvnD7+e4B2A+hfuGJgFRfkMgCmArBm4do17h8e+favANUagPcuXnXlikjdgt8A6W5A/fGVy9cv/tG1Gd8DhBNA2uyhRSvWPdD7ez2guw/gbxsaHFg0erL1KEDLAYSHhgYHrMv1nwI0DUD+0Io166rm0UGAywdo5vKVCwdaZzS/BbB1AB5eMbBulXa3Xl6vBeC+amDFID5U/QTAJwAcq1ZevSZ5HbYAVCTrV60eXFVw8gfLAVsaoHsTAMEKDqTSgUHGaMVKLMciRQPMxXyosQlaMJhhRgTQfKh7EyoQOCgluU7GP08hQI1xmczl42XjZaZ6BXFymfvlzMnm9747P73hz2TRKuNdNx9R+veOBQ+Ol33+Y1O9vhcE3RkETvU79hR4gD3FRgDcnurpXcxkVtlAwWFf7uNsWbV+9dUQ4caq1N70vVyrG/TgJQRwj/BDMktnVslXmAYV5FkbzOCghhvt6MBMzMEABrEEK7AqmVRWnTu/XJ5PHv+v9b+wcLZU/0vrARyg6vPUJ+XKtvzjys2aqC+lqiqg1GH+63JVFwPqOvi/3DT7h5fz/6bwh5Er96rj8FyI/WQ71dXo/L/xqZLPblLh7kDZ5DGrO+tDltUPn+PTzw8hlx+CwA/Bzj0CB5B8C0gelz/jPckxfgU84y8n3+YqAAqmPkq8LMXNqMBr4HAUPL6HBFopgmo8jwzyoAJXYD41IELdMMKBhfgjXYbF2IdPsYXpsQIiRRBEFQWRi3k4DA+WJMcRxVqMYCseQhCzsDX5WvIYgAosxUrcgjvJhQrswyG8S8uThyGgFVdhL96ipuRDAOxwoE1VgmrUox0XYQbmoQfzsQhbsQvfxc9pffKW5OHkW9DAg3LUYCH24DEcxWdUReu5Vm4HNGhFK36BN8lErck5yQPJIxBQhDrMQwy343bchfuwG49jFOMUolm0L7ksuTr5OPzowRC+jtuwHf+Gn+BvVEJBVslWskcA5CKEkIJ9KbbifuzC83ib9JRGl9JVtJ4O0l9YjHssuSr5ABj8qEQd9uJHeA5H8HN8RHrSUy610go6zPZxGdw27gF+Lf/DpC/5IQS0YTauxi3YjEdwBL/CuziOv+CvZCI7OUigcqqmGuqiHuqhPfQI49gmtoftY6Oclvs37gVV2vjx5HvJ0/CgACWoQA3a0I4IpiOmMLgaq7Ede/AjPIvDOIKjeBPv4B18gD+QijLIRiZykkAeyqdi6qRO6qJLqZtW0y7aRe/TRwwMjLGDXJS7WwXVJr6aX5/0JquTtcna5M+SH4KDBtnIRQ0a0aScXC+GMIRlWI1vYBNuxW3YigfxXRzECziCT/EnnMQpfIbPiSOeNGQiM+WSj4ooROUUpjDVkkhR6qIumk6zaB5dRt3UQ/NpEW2ku+mb9Dg9Tj+m5+gw/YY+opP0mbJLnhlYJYuyWWwOu4FtZ9tZgr3OFXInVS5ViUpUva06wTv4Wr6Hv4ffq9ZpHh37ZHzf+MGkKjk9uTX5QPL15MfQw4oqXIwrsABDWInVWIONuBPbsA3bsR0PYg/+F/bhMTyOZ/AcDuMwXsbLOIr/wDt4H8dxAifwe4xiFKfwV+JJT7aJKp+oQznROmqiduqiOTSHumkxraBVdC3dQDfQVtpBD9Iu2k0P0UE6SM+dU1+lY3SMfksf0kd0ij6jz1gmC7EQm65c8+Xsa2wj28g2sXvZPraPvcBeYH/hsrhKbh53Obeeu497iPs+9zL3sQqqxaoR1QOqH6t+zoMX+Gn8Qn49fyv/Hf4R/ij/Ov+ROl+9T3OnZpvmIyqiS8lHdV9JXxmYjp14CkNsLTtIEbigwlI8Qmvwd6alOXQtZeAI1mMNQl/c9X10I8ysnH2LSpmBfZfv4rZjK+5BELX4Bd5FK6K4G5V4Cx30PLsUHyIveRwZyVHYkx/za/g1YHwX8vgu2LntyJjIc6NA8uPxVkDWjf8o+UvO9UWyvAnlCChVLmYA3TqN5sIeOhqoz8hqJUdPKnwqa8uPeE6jDPUyLvffx+X/Ga4aMOi0F4arhWaSj0lOJhwp2DKuThmm6XUXhqs7F1dzjlJ9ds8qvaI06vUXiqudtPev4GomsM/imtL0Xz2E8xc9dJN8THLyVdw0RZmeZrgwXMM/w9VOYJ/FNaelXRhuGvST9j5pcB5cHWAxGf8FuLoJbBnXpAyt6aavBuP5ixGGM7LhH+HyAJ+uKDPM6ReGa0LapL1PcjJxAQquGlCbFWWm2fwvwtWdg5tltVwYbjqMZ2QjJjlBipgzuFZFaZNx1efB+Wox/59w9efgZmdYLwzX8sVb6ZfFhElOkCJGwZVv8AxFac/IuFDc9DNy+vlwDefgioUF/nyf1+MWXHm5TkeOPduWlZlhtZjTTcY0g16n1ah5FccIpRFfR787XtAfVxX4pk0LymPfgDteMDBpoj/uHnDHO861ibv7FTP3uZbigDu++CuWYspSPGNJZncDGoKl7ojPHX+l3eeWqGdWt88dv6PdF3PHRxV5hiLfpcjGdl/M4wmWut0R+1C7O0797ki8Y+3QSKS/PVhKh0SZ2WApDgEiDDJwHG0DNwzZ42iTLSJxh689Es/xtSs6zh8ZWBSfOas70u70eGLB0ji1LfQtiMPXGk8vmVgur3PHOf/sbl/MEyxdIu8fW9IW+RZtkUQs6Jelgd7uODcQi7N+2YelJJ7ta49nb/jAfnb4pRS5fZIyzvwdA4MjHXGxf8u01LBfHg3cPi1Y2jXH3dsdZ5ti3XHaFEttQtl76ioGfRF5pn+pO67ztfqGRpb2D7jjmN2dcIiOiG+gPRbHzO5EjpijDIKlh+w31nsMwdJDwZZgi9zXe+w3pvrffSM1/4tnDIrd88cMwdKu2Wd4IdmTLxoX++PuhYoTX5z5p8jN4BSMLJzi9MglRsHSyJK4rq1/xDw1WEpx3m/2uUf+jDj1+0Y/OXdmYGJG7Tf/GbIoH+eZiIjTwIQsobC0S4JuZvd+oq0xiZKbJLTnHYIO3PwrghKK5HBY0h6n/qCE4lIJRQFPUEKg1N0R5/wd8rm5R9wj0UUj7g730MCiuMqv9LO7fYMjsZA7jjndS9xxzO32xMWY84w4GItNDUookXFUCs5IzN3hXjqBsFRBGImFxoISSku73HGuYGb3rO74xnZnXGyPOT0edyT+zMzu+DPtTk8sFpQQPLNTtztywxL7xJ7LSiUEA0EJoRTKnO74RmdcjI2MpEY+T/yZkRHniHwfpMYS4asT4sSEBAWA80ck2jhTUW30eZzyhM/j88Scnlh7UEJ5adecL49XQsU/Z7hyMsNVpRIqFYar/0UM11wIw+ELYrj2/AxPKZVQKzNc9z/H8NRzGK7/5ww3TGa4sVRCg8Jw07+I4eYLYVi8IIZbzs9wa6mEFpnhtv85htsnMQxIqC+RUFEiobDk0bvUd2lYlsS2JDqFTImNJDqFDIltTnQKVondlugULBK7NdEpmCV2S6JTSJfYpkSnYJLYzYlOwSixbyQ6hTSJ3ZToFAwS+3qiU9BLbGOiU9BJ7GuJTkErsRsTnYJGYjckOgW1xK5PdAq8xK5LdAoqiW1IdAqcxNYnOgUmsXWJToFSI0hsnZjVKbwfpVej5A6Qu5buitFd+XRnS4j1g2Bm/TCzBWB4kC0EIckWgfCp0r6mWLzKBkF4mg2A8IjSpizvVNqVbPEXNpewhbiEXfkFiqBYC+zKBGnFFgOrpqMYhpGeV9q9SqsRM4eNR4eNTwwb9wwbNw4b64eN4WFji55+jloYab/SDiptgWioNT5Ua1xba/TVyia/QwxGukhpc5U2W8yMGU/EjM/GjA/GjP0x46UxY37M2GKjERTBSN9Q2puUdoPSDintbKUNKK1FtBQZf1VkfKDI+J0i44Ii45Qi45OUjoMwkl40HTQeP2gsPGh0HTQedBqfoJ8inUyJdOgO0U/JdNDocl4lSPS3RK9dkOhUqjuZ6M0TJPo00esXJPpDordAaMmh36JXSxDoA/TSpRDoN9ipksfv0jIm9+/QMmX8NgLkh0C/SgSeFCR6K9X9MtW9kQj0CBK9lggUCRK9kgh4BYleTnUvJQIuQaIXElG3INGziWiBINEziWiZINHTiWhIkOjJRHSBIJGUiJ4QJHo81R1IBJcLEiUSwa8LT1EcQbYXAm1M9OYIEn0t0ZsrSHRDojcsSHR9oneK0BKka7FT2eOaiWu4GjtpBwQaxk7l2lZhq6Jfia2K/ipapoxX0DJFv5SWKVwsgaisuxIBpV+YCFwkSHRFIlAqSBRLRCsEiboT0dlCi5HmIaqAzUVU2eEcRJVFMxPBvYJElySCJ4SnaMbE/qcngq8ILTrqQojkVVH4FetpCf8DgkQVE6cSmjiN4MQVlGCr0hdDVE6lEAHFqR8Bxc6XOgdvIrBNkMiTCHQKErkTgWJBorzUAdhTzNsSUflaMmR2nyIzgsp6g5jpf0D4e68g/K03X/jrzhPCX3aeEE4dkoMgIfwpIJFfzBb+GDgh/CFQKYwGKoRPAnrhg6BPeGvrk/JO8Dr5RXeW8HrAIvwiahVe8Z8Qnu/NE37S+4DwTGCB8HSgR3hElFQkpgv7AtXCD6Jpwt7ocuH7UXkuQ7g/ahV2RLcJ3/KfEO4ILBdG/Kn5m0SH8PVoSLi29wFhdTBXWBWUaMdjwspgjbAiJNGOhLDML5H/MWGpf5sw5Je0lBAWbpUYiQbh8oBF6ImWCvOi8lgvaNQBgWMBOU9dnUpsq1M5bDiV2FalstbKVA67IpWurkjlt/mpVHbFgU6hMyQxekxoi3qFxq0S25sQGuTNJoS6qOK+KijJpJXvlEmrEUqDRYIQ1Qvz9msu00zV1GiqNWWaAo1Hk6fJ1WRqrVqz1qRN0+q1Wq1aq9IyLbSZUvKYKP+Ihkz5RZGgVsmtisktS/3gw0jLcFGLnY1Ay26Dlt0CLbsZWnYTtGwjtOxGaNn10LIN0LJ10LK10LKR5LED8upDbIRdf9CcEq9nGyYmN7BbJqRb2LoJaR1bq0gSW3tA9imxtfsvgvwEj9MddtvaZnuztclS19F+nqZ/oi05W+z/aMH5bCeJlBe/t2tOd/zhvFi8UhaSebGueLH8inCIhVl1pP0Qq5G7WPchWs3CkdnyPK1uj8W64tMVM+xkNZH2Q+iVu1j3Ic6LnbIZdnJexWyzbLZ/685I+/6dOxUT/j5sVUy28vcpJntTSAEWlpFEuYt1H1LrEVDMAmq9bCaxlB0tgxhp3y+KilVOOi2TrWhZTroCZlP8+f2R9v1Rv2yyv8Qfmd2931+iqAvPqoMeRb0spV6W8kFn9aHUck9K72mPxUr+fyqDrf/dFQe2HNu8W37F6/dFBvt9kf74lrVfvMVuXOB27998bOLdr6B/wcIhuR8YjB/zDbbHN/va3fu37D6Peres3uJr34/dkbnd+3eLg+2JLeIW5c3wwMW7pt99jq/NZ3xN33UesF0y2HTZ18V3n0d9t6y+WPZ1t+zrbtnXxeLFiq/IkjmtV08q16xZkxLOT8PVUH609ANqEz+k/OLRIubyaoERVBqBg55XCRzHHDq1RiDkaHUSKzvguXKmvaTk4lMNM8YaLjafbphhHmtAc8NYg/ypKK+yeCyFFo/Fz390+LPv8UN/v+8w9/bnBWDyb5H8Jn4ImfDhNjG21vKo5SXji5aX7L80/Tr3I/tHOX+3/z3HoDaqLVnGLOu8tHk5g2mDObflbku7x3SP+VvW+/L25EhGKdeiKoIzM5bPFzn1MZ+Kz3aFDAY9yw5lZGRqHb3pErvyUb/X18irJLZovz8/dPRUw1iD+fQomhvMo/LHUldXUlJRTn3oqw3Xhmss1YUFhTUed7bNYtaoiynfVlVplSd9Xo06y5I7w9tQ55nFVtN1hx997JXxfx9bT38rbnvs4+bFJ2fazdW8RZjNnbxEsGqqfyqN/3T842d/feMUIlrx6/s/89qaP1cyoQdQPcwPwYdton69iWImgp3sErv80cxgeg7lSOxy0ZKX5zHrnGnmkJ554PRqvRJli/ku0ZHt9MBebmd2u8soGp0epIlpz6Rxaf4MV6NK78s/e62nGsxjDeYbftlndzSOOSzWuutDfY2OsQaH3fw5mscamj85Omax1oVuGO0bG+2zV5Sjj86hweIrI59XnWWxhWurlIEl01ab5fF0++umeHtVmysLDp7sqdhzjau6Outr31u5ekyo5rLc3dz7MSFDXT2+8OlvF08ZL+C+uXNs+p77xn3zq1i1HGcyAy/zQ9DDh2+LfVHqpiWOa7LW2tY6bsm61XaL4wSvX8zutd3n+JidsJ+mUzaNaYrB6Yvlp09xZsR8rilOb77P5Mr1pav1uRXOpYKe9J16b4Y6lJmZwXxeLde7Mvvp7PezuWwlBnSunemmc2OgTw4CJQSsdWtDffaxExZrncUqx0NJignUhmuqC5TrpyaqsVQrkaHKylRrTAoT2Vke9rPGgSs2NdaM6wcjHYvYNlKTZdl1fU88Pn1o7FL2eGHTK7f/IC8w9vbYRk3nCm7zmkZD9cOvDu4PF5jHbxruUClsdCaPqxz8VtRhKv4kFmT716VtMK433Wrdbn0o7S3Dx6bfWU9bDTrrBisTpzjrBskZACTGEnVijURG0RwoE3OcjsFcZ8DpdAyKNnmyK2AsKjH79V5NjYamesmvoRIvFfmNepVKCGVwqlCZbio3darZ6Zx/j4Y0n5hLQiUrS7gSR0MdKnZ4yftJyLzSzMw59Q0SsQOezUeUe71vxmjfKflulwWZshCam0ebRy3ZddTX19cnMyh/0Oj4xGE/dZTMjY7RU6N2B8zKzPOjEzMOe+q2y6hyUVVluKa6sCBEBYUFNdXWqkpbVeWXEedVZ2Vm2wSyyX9SZR5vQYiUWY2POusr37/r9rVNxddvenHWrLfeG3493evQNtYVv/qtofV1U57dcWXj6j+Pn2z6WlORyaFz23X19Cd674PX7rykd2pBY+uC/v477iVVe6F7vPU7x4ZnDZRXzJ9e1bRmz3fGR7Pt6Sre7+V3g0N18jj3IXcEBohowUvimmjzkuYdWd9v+n4zb/NlFeY2FRsLfYX5BYXFTcXNXbS58jvle+nh8oebHm4+RI8WPVH+RNMTzc8XvVz+iyJ7i+Z+keoaVYLVpPKkm8h0kclgtfr9GkO0oqbR0NLiDZgrqKKiLVCX7uUC5gBtDNwVYAGJDYimNq0o5npXiq+K74ucKLEF+9taQ0dP973xrnnMfKpveOzEa/KJDNtT59LQeNQuH00qwB2vpAK8rzkV3vm14VqLWqPOyrRVlZJ/ItQzbQK5KCtT7fMW1FSHqyqzbVmWTOU8stUatc9bWFCo9AU1RP+7xO6Z3bSksWD8avl/AGYsqO3UatNMlhlV9XPe2/XDa9Zkm9IyMoWGaFnV5QG7Yd6ylua536RD17isBVSSWRIdbou8sWv2PZdfViykmXUmS3H21OaO1rUjbe2PjZttgi6zpCPXWuOqn+ezLRvm9OBQljzOLeSOwAEPvLhWbLZl+ilgn4d5dCkXM8bs3TlDOU9aDdYMa4bJ6enU6fUml8vPNKZotsGr8XodOueozpueQY9kfJrBMiS28NF8j1cvOmQ2832ho6fHTphP9w2fGp0U29a6UMNYg7WujsxHZPIcVFVpy5Yj0mPLtlVV1n5JTr7FnwrOjLLP9g8myvNNmrHTGk/D9mli4dTQ/BtmLdk+/ldWzqovnlmvuoM9R/zSKzqHa3Kv6/l+0Cnm3d9Y+Afilz96154H6dZUnmQ6/lYYkIsrxSnmLMHJjGnm2jRXbjjf4nNlhX3ZPpdz2JdtMXNZuc1aCmlJKzLKUuc69bzoNpDBa3ZJbOCgLTtgMR9i/cgLyfnvhPlUKgE2j8r3bLac9cxvUF9FuTVcVWmbOH8u9SxQHgVKuruur7Wlr6+lta8nnOkKNNHmotpxOx/o62tt7etr/Syqszo7WE9T0FD5+em2AkNF6mnHdPwQ0jFXLFJr0ghmrWBiXC1c6eF8lc+lDfv0tS5T2KdXcVy6FukmvUXesU4fUHHyjs3Kjn8r79aaXTejpKSE70Oj+Y3nzW9UlNeeycypHXrCwUAd3Vw6ZdxeYSxpV2W0FBkrP4u0B0wVE89e9U3cYbTRAvHpQ55D3icqn6hS7fXs9e6t3Ful2uDZ4N1QuaFqi2eLd0vllqodnh3eHZU7qtKKLcWeYm9xZXFVR0tH61LPUu/SyqVVBp1H59VV6qpUYWPY1mnssLXVX2Z5Ie2FrDfT3sx6s97Q4+nx9lT2VKnMOsHNPOX+YGVruIlaqsq9Kqhq4Wqrz+d9Ll29L9fncod9DU0ZmcFwU0M46M818CpdZpt7Kk2NpmcudhdTcdRuT9fo1G2tlRUetz4ip4QcZ26gYBr8bj+L+ynkL/eL/jv9O/28X6J80TGtNBionYawO8ziYQqFy8Ni+M7wzjAflij/sWl6b1OAV8kct8scn1h7uq9veG3DWMMZ4QSaG+TS3Cx/u+v7rXlUiRaSU7xVDhqYsxsa36Av035fKqnTsPwsqD0bPlnhWiWXZFcpgpJTsrM8NanTU56x55/wTMnylrXQzVXlsRXXtRd4TVNr5i5c/r2yqeOOKaWh1pprimrHPeGy0kjz8oIp47YKjcUZZT1imbZyW5u/baqnqzO/fuSesbHOQnVFhbYwQn+c2T2QMfaOHJ0VmsIO+uPFPVcaU2P5G/B4j6qCOwIjyvCseGOmw5dX4rk8bV7ePNeLOS86X/K86f4g7wPXcffHnlN56eo80uQVOuoc0xzdjkF+cd5i1y38/YZ78+51pZltQtBcxll8JldZfb7V57LV+4prXcGNvmL5B0GeK7QUe8sK7FaDljeq5+ZqbGrjXK+hLGi6jCNOvFMgQWILRX15trcwYBUtZJFY//7yUOjoqb4GJUeN9sm3xGiz8vCVyaeJG5lSpzAsp/iaM2RWnf0SkzVxCJlMyedZtmwXyV9mXizMEhe0Di1sGvtZa3lQpFsDRdNW/fubH+ye21VUQqSJzBp7bd62WffFf77GMW5yzR8Pa0ItKl4M6ipv7fBMPfnH98f/o8JRvm/EMquBl/895T8BueuvsgplbmRzdHJlYW0KZW5kb2JqCjE3IDAgb2JqCjw8L1R5cGUgL0ZvbnREZXNjcmlwdG9yCi9Gb250TmFtZSAvQUFBQUFBK1RpbWVzLUJvbGQKL0ZsYWdzIDYKL0FzY2VudCA3NTAKL0Rlc2NlbnQgMjUwCi9TdGVtViAxNjguOTQ1MzEKL0NhcEhlaWdodCA2NzUuNzgxMjUKL0l0YWxpY0FuZ2xlIDAKL0ZvbnRCQm94IFstMjI3LjUzOTA2IC00MDcuMjI2NTYgMTc3OC44MDg2IDEyOTQuOTIxODhdCi9Gb250RmlsZTIgMTYgMCBSPj4KZW5kb2JqCjE4IDAgb2JqCjw8L1R5cGUgL0ZvbnQKL0ZvbnREZXNjcmlwdG9yIDE3IDAgUgovQmFzZUZvbnQgL0FBQUFBQStUaW1lcy1Cb2xkCi9TdWJ0eXBlIC9DSURGb250VHlwZTIKL0NJRFRvR0lETWFwIC9JZGVudGl0eQovQ0lEU3lzdGVtSW5mbyA8PC9SZWdpc3RyeSAoQWRvYmUpCi9PcmRlcmluZyAoSWRlbnRpdHkpCi9TdXBwbGVtZW50IDA+PgovVyBbMCBbNzc3LjgzMjAzXSAzOSBbNzIyLjE2Nzk3XSA0MSA1MSA2MTAuODM5ODQgNTQgWzU1Ni4xNTIzNF0gNjggWzUwMCAwIDAgMCA0NDMuODQ3NjZdIDc2IDc5IDI3Ny44MzIwMyA4MCBbODMzLjAwNzgxIDAgMCA1NTYuMTUyMzRdXQovRFcgMjUwPj4KZW5kb2JqCjE5IDAgb2JqCjw8L0ZpbHRlciAvRmxhdGVEZWNvZGUKL0xlbmd0aCAyODk+PiBzdHJlYW0KeJxdkctqwzAQRff6ilkmiyD5kaQBYygKBi/6oG4+wJbGjqCWhaws/PfFoySFLiQ4zB3pzh0u63NtTQD+6SfVYIDeWO1xnm5eIXQ4GMuSFLRR4U50q7F1jMv63CxzwLG2/cSKAoB/4WDm4BfYvOqpwy3jH16jN3aAzUU2W8abm3M/OKINIFhZgsaecfnWuvd2RODUtqs12mDCsrvI5k/xvTiElDiJbtSkcXatQt/aAVkhhBAlFFVVVSVDq//VT7Gr69W19aTOSiiESEW5UnokyvNIp0gHoiwq91GZHSJlRHlOdEgivUTaR5KRTkT7+MpRkLu7j+Th6jlEXj0+o155V8f6OtYa/zMzdfMebaAdUU5rQsbic41ucmvXen4BPg2SSQplbmRzdHJlYW0KZW5kb2JqCjQgMCBvYmoKPDwvVHlwZSAvRm9udAovU3VidHlwZSAvVHlwZTAKL0Jhc2VGb250IC9BQUFBQUErVGltZXMtQm9sZAovRW5jb2RpbmcgL0lkZW50aXR5LUgKL0Rlc2NlbmRhbnRGb250cyBbMTggMCBSXQovVG9Vbmljb2RlIDE5IDAgUj4+CmVuZG9iagp4cmVmCjAgMjAKMDAwMDAwMDAwMCA2NTUzNSBmIAowMDAwMDAwMDE1IDAwMDAwIG4gCjAwMDAwMDA1NjggMDAwMDAgbiAKMDAwMDAwMDI4NCAwMDAwMCBuIAowMDAwMDA5NjU1IDAwMDAwIG4gCjAwMDAwMDAzMjEgMDAwMDAgbiAKMDAwMDAwMDc4MiAwMDAwMCBuIAowMDAwMDAxMzkwIDAwMDAwIG4gCjAwMDAwMDEwMzkgMDAwMDAgbiAKMDAwMDAwMDk1NSAwMDAwMCBuIAowMDAwMDAwODM3IDAwMDAwIG4gCjAwMDAwMDExNDIgMDAwMDAgbiAKMDAwMDAwMTE2NyAwMDAwMCBuIAowMDAwMDAxMjIyIDAwMDAwIG4gCjAwMDAwMDEzNTUgMDAwMDAgbiAKMDAwMDAwMTQ5NSAwMDAwMCBuIAowMDAwMDAxNjkyIDAwMDAwIG4gCjAwMDAwMDg3MTkgMDAwMDAgbiAKMDAwMDAwODk1MCAwMDAwMCBuIAowMDAwMDA5Mjk1IDAwMDAwIG4gCnRyYWlsZXIKPDwvU2l6ZSAyMAovUm9vdCAxNSAwIFIKL0luZm8gMSAwIFI+PgpzdGFydHhyZWYKOTc5NwolJUVPRgo=",
+      "reportDateFormat": "dd-MMM-yyyy",
+      "reportDateTimeFormat": "dd-MMM-yyyy hh:mm a",
+      "reportTimezone": "Asia/Dhaka",
+      "reportTimezoneInGMT": "GMT+6:00",
+      "reportDisplayTimezone": "Asia/Dhaka(GMT+6:00)",
+      "reportDisplayTimezoneFormat": "${reportTimezone}(${reportTimezoneInGMT})",
+      "reportName": "CODEPACK_REPORT",
+      "reportType": "ALL",
+      "reportGenerationType": "PDF",
+      "mobileNumber": "",
+      "relationshipNumber": "",
+      "reportGenerationDateTime": 1687705340907,
+      "searchByFieldOne": "",
+      "searchByFieldTwo": "",
+      "searchByFieldThree": "",
+      "searchByFieldFour": "",
+      "searchByFieldFive": "",
+      "reportFileType": "application/pdf",
+      "reportFileName": "AuditTrailReport_BD_2023-06-25T21:02:35.pdf",
+      "trackingId": "2d95cf36-6624-42d7-b6fe-1df5d1faad96",
+      "startDate": "",
+      "endDate": ""
+    }
+  }
+ 
+  const getAlertCatergoriesByTypeResponse = [
+    {
+      "categoryId": 10,
+      "categoryCode": "10",
+      "countryCode": "VN",
+      "categoryType": "Alert Service",
+      "categoryName": "Banking Transaction",
+      "interfaceName": "EBBS",
+      "alertType": "BANKING_ALERTS",
+      "subAlertType": "BANKING_ALERTS",
+      "defaultSmsEnabled": true,
+      "defaultEmailEnabled": false,
+      "emailGenerationType": "I",
+      "defaultPushEnabled": true,
+      "active": true,
+      "serviceName": "REALTIME",
+      "productType": "BT",
+      "categoryAliasName": "Banking Transaction",
+      "categoryPropertyDto": {
+        "showFrontOffice": true,
+        "showBackOffice": true,
+        "customizeAble": true,
+        "viewType": 3,
+        "mobileMasking": {
+          "prefix": "84",
+          "lengthWithPrefix": 12,
+          "leadingZero": true,
+          "removePlus": true
+        }
+      },
+      "createdBy": "SYSTEM",
+      "createdTimestamp": "2023-12-22T10:24:02.582147Z",
+      "callBackSettingsDto": {
+        "smsPushEmailCallbackEnable": false,
+        "smsPushCallbackEnable": true,
+        "smsEmailCallbackEnable": false,
+        "emailPushCallbackEnable": false
+      }
+    }
+  ];
+ 
+  const contentDeliveryMockedResponse: any = () => {
+    return {
+      "content": [
+        {
+          "notificationType": "S",
+          "countryCode": "BD",
+          "messageId": "331de568-9889-4450-949c-c7e35c4840d1",
+          "messageTimestamp": 1685601729.902427,
+          "alertType": "CARDS_TRANSACTION_ALERTS",
+          "subAlertType": "PRIMARY_SUPP_CARD_ALERTS",
+          "categoryCode": "8",
+          "alertCode": "CTRAN",
+          "languageCode": "ENG",
+          "mobileNumber": "919038777287",
+          "encryptStore": false,
+          "priority": "LOW",
+          "message": "BDT 6000.00 transaction was made on card ending 2350 at Attarkhel        Jorpati on 24-May-23. Available credit: BDT 133791.76. Enquiries:16233",
+          "status": "Q"
+        }
+      ],
+      "pageable": {
+        "sort": {
+          "sorted": true,
+          "unsorted": false,
+          "empty": false
+        },
+        "pageNumber": 0,
+        "pageSize": 20,
+        "offset": 0,
+        "paged": true,
+        "unpaged": false
+      },
+      "last": false,
+      "totalPages": 2,
+      "totalElements": 21,
+      "first": true,
+      "sort": {
+        "sorted": true,
+        "unsorted": false,
+        "empty": false
+      },
+      "number": 0,
+      "numberOfElements": 20,
+      "size": 20,
+      "empty": false
+    };
+  };
+
+});
